@@ -1,0 +1,6 @@
+primeng --save
+primeicons --save
+bootstrap
+jquery
+
+Angular decorator nedir ? 
