@@ -9,14 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrandComponent implements OnInit {
 
-  constructor(private BrandService:BrandService) { }
+  constructor(private brandService:BrandService) { }
   brands:BrandListModel[]=[];
   dataLoaded:boolean = false;
   ngOnInit(): void {
     this.getBrands();
   }
   getBrands(){ 
-    this.BrandService.getBrands().subscribe(
+    this.brandService.getBrands().subscribe(
       response=>{
         this.dataLoaded = false;
         this.brands = response.data;

@@ -1,3 +1,5 @@
+import { CarComponent } from './components/car/car.component';
+import { ColorComponent } from './components/color/color.component';
 import { BrandComponent } from './components/brand/brand.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,7 +11,9 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [
     AppComponent,
-    BrandComponent
+    BrandComponent,
+    ColorComponent,
+    CarComponent
   ],
   imports: [
     BrowserModule,
