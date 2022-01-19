@@ -1,5 +1,6 @@
 export interface CarListModel{
     id:number
+    carName:string
     dailyPrice:number
     model:number
     description:string
@@ -11,6 +12,8 @@ export interface CarListModel{
     minAge:number
     segmentId:number
     cityId:number
+    cityName:string
+    segmentName:string
 
 
-}
+} 

@@ -1,3 +1,4 @@
+import { RentalComponent } from './components/rental/rental.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -31,7 +32,8 @@ import {TableModule} from 'primeng/table';
     NavBarComponent,
     ContactComponent,
     MyAccountComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    RentalComponent
   ],
   imports: [
     BrowserModule,

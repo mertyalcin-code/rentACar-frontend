@@ -1,18 +1,22 @@
-
-<div class="container">
-  <div class="card" style="width: 36rem;height: 36rem;">
-    <img src={{car.imageUrl}} class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{car.brandName}}</h5>
-      <p class="card-text">{{car.description}}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">{{car.dailyPrice | currency:'TRY'}}</li>
-      <li class="list-group-item">{{car.colorName}} </li>      
-      <li class="list-group-item">{{car.minAge}} </li>    
-    </ul>
-    <div class="card-body">
-      <button class="btn btn-primary" (click)="addToCart()" >Sepete Ekle</button>  
+<div class="container" style="margin:3%">
+  <div class="card text-dark bg-light mb-2" style="max-width: 52rem;margin:1%">
+    <div class="card">
+      <div class="card-header">
+        {{car.brandName}} {{car.carName}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{car.description}}</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Renk: {{car.colorName}} </li>
+          <li class="list-group-item">Model: {{car.model}}</li>
+          <li class="list-group-item">Günlük Fiyat: {{car.dailyPrice+" TRY"}} </li>
+          <li class="list-group-item">Bulunduğu Şehir: {{car.cityName}} </li>
+          <li class="list-group-item">Minimum Kiralama Yaşı: {{car.minAge}} </li>
+          <li class="list-group-item">Minimum Findex Skoru: {{car.findexScore}} </li>
+        </ul>
+      </div>
+      <button (click)="addToCart()" class="btn btn-primary">Kirala</button>
     </div>
   </div>
 </div>
+

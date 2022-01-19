@@ -1,18 +1,21 @@
-<div class ="container">
-  <div class="row row-cols-1 row-cols-md-5 g-4">
-    <div  *ngFor="let car of cars" class="col">
-      <div class="card h-100">
-        <img src={{car.imageUrl}} class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{car.brandName}}</h5>
-          <p class="card-text">{{car.model+" model"}}</p>
-          <p class="card-text">{{car.colorName}}</p>
-          <p class="card-text">{{car.description}}</p>
-          <p class="card-text">{{car.dailyPrice | currency:'TRY'}}</p>
-          <button class="btn btn-primary" style="margin-right: 2%;" (click)="routeToCarDetail(car.id)">Detay Gör</button>
-          <button class="btn btn-secondary">Kirala</button>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let car of cars"  class="card text-dark bg-light mb-2" style="max-width: 22rem;margin:1%">
+      <img  src="{{car.imageUrl}}" class="card-img-top" alt="thumbnail" width="100" height="200">
+      <div class="card-body">
+        <h5 class="card-title">{{car.brandName}} {{car.carName}}</h5>
+        <p class="card-text">{{car.description}}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Renk: {{car.colorName}} </li>
+        <li class="list-group-item">Model: {{car.model}}</li>
+        <li class="list-group-item">Günlük Fiyat: {{car.dailyPrice+" TRY"}} </li>
+      </ul>
+      <div class="card-body">
+        <div class="d-grid gap-2 col-8 mx-auto">
+          <button  routerLink="/car-detail/{{car.id}}" class="btn btn-outline-dark" type="button">Detaya Git</button>
         </div>
       </div>
     </div>
-  </div>
+    </div>    
 </div>

@@ -2,5 +2,5 @@ primeng --save
 primeicons --save
 bootstrap
 jquery
-
+npm install --save @fortawesome/fontawesome-free
 Angular decorator nedir ? 
