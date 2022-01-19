@@ -1,7 +1,7 @@
+import { Router, RouterModule } from '@angular/router';
 import { CarListModel } from './../../models/carListModel';
 import { CarService } from './../../services/car.service';
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-car',
   templateUrl: './car.component.html',
@@ -9,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarComponent implements OnInit {
 
-  constructor(private carService:CarService) { }
+  constructor(private carService:CarService,private router:Router) { }
+
   cars:CarListModel[]=[];
   dataLoaded:boolean = false;
   ngOnInit(): void {
@@ -24,4 +25,11 @@ export class CarComponent implements OnInit {
       }
     )
   }
+  routeToCarDetail(carId:number):void{
+    let url="/car-detail/"+carId
+    this.router.navigateByUrl(url);
+  }
+
+
+
 }
