@@ -1,6 +1,8 @@
+import { ListResponseModel } from './../models/responseModels/listResponseModel';
+import { CarListModel } from './../models/listModels/carListModel';
+import { SingleResponseModel } from '../models/responseModels/singleResponseModel';
 import { Observable } from 'rxjs';
-import { CarListModel } from './../models/carListModel';
-import { ListResponseModel } from './../models/listResponseModel';
+
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -14,11 +16,11 @@ export class CarService {
    private  apiUrl: string = this.baseUrl + "cars/"
   constructor(private httpClient: HttpClient) { }
 
-  getCars(): Observable<ListResponseModel<CarListModel>>{ 
+  findAll(): Observable<ListResponseModel<CarListModel>>{ 
     return this.httpClient.get<ListResponseModel<CarListModel>>(this.apiUrl+"find-all")
   }
-  getById(carId:number): Observable<ListResponseModel<CarListModel>>{ 
-    return this.httpClient.get<ListResponseModel<CarListModel>>(this.apiUrl+"find-by-id"+carId)
+  findById(carId:number): Observable<SingleResponseModel<CarListModel>>{ 
+    return this.httpClient.get<SingleResponseModel<CarListModel>>(this.apiUrl+"find-by-id/"+carId)
   }
 
 }

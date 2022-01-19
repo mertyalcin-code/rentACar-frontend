@@ -1,3 +1,9 @@
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { MyAccountComponent } from './components/my-account/my-account.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { CarDetailComponent } from './components/car/car-detail/car-detail.component';
 import { CarComponent } from './components/car/car.component';
 import { ColorComponent } from './components/color/color.component';
 import { BrandComponent } from './components/brand/brand.component';
@@ -19,7 +25,13 @@ import {TableModule} from 'primeng/table';
     AppComponent,
     BrandComponent,
     ColorComponent,
-    CarComponent
+    CarComponent,
+    CarDetailComponent,
+    FooterComponent,
+    NavBarComponent,
+    ContactComponent,
+    MyAccountComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

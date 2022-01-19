@@ -1,7 +1,10 @@
-import { ColorListModel } from './../models/colorListModel';
+import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
+import { ColorListModel } from 'src/app/models/listModels/colorListModel';
+
+import { ListResponseModel } from './../models/responseModels/listResponseModel';
+
 import { Observable } from 'rxjs';
-import { CarListModel } from './../models/carListModel';
-import { ListResponseModel } from './../models/listResponseModel';
+
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -15,7 +18,10 @@ export class ColorService {
    private  apiUrl: string = this.baseUrl + "colors/"
   constructor(private httpClient: HttpClient) { }
 
-  getColors(): Observable<ListResponseModel<ColorListModel>>{ 
+  findAll(): Observable<ListResponseModel<ColorListModel>>{ 
     return this.httpClient.get<ListResponseModel<ColorListModel>>(this.apiUrl+"find-all")
+  }
+  findById(id:number): Observable<SingleResponseModel<ColorListModel>>{ 
+    return this.httpClient.get<SingleResponseModel<ColorListModel>>(this.apiUrl+"find-by-id/"+id)
   }
 }

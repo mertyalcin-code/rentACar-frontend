@@ -1,5 +1,5 @@
+import { CarListModel } from './../../models/listModels/carListModel';
 import { Router, RouterModule } from '@angular/router';
-import { CarListModel } from './../../models/carListModel';
 import { CarService } from './../../services/car.service';
 import { Component, OnInit } from '@angular/core';
 @Component({
@@ -17,7 +17,7 @@ export class CarComponent implements OnInit {
     this.getCars();
   }
   getCars(){ 
-    this.carService.getCars().subscribe(
+    this.carService.findAll().subscribe(
       response=>{
         this.dataLoaded = false;
         this.cars = response.data;
