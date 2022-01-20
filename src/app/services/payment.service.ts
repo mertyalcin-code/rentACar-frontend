@@ -1,3 +1,6 @@
+import { TotalPriceRequestModel as TotalPriceRequestModel } from './../models/createModels/totalPriceRequestModel';
+import { ResponseModel } from './../models/responseModels/responseModel';
+import { CreatePaymentModel } from '../models/createModels/createPaymentModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
 import { ListResponseModel } from './../models/responseModels/listResponseModel';
 import { environment } from './../../environments/environment.prod';
@@ -24,4 +27,12 @@ export class PaymentService {
   findById(id:number): Observable<SingleResponseModel<PaymentListModel>>{ 
     return this.httpClient.get<SingleResponseModel<PaymentListModel>>(this.apiUrl+"find-by-id/"+id)
   }
+  add(payment:CreatePaymentModel): Observable<ResponseModel>{ 
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"add",payment)
+  }
+  calculateTotalPrice(totalPriceRequestModel: TotalPriceRequestModel): Observable<number>{ 
+    return this.httpClient.post<number>(this.apiUrl+"find-total-price/",totalPriceRequestModel)
+  }
+
+
 }

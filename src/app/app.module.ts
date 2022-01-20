@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastrModule} from "ngx-toastr";
 import { CommonModule } from '@angular/common';
+import { RentalAddComponent } from './components/rental/rental-add/rental-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { CommonModule } from '@angular/common';
     RentalComponent,
     BrandAddComponent,
     ColorAddComponent,
-    CarAddComponent
+    CarAddComponent,
+    RentalAddComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,6 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     BrowserAnimationsModule, 
     FormsModule,
-
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({

@@ -1,3 +1,108 @@
-<p>
-  rental-add works!
-</p>
+<div class="content">
+  <div class="col-md-12">
+      <div *ngIf="status=='rental'" class="card">
+          <div class="card-header"><h5 class="title">Araç Kiralama</h5></div>
+          <div class="card-body">
+              <form [formGroup]="rentalAddForm">
+                  <div class="mb-3" >
+                      <label for="rentDate">Kiralama Başlangıç Tarihi</label>
+                      <div class="form-group">
+                          <input type="date" 
+                          id="rentDate" 
+                          formControlName="rentDate" class="form-control" 
+                          placeholder="Kiralama Başlangıç Tarihi"/>
+                      </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="returnDate">Kiralama Bitiş Tarihi</label>
+                    <div class="form-group">
+                        <input type="date" 
+                        id="returnDate" 
+                        formControlName="returnDate" class="form-control" 
+                        placeholder="Kiralama Başlangıç Tarihi"/>
+                    </div>
+                 </div>
+                 <form [formGroup]="promoCodeForm">
+                 <div class="mb-3">
+                  <label for="promoCode">Promosyon Kodu</label>
+                  <div class="form-group">
+                      <input type="text" 
+                      id="code" 
+                      formControlName="code" class="form-control" 
+                      placeholder="Promosyon Kodu"/>
+                  </div>
+                  <button class="btn btn-primary" (click)="findPromoCodeByCode(promoCodeForm.get('code').value)">
+                    Uygula
+                  </button>
+               </div>
+                 </form>
+              </form>
+          </div>
+          <div class="card-footer">
+            <button *ngIf="!addLoading" class="btn btn-fill btn-primary" (click)="addRental()">Devam Et</button>
+            <button *ngIf="addLoading" class="btn btn-primary" type="button" disabled>
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Gönderiliyor...
+            </button>
+          </div>
+      </div>
+      <div *ngIf="status=='service'" class="card">
+        <div class="card-header"><h5 class="title">Ek Servisler</h5></div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li *ngFor="let additionalServiceItem of additionalServiceItems" class="list-group-item">
+              {{additionalServiceItem.name}}
+             <button class="btn btn-success" (click)="addAdditionalServiceItem(additionalServiceItem.id)">Servisi Ekle</button>
+           
+            </li>           
+          </ul>
+          <button class="btn btn-success" (click)="addAdditionalServices()"></button>
+    </div>
+    
+
+
+
+  </div> 
+  
+  <div *ngIf="status=='payment'" class="card">
+    <div class="card-header"><h5 class="title">Ödeme</h5></div>
+    <div class="card-header"><h5 class="title">{{"Toplam Ücret" + totalPrice}}</h5></div>
+    
+    <div class="card-body">
+        <form [formGroup]="paymentAddForm">
+          <div class="row g-3">
+            <div class="col-sm-4">
+              <input type="text" class="form-control" placeholder="İsim Soyisim" aria-label="City"   formControlName="name">
+            </div>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" placeholder="Kart Numarası" aria-label="City"   formControlName="cardNo">
+            </div>
+            <div class="col-sm">
+              <input type="text" class="form-control" placeholder="Ay" aria-label="State"   formControlName="month">
+            </div>
+            <div class="col-sm">
+              <input type="text" class="form-control" placeholder="Yıl" aria-label="Zip"   formControlName="year">
+            </div>
+            <div class="col-sm">
+              <input type="text" class="form-control" placeholder="CVV" aria-label="Zip"   formControlName="cvv">
+            </div>
+          </div>
+        </form>
+    </div>
+    <div class="card-footer">
+      <button *ngIf="!paymentLoading" class="btn btn-fill btn-primary" (click)="addPayment()">Öde</button>
+      <button *ngIf="paymentLoading" class="btn btn-primary" type="button" disabled>
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        Gönderiliyor...
+      </button>
+    </div>
+</div>
+
+
+
+
+
+
+
+  </div>
+</div>

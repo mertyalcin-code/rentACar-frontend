@@ -19,7 +19,7 @@ export class PromoCodeService {
     return this.httpClient.get<ListResponseModel<PromoCodeListModel>>(this.apiUrl+"find-all")
   }
  
-  findById(id:number): Observable<SingleResponseModel<PromoCodeListModel>>{ 
-    return this.httpClient.get<SingleResponseModel<PromoCodeListModel>>(this.apiUrl+"find-by-id/"+id)
+  findByCode(code:string): Observable<SingleResponseModel<PromoCodeListModel>>{ 
+    return this.httpClient.get<SingleResponseModel<PromoCodeListModel>>(this.apiUrl+"find-by-code/"+code)
   }
 }

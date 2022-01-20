@@ -5,4 +5,4 @@ export interface PromoCodeListModel{
     startDate:Date
     endDate:Date
     description:string
-}
+} 

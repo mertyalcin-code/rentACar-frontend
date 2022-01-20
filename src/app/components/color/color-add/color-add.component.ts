@@ -15,14 +15,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ColorAddComponent implements OnInit {
   loading=false;
-  constructor(private formBuilder:FormBuilder, 
+  constructor(
     private colorService:ColorService,private toastrService:ToastrService) { }
   ngOnInit() {
   }
   colorAddForm = new FormGroup({
     name: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)])
   })
-  clearBrandAddForm() {
+  clearColorAddForm() {
     this.colorAddForm.patchValue({
       name: '',   
     });
@@ -35,7 +35,7 @@ export class ColorAddComponent implements OnInit {
         if (response.success) {
           console.log(response)                
           this.loading = false;
-          this.clearBrandAddForm();
+          this.clearColorAddForm();
           this.colorAddForm.markAsUntouched();
           this.toastrService.success(response.message,"Başarılı");
         } else {     

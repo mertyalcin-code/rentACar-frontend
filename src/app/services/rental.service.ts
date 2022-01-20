@@ -1,3 +1,5 @@
+import { ResponseModel } from './../models/responseModels/responseModel';
+import { CreateRentalModel } from './../models/createModels/createRentalModel';
 import { RentalListModel } from './../models/listModels/rentalListModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
 import { ListResponseModel } from './../models/responseModels/listResponseModel';
@@ -25,4 +27,14 @@ export class RentalService {
  findById(id:number): Observable<SingleResponseModel<RentalListModel>>{ 
    return this.httpClient.get<SingleResponseModel<RentalListModel>>(this.apiUrl+"find-by-id/"+id)
  }
+ 
+ findActiveRentalByCarId(id:number): Observable<SingleResponseModel<RentalListModel>>{ 
+  return this.httpClient.get<SingleResponseModel<RentalListModel>>(this.apiUrl+"find-active-rental-by-car-id/"+id)
+}
+ addForIndividualCustomer(rental:CreateRentalModel): Observable<ResponseModel>{ 
+  return this.httpClient.post<ResponseModel>(this.apiUrl+"add-for-individual-customer",rental)
+}
+addForCorporateCustomer(rental:CreateRentalModel): Observable<ResponseModel>{ 
+  return this.httpClient.post<ResponseModel>(this.apiUrl+"add-for-corporate-customer",rental)
+}
 }
