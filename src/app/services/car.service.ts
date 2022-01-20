@@ -1,3 +1,5 @@
+import { ResponseModel } from './../models/responseModels/responseModel';
+import { CreateCarModel } from './../models/createModels/createCarModel';
 import { ListResponseModel } from './../models/responseModels/listResponseModel';
 import { CarListModel } from './../models/listModels/carListModel';
 import { SingleResponseModel } from '../models/responseModels/singleResponseModel';
@@ -21,6 +23,9 @@ export class CarService {
   }
   findById(carId:number): Observable<SingleResponseModel<CarListModel>>{ 
     return this.httpClient.get<SingleResponseModel<CarListModel>>(this.apiUrl+"find-by-id/"+carId)
+  }
+  add(car:CreateCarModel): Observable<ResponseModel>{ 
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"add",car)
   }
 
 }
