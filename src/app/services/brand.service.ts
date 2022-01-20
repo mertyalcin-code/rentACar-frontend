@@ -1,3 +1,4 @@
+import { CreateBrandModel } from './../models/createModels/createBrandModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
 import { ListResponseModel } from './../models/responseModels/listResponseModel';
 import { BrandListModel } from './../models/listModels/brandListModel';
@@ -8,6 +9,7 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ResponseModel } from '../models/responseModels/responseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -23,4 +25,8 @@ export class BrandService {
   findById(id:number): Observable<SingleResponseModel<BrandListModel>>{ 
     return this.httpClient.get<SingleResponseModel<BrandListModel>>(this.apiUrl+"find-by-id/"+id)
   }
+  add(brand:CreateBrandModel): Observable<ResponseModel>{ 
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"add",brand)
+  }
+ 
 }

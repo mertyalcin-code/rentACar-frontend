@@ -1,6 +1,6 @@
 import { ColorListModel } from 'src/app/models/listModels/colorListModel';
 import { ColorService } from './../../services/color.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-color',
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./color.component.css']
 })
 export class ColorComponent implements OnInit {
+
   constructor(private colorService:ColorService) { }
   colors:ColorListModel[]=[];
   dataLoaded:boolean = false;
@@ -23,6 +24,6 @@ export class ColorComponent implements OnInit {
       }
     )
   }
-
+ 
 
 }

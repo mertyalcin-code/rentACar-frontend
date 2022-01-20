@@ -1,3 +1,5 @@
+import { ResponseModel } from './../models/responseModels/responseModel';
+import { CreateColorModel } from './../models/createModels/createColorModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
 import { ColorListModel } from 'src/app/models/listModels/colorListModel';
 
@@ -23,5 +25,8 @@ export class ColorService {
   }
   findById(id:number): Observable<SingleResponseModel<ColorListModel>>{ 
     return this.httpClient.get<SingleResponseModel<ColorListModel>>(this.apiUrl+"find-by-id/"+id)
+  }
+  add(color:CreateColorModel): Observable<ResponseModel>{ 
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"add",color)
   }
 }

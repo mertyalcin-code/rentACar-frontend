@@ -29,7 +29,7 @@ export class CarComponent implements OnInit {
     let url="/car-detail/"+carId
     this.router.navigateByUrl(url);
   }
-
-
-
+ 
 }
+
+

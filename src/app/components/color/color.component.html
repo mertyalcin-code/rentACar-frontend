@@ -1,13 +1,8 @@
-colors 
-<div class="dropdown">
+  <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
       Renkler
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li *ngFor="let color of colors"> {{color.name}}</li>
-
+      <li *ngFor="let color of colors"><a class="dropdown-item" >{{color.name}}</a></li>
     </ul>
   </div>
-<ul>
-
-</ul>

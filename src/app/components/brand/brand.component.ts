@@ -10,21 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrandComponent implements OnInit {
 
+  title = 'Brand List';
+  brands:BrandListModel[] = [];
+  dataLoaded: boolean = false;
+  currentBrand: BrandListModel;
   constructor(private brandService:BrandService) { }
-  brands:BrandListModel[]=[];
-  dataLoaded:boolean = false;
+
   ngOnInit(): void {
-    this.getBrands();
-  }
-  getBrands(){ 
-    this.brandService.findAll().subscribe(
-      response=>{
-        this.dataLoaded = false;
-        this.brands = response.data;
-        this.dataLoaded = true;
-      }
-    )
+    this.getBrand()
   }
 
+  getBrand(){
+    this.brandService.findAll().subscribe(response =>{
+      this.dataLoaded = false;
+      this.brands = response.data;
+      this.dataLoaded = true;
+    })
+  }
+
+  
 
 }

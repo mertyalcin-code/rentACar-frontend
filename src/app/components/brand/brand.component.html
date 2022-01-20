@@ -1,5 +1,11 @@
-    <ul>
-        <li *ngFor="let brand of brands"> 
-            {{brand.name}}
-        </li>
+
+
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Markalar
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li *ngFor="let brand of brands"><a class="dropdown-item" >{{brand.name}}</a></li>
+
     </ul>
+  </div>

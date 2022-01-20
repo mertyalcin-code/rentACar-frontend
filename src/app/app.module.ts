@@ -1,3 +1,6 @@
+import { CarAddComponent } from './components/car/car-add/car-add.component';
+import { ColorAddComponent } from './components/color/color-add/color-add.component';
+import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
@@ -15,12 +18,10 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {DataViewModule} from 'primeng/dataview';
-import {DropdownModule} from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
-import {ButtonModule} from 'primeng/button';
-import {TableModule} from 'primeng/table';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ToastrModule} from "ngx-toastr";
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,16 +34,24 @@ import {TableModule} from 'primeng/table';
     ContactComponent,
     MyAccountComponent,
     AboutUsComponent,
-    RentalComponent
+    RentalComponent,
+    BrandAddComponent,
+    ColorAddComponent,
+    CarAddComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    DataViewModule,
-    DropdownModule,
+    CommonModule,
+    BrowserAnimationsModule, 
     FormsModule,
-    ButtonModule,TableModule
+
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass:"toast-bottom-right"
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
