@@ -30,8 +30,8 @@ export class PaymentService {
   add(payment:CreatePaymentModel): Observable<ResponseModel>{ 
     return this.httpClient.post<ResponseModel>(this.apiUrl+"add",payment)
   }
-  calculateTotalPrice(totalPriceRequestModel: TotalPriceRequestModel): Observable<number>{ 
-    return this.httpClient.post<number>(this.apiUrl+"find-total-price/",totalPriceRequestModel)
+  calculateTotalPrice(totalPriceRequestModel: TotalPriceRequestModel): Observable<SingleResponseModel<number>>{ 
+    return this.httpClient.post<SingleResponseModel<number>>(this.apiUrl+"find-total-price/",totalPriceRequestModel)
   }
 
 

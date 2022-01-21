@@ -2,7 +2,7 @@ import { CarListModel } from './../../../models/listModels/carListModel';
 
 import { CarService } from './../../../services/car.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-car-detail',
@@ -14,6 +14,7 @@ export class CarDetailComponent implements OnInit {
   car:CarListModel;
   dataLoaded = false;
   constructor(private router: ActivatedRoute,
+    private linkRouter:Router,
     private carService: CarService) { }
 
   ngOnInit() {
@@ -30,7 +31,7 @@ export class CarDetailComponent implements OnInit {
     )
   }
   
-  addToCart():void{
-
+  rentCar(id:number):void{
+    this.linkRouter.navigateByUrl('/rental/add/'+id);
   }
 }
