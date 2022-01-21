@@ -1,3 +1,5 @@
+import { ResponseModel } from 'src/app/models/responseModels/responseModel';
+import { CreateCorporateCustomerModel } from './../models/createModels/createCorporateCustomerModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
 import { CorporateCustomerListModel } from './../models/listModels/corporateCustomerListModel';
 import { Observable } from 'rxjs';
@@ -20,5 +22,8 @@ export class CorporateCustomerService {
   }
   findById(id:number): Observable<SingleResponseModel<CorporateCustomerListModel>>{ 
     return this.httpClient.get<SingleResponseModel<CorporateCustomerListModel>>(this.apiUrl+"find-by-id/"+id)
+  }
+  add(model:CreateCorporateCustomerModel): Observable<ResponseModel>{ 
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
   }
 }

@@ -1,3 +1,4 @@
+import { MyRentalComponent } from './components/rental/my-rental/my-rental.component';
 import { CarAddComponent } from './components/car/car-add/car-add.component';
 import { ColorAddComponent } from './components/color/color-add/color-add.component';
 import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'colors', component: ColorComponent },
   { path: 'colors/add', component: ColorAddComponent },
   { path: 'rental/add/:carId', component:RentalAddComponent },
+  { path: 'my-rentals', component:MyRentalComponent },
   { path: '', component: CarComponent }
 ];
 

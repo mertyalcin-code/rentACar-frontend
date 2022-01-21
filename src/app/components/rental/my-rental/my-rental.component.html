@@ -1,0 +1,30 @@
+<div class="container" style=" margin-top: 3%">
+  <table class="table  table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Marka</th>
+        <th scope="col">Model</th>
+        <th scope="col">Kiralama başlangıç</th>
+        <th scope="col">Kiralama bitiş</th>
+        <th scope="col">Alınan Şehir</th>
+        <th scope="col">Bırakılan Şehir</th>
+        <th scope="col">Ödeme Miktarı</th>
+        <th scope="col">Fatura</th>
+       
+      </tr>
+    </thead>
+    <tbody *ngFor="let rental of rentals">
+      <tr  > 
+        <td>{{rental.brandName}}</td>
+        <td>{{rental.carName}}</td>           
+        <td>{{rental.rentDate}}</td>
+        <td *ngIf="rental.isRentalFinished">{{rental?.returnDate}}</td> <td *ngIf="!rental.isRentalFinished"><span class="badge rounded-pill bg-light  text-dark">devam ediyor</span></td>
+        <td>{{rental.pickUpCityName}}</td>           
+        <td *ngIf="rental.isRentalFinished">{{rental?.returnCityName}}</td><td *ngIf="!rental.isRentalFinished"><span class="badge rounded-pill bg-light  text-dark">devam ediyor</span></td>
+        <td>{{rental?.totalPayment}}</td>
+        <td *ngIf="rental.isInvoiceCreated">{{rental?.totalPayment}}</td>
+        <td *ngIf="!rental.isInvoiceCreated"><span class="badge rounded-pill bg-warning text-dark">Oluşturulmadı</span></td>
+      </tr>   
+    </tbody>
+  </table>
+</div>

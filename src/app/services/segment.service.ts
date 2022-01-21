@@ -1,3 +1,5 @@
+import { ResponseModel } from 'src/app/models/responseModels/responseModel';
+import { CreateSegmentModel } from './../models/createModels/createSegmentModel';
 import { SegmentListModel } from './../models/listModels/segmentListModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
 import { Observable } from 'rxjs';
@@ -20,5 +22,8 @@ export class SegmentService {
   }
   findById(id:number): Observable<SingleResponseModel<SegmentListModel>>{ 
     return this.httpClient.get<SingleResponseModel<SegmentListModel>>(this.apiUrl+"find-by-id/"+id)
+  }
+  add(model:CreateSegmentModel): Observable<ResponseModel>{ 
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
   }
 }

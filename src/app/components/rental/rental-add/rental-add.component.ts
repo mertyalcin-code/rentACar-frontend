@@ -1,3 +1,8 @@
+import { RentalAddResponseModel } from './../../../models/responseModels/rentalAddResponseModel';
+import { SingleResponseModel } from './../../../models/responseModels/singleResponseModel';
+import { ResponseModel } from 'src/app/models/responseModels/responseModel';
+import { CreateCustomerCardDetailModel } from './../../../models/createModels/createCustomerCardDetailModel';
+import { CustomerCardDetailService } from './../../../services/customer-card-detail.service';
 import { CarService } from './../../../services/car.service';
 import { CarListModel } from './../../../models/listModels/carListModel';
 import { TotalPriceRequestModel } from './../../../models/createModels/totalPriceRequestModel';
@@ -8,7 +13,7 @@ import { AdditionalServiceListModel } from './../../../models/listModels/additio
 import { AdditionalServiceService } from './../../../services/additionalService.service';
 import { AdditionalServiceItemService } from './../../../services/additionalServiceItem.service';
 import { AdditionalServiceItemListModel } from './../../../models/listModels/additionalServiceItemListModel';
-import { ResponseModel } from './../../../models/responseModels/responseModel';
+
 import { CreateRentalModel } from './../../../models/createModels/createRentalModel';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PromoCodeListModel } from './../../../models/listModels/promoCodeListModel';
@@ -38,6 +43,7 @@ export class RentalAddComponent implements OnInit {
   activeRental:RentalListModel 
   returnDate:Date;
   totalPrice:number;
+  isCardDetailSaved=false;
   paymentLoading=false;
   status:string='rental';
   promoCode: PromoCodeListModel = {id:8,code:null, discountRate:null, startDate:null, endDate:null, description:null};
@@ -51,6 +57,7 @@ export class RentalAddComponent implements OnInit {
     private paymentService: PaymentService,
     private linkRouter:Router,
     private carService:CarService,
+    private customerCardDetailService: CustomerCardDetailService,
     ) { }
 
   ngOnInit() {
@@ -77,7 +84,7 @@ export class RentalAddComponent implements OnInit {
     cardNo: new FormControl("",[Validators.required,Validators.minLength(16),Validators.maxLength(16)]),
     month: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(2)]),
     year: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(2)]),
-    cvv: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(2)]),
+    cvv: new FormControl("",[Validators.required,Validators.minLength(3),Validators.maxLength(3)]),
    
   })
   additionalServiceAddForm = new FormGroup({
@@ -109,11 +116,13 @@ export class RentalAddComponent implements OnInit {
  
     createRentalModel.carId=this.carId;
     this.rentalService.addForIndividualCustomer(createRentalModel).subscribe(
-      (response: ResponseModel) => {
+      (response: SingleResponseModel<RentalAddResponseModel>) => {
         if (response.success) {          
           this.returnDate=this.rentalAddForm.get('returnDate').value;
           this.addLoading = false;
-          this.findActiveRentalByCarId();
+          let model:RentalAddResponseModel=response.data;
+          this.findById(response.data.rentalId);
+          this.carId=response.data.carId;
        //   this.clearRentalAddForm();
        //   this.rentalAddForm.markAsUntouched();
           this.status='service';
@@ -160,22 +169,13 @@ export class RentalAddComponent implements OnInit {
     }
     )
   }
-  findActiveRentalByCarId(){
-    this.rentalService.findActiveRentalByCarId(this.carId).subscribe(response =>{
-      if(response.success){
-        this.activeRental=response.data;
-        
-        this.toastrService.success(response.message,"Başarılı");        
-      }else{
-        this.toastrService.warning(response.message,"Başarısız");
-
-      }
-    }, (errorResponse: HttpErrorResponse) => {       
-      this.toastrService.error(errorResponse.message,"Başarısız");
-    }
-    )
-  }
+  
   addAdditionalServices(){
+    if(this.additionalServiceItemBasket.length<1){
+      this.status='payment'; 
+      this.calculateTotalPrice();    
+      return;
+    }
     this.additionalServiceService.addAll(this.additionalServiceItemBasket).subscribe(response =>{
       if(response.success){
         this.status='payment'; 
@@ -249,4 +249,42 @@ const model: TotalPriceRequestModel= {rentalId:this.activeRental.id,returnDate:t
   }
   )
  }
+ addCustomerCardDetail(){    
+  let createCustomerCardDetailModel:CreateCustomerCardDetailModel = Object.assign({},this.paymentAddForm.value);
+  createCustomerCardDetailModel.customerId=this.customerId;   
+  this.customerCardDetailService.add(createCustomerCardDetailModel).subscribe(
+    (response: ResponseModel) => {
+      if (response.success) {           
+        this.isCardDetailSaved = true;
+     
+        this.toastrService.success(response.message,"Başarılı");
+      } else {     
+        this.toastrService.warning(response.message,"Başarısız");
+
+      }
+    },
+    (errorResponse: HttpErrorResponse) => {       
+      this.toastrService.error(errorResponse.message,"Başarısız");
+    }
+  )
+}
+
+findById(id:number){    
+  this.rentalService.findById(id).subscribe(
+    (response: SingleResponseModel<RentalListModel>) => {
+      if (response.success) {           
+        this.activeRental = response.data;     
+       // this.toastrService.success(response.message,"Başarılı");
+      } else {     
+        this.toastrService.warning(response.message,"Başarısız");
+
+      }
+    },
+    (errorResponse: HttpErrorResponse) => {       
+      this.toastrService.error(errorResponse.message,"Başarısız");
+    }
+  )
+}
+
+
 }

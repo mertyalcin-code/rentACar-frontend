@@ -1,3 +1,4 @@
+import { ResponseModel } from 'src/app/models/responseModels/responseModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
 import { CustomerCardDetailListModel } from './../models/listModels/customerCardDetailListModel';
 import { HttpClient } from '@angular/common/http';
@@ -5,6 +6,7 @@ import { environment } from './../../environments/environment.prod';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from './../models/responseModels/listResponseModel';
 import { Injectable } from '@angular/core';
+import { CreateCustomerCardDetailModel } from '../models/createModels/createCustomerCardDetailModel';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ import { Injectable } from '@angular/core';
 export class CustomerCardDetailService {
 
   private baseUrl: string = environment.baseUrl;
-  private  apiUrl: string = this.baseUrl + "customer-car-details/"
+  private  apiUrl: string = this.baseUrl + "customer-card-details/"
  constructor(private httpClient: HttpClient) { }
 
  findAllByCustomerId(customerId:number): Observable<ListResponseModel<CustomerCardDetailListModel>>{ 
@@ -21,4 +23,7 @@ export class CustomerCardDetailService {
  findById(id:number): Observable<SingleResponseModel<CustomerCardDetailListModel>>{ 
    return this.httpClient.get<SingleResponseModel<CustomerCardDetailListModel>>(this.apiUrl+"find-by-id/"+id)
  }
+ add(model:CreateCustomerCardDetailModel): Observable<ResponseModel>{ 
+  return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
+}
 }

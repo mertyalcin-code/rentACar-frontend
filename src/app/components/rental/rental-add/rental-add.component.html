@@ -29,7 +29,7 @@
               <div class="form-group">
                 <input type="text" id="code" formControlName="code" class="form-control" placeholder="Promosyon Kodu" />
               </div>
-              <button class="btn btn-primary" (click)="findPromoCodeByCode(promoCodeForm.get('code').value)">
+              <button class="btn btn-primary" (click)="findPromoCodeByCode(promoCodeForm.get('code').value)" >
                 Uygula
               </button>
             </div>
@@ -37,7 +37,7 @@
         </form>
       </div>
       <div class="card-footer">
-        <button *ngIf="!addLoading" class="btn btn-fill btn-primary" (click)="addRental()">Devam Et</button>
+        <button *ngIf="!addLoading" class="btn btn-fill btn-primary" (click)="addRental()" [disabled]="rentalAddForm.invalid">Devam Et</button>
         <button *ngIf="addLoading" class="btn btn-primary" type="button" disabled>
           <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
           Gönderiliyor...
@@ -63,7 +63,7 @@
                   class="far fa-trash-alt"></i></button>
             </li>
           </ul>
-          <button class="btn btn-success" (click)="addAdditionalServices()">Ödemeye Geç</button>
+          <button class="btn btn-success" (click)="addAdditionalServices()" >Ödemeye Geç</button>
         </div>
 
       </div>
@@ -71,7 +71,7 @@
   </div>
 
   <!--Payment -->
-  <div *ngIf="status=='payment'" class="card">
+  <div *ngIf="status=='payment'"  class="card">
     <div class="card-header">
       <h5 class="title">Ödeme</h5>
     </div>
@@ -98,11 +98,16 @@
           <div class="col-sm">
             <input type="text" class="form-control" placeholder="CVV" aria-label="Zip" formControlName="cvv">
           </div>
+          <div class="col-sm">
+            <button (click)="addCustomerCardDetail()" *ngIf="!isCardDetailSaved" class="btn btn-primary" [disabled]="paymentAddForm.invalid" >Kaydet</button>
+          </div>
+
         </div>
       </form>
     </div>
+  
     <div class="card-footer">
-      <button *ngIf="!paymentLoading" class="btn btn-fill btn-primary" (click)="addPayment()">Öde</button>
+      <button *ngIf="!paymentLoading" class="btn btn-fill btn-primary" (click)="addPayment()" [disabled]="paymentAddForm.invalid">Öde</button>
       <button *ngIf="paymentLoading" class="btn btn-primary" type="button" disabled>
         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
         Gönderiliyor...
