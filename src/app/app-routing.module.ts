@@ -1,3 +1,5 @@
+import { EmployeePanelComponent } from './components/employee-panel/employee-panel.component';
+import { HomeComponent } from './components/home/home.component';
 import { CreditCardComponent } from './components/credit-card/credit-card.component';
 import { MyRentalComponent } from './components/rental/my-rental/my-rental.component';
 import { CarAddComponent } from './components/car/car-add/car-add.component';
@@ -30,7 +32,8 @@ const routes: Routes = [
   { path: 'colors/add', component: ColorAddComponent },
   { path: 'rental/add/:carId', component:RentalAddComponent },
   { path: 'my-rentals', component:MyRentalComponent },
-  { path: '', component: CarComponent }
+  { path: 'employee-panel', component:EmployeePanelComponent },
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,43 @@
+
+
+  <div class="container-fluid " style="margin: 1%;"> 
+    <div class="btn-group" role="group"  style="margin: 1%;">
+        <button type="button" class="btn btn-primary" disabled>Şehir</button>
+        <select class="btn btn-primary dropdown-toggle" [(ngModel)]="selectedCity" > 
+            <option value="" selected>Hepsi</option>
+            <option *ngFor="let city of cities" [value]="city.name">{{city.name}}</option>
+          </select>
+      </div>
+    
+  
+      <div class="btn-group" role="group"  style="margin: 1%;">
+        <button type="button" class="btn btn-secondary" disabled>Marka</button>
+      <select class="btn btn-secondary dropdown-toggle" [(ngModel)]="selectedBrand"> 
+        <option value="" selected>Hepsi</option>
+        <option *ngFor="let brand of brands" [value]="brand.name">{{brand.name}}</option>
+      </select>
+    </div>
+    <div class="btn-group" role="group"  style="margin: 1%;">
+        <button type="button" class="btn btn-info" disabled>Renk</button>
+      <select class="btn btn-info dropdown-toggle" [(ngModel)]="selectedColor"> 
+        <option value="" selected>Hepsi</option>
+        <option *ngFor="let color of colors" [value]="color.name">{{color.name}}</option>
+      </select>
+    </div>
+      <div class="btn-group" role="group"  style="margin: 1%;"> 
+        <button type="button" class="btn btn-success" disabled>Sınıf</button>
+      <select class="btn btn-success dropdown-toggle" [(ngModel)]="selectedSegment"> 
+        <option value="" selected>Hepsi</option>
+        <option *ngFor="let segment of segments" [value]="segment.segmentName">{{segment.segmentName}}</option>
+      </select>
+    </div>
+      <button class="btn btn-primary" (click)="resetFilter()"><i class="fas fa-sync"></i></button>
+
+  </div>
+
+<app-car 
+[selectedCity]="selectedCity" 
+[selectedBrand]="selectedBrand" 
+[selectedColor]="selectedColor" 
+[selectedSegment]="selectedSegment" 
+></app-car>

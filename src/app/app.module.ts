@@ -1,3 +1,5 @@
+import { EmployeePanelComponent } from './components/employee-panel/employee-panel.component';
+import { HomeComponent } from './components/home/home.component';
 import { CreditCardComponent } from './components/credit-card/credit-card.component';
 import { MyRentalComponent } from './components/rental/my-rental/my-rental.component';
 import { CarAddComponent } from './components/car/car-add/car-add.component';
@@ -25,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastrModule} from "ngx-toastr";
 import { CommonModule } from '@angular/common';
 import { RentalAddComponent } from './components/rental/rental-add/rental-add.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +46,8 @@ import { RentalAddComponent } from './components/rental/rental-add/rental-add.co
     CarAddComponent,
     RentalAddComponent,
     MyRentalComponent,
-    CreditCardComponent
+    CreditCardComponent,HomeComponent,
+    EmployeePanelComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ import { RentalAddComponent } from './components/rental/rental-add/rental-add.co
     ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
-    })
+    }),
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
