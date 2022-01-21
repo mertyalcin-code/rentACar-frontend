@@ -7,6 +7,7 @@ import { ListResponseModel } from './../models/responseModels/listResponseModel'
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment.prod';
 import { Injectable } from '@angular/core';
+import { UpdateIndividualCustomerModel } from '../models/updateModels/updateIndividualCustomerDomain';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +27,8 @@ export class IndividualCustomerService {
   add(model:CreateIndividualCustomerModel): Observable<ResponseModel>{ 
     return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
   }
+  update(model:UpdateIndividualCustomerModel): Observable<ResponseModel>{ 
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"update",model)
+  }
+  
 }

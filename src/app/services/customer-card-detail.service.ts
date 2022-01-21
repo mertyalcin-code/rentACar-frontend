@@ -26,4 +26,7 @@ export class CustomerCardDetailService {
  add(model:CreateCustomerCardDetailModel): Observable<ResponseModel>{ 
   return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
 }
+  delete(id:number): Observable<ResponseModel>{ 
+  return this.httpClient.delete<ResponseModel>(this.apiUrl+"delete/"+id)
+}
 }

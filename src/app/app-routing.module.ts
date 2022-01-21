@@ -1,3 +1,4 @@
+import { CreditCardComponent } from './components/credit-card/credit-card.component';
 import { MyRentalComponent } from './components/rental/my-rental/my-rental.component';
 import { CarAddComponent } from './components/car/car-add/car-add.component';
 import { ColorAddComponent } from './components/color/color-add/color-add.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'cars/add', component: CarAddComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'my-account', component: MyAccountComponent },
+  { path: 'my-account/cards', component: CreditCardComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'rental', component: RentalComponent },
   { path: 'brands', component: BrandComponent },
