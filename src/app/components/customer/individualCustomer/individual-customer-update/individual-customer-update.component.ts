@@ -1,4 +1,5 @@
-import { UpdateIndividualCustomerModel } from '../../../../models/updateModels/updateIndividualCustomerModel';
+import { UpdateIndividualCustomerModel } from './../../../../models/updateModels/updateIndividualCustomerModel';
+import { AuthService } from './../../../../services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
@@ -12,15 +13,16 @@ import { IndividualCustomerListModel } from 'src/app/models/listModels/individua
   styleUrls: ['./individual-customer-update.component.css']
 })
 export class IndividualCustomerUpdateComponent implements OnInit {
-  customerId=4;
+  customerId:number;
   customer:IndividualCustomerListModel;
-  
+  loading=false;
   constructor(private individualCustomerService: IndividualCustomerService,
-              private toastrService: ToastrService,
+              private toastrService: ToastrService,private authService: AuthService
     ) { }
 
   ngOnInit() {
-    
+    this.customerId=this.authService.getUserFromLocalStorage().id;
+    this.findById();
   }
   customerUpdateForm = new FormGroup({
     nationalityNo: new FormControl("",[Validators.required,Validators.minLength(11),Validators.maxLength(11)]),
@@ -40,7 +42,17 @@ export class IndividualCustomerUpdateComponent implements OnInit {
   }
   findById (){
     this.individualCustomerService.findById(this.customerId).subscribe(response =>{
+      console.log(response)
       if(response.success){
+  
+          this.customerUpdateForm.patchValue({
+            nationalityNo: response.data.nationalityNo,   
+            email: response.data.email,   
+            firstName: response.data.firstName,   
+            lastName: response.data.lastName,   
+            birthDate: response.data.birthDate,   
+          });
+      
         this.customer=response.data;
         this.toastrService.success(response.message,"Başarılı");
         
@@ -53,23 +65,28 @@ export class IndividualCustomerUpdateComponent implements OnInit {
     }
     )
   }
-  /*
+  
   update(){
-    let model:UpdateIndividualCustomerModel=Object.assign({},this.colorAddForm.value);
-    this.individualCustomerService.update(this.customerId).subscribe(response =>{
+    let model:UpdateIndividualCustomerModel=Object.assign({},this.customerUpdateForm.value);
+    model.id=this.customerId;
+    this.loading=true;
+    this.individualCustomerService.update(model).subscribe(response =>{
       if(response.success){
-        this.customer=response.data;
+        this.clearCustomerUpdateForm();
+        this.loading=false;
         this.toastrService.success(response.message,"Başarılı");
         
       }else{
+        this.loading=false;
         this.toastrService.warning(response.message,"Başarısız");
      
       }
-    }, (errorResponse: HttpErrorResponse) => {       
+    }, (errorResponse: HttpErrorResponse) => {
+      this.loading=false;       
       this.toastrService.error(errorResponse.message,"Başarısız");
     }
     )
   }
-*/
+
 
 }

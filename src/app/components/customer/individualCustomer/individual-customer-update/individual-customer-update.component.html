@@ -1,3 +1,65 @@
-<p>
-  individual-customer-update works!
-</p>
+
+<a class="btn btn-info" href="/my-account" style="margin: 2%;">Hesabıma Geri Dön</a>
+<div class="content">
+  <div class="col-md-12">
+      <div class="card">
+          <div class="card-header"><h5 class="title">Bilgilerini Güncelle</h5></div>
+          <div class="card-body">
+              <form [formGroup]="customerUpdateForm">
+                  <div class="mb-3">
+                      <label for="firstName">İsim</label>
+                      <div class="form-group">
+                          <input type="text" 
+                          id="firstName" 
+                          formControlName="firstName" class="form-control" 
+                          placeholder="İsim"/>
+                      </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="lastName">Soy İsim</label>
+                    <div class="form-group">
+                        <input type="text" 
+                        id="lastName" 
+                        formControlName="lastName" class="form-control" 
+                        placeholder="Soyisim"/>
+                    </div>
+                </div>
+                <div class="mb-3">
+                  <label for="email">Email</label>
+                  <div class="form-group">
+                      <input type="email" 
+                      id="email" 
+                      formControlName="email" class="form-control" 
+                      placeholder="Email"/>
+                  </div>
+              </div>
+              <div class="mb-3">
+                <label for="nationalityNo">Tc Kimlik no</label>
+                <div class="form-group">
+                    <input type="text" 
+                    id="nationalityNo" 
+                    formControlName="nationalityNo" class="form-control" 
+                    placeholder="Tc Kimlik No"/>
+                </div>
+            </div>
+            <div class="mb-3">
+              <label for="birthDate">Doğum Günü</label>
+              <div class="form-group">
+                  <input type="date" 
+                  id="birthDate" 
+                  formControlName="birthDate" class="form-control" 
+                  placeholder="Doğum Günü"/>
+              </div>
+          </div>
+              </form>
+          </div>
+          <div class="card-footer">
+            <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="update()" [disabled]="customerUpdateForm.invalid">Güncelle</button>
+            <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Gönderiliyor...
+            </button>
+          </div>
+      </div>
+  </div>
+</div>

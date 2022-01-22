@@ -1,3 +1,5 @@
+import { CorporateCustomerUpdateComponent } from './components/customer/corporate-customer/corporate-customer-update/corporate-customer-update.component';
+import { IndividualCustomerUpdateComponent } from './components/customer/individualCustomer/individual-customer-update/individual-customer-update.component';
 import { EmployeeGuard } from './guards/employee.guard';
 import { LoginGuard } from './guards/login.guard';
 import { LoginComponent } from './components/login/login.component';
@@ -64,6 +66,8 @@ const routes: Routes = [
   //auth needed
   { path: 'my-account', component: MyAccountComponent,canActivate:[LoginGuard] },
   { path: 'my-account/cards', component: CreditCardComponent,canActivate:[LoginGuard] },
+  { path: 'my-account/individual/update', component: IndividualCustomerUpdateComponent,canActivate:[LoginGuard] },
+  { path: 'my-account/corporate/update', component: CorporateCustomerUpdateComponent,canActivate:[LoginGuard] },
   { path: 'my-rentals', component:MyRentalComponent,canActivate:[LoginGuard] },
   { path: 'rental/add/individual-customer/:carId', component:RentalAddForIndividualCustomerComponent,canActivate:[LoginGuard] },
   { path: 'rental/add/corporate-customer/:carId', component:RentalAddCorporateCustomerComponent,canActivate:[LoginGuard] },

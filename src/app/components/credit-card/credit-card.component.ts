@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerCardDetailListModel } from './../../models/listModels/customerCardDetailListModel';
@@ -10,14 +11,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./credit-card.component.css']
 })
 export class CreditCardComponent implements OnInit {
-  customerId=4;
+  customerId:number;
   cards:CustomerCardDetailListModel[]=[]
 
   constructor(private customerCardDetailService: CustomerCardDetailService,
-            private toastrService:ToastrService,
+            private toastrService:ToastrService,private authService:AuthService
     ) { }
 
   ngOnInit() {
+   this.customerId=this.authService.getUserFromLocalStorage().id;
     this.findAllCustomerCardDetailsByCustomerId();
   }
   findAllCustomerCardDetailsByCustomerId (){

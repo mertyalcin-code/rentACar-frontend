@@ -48,6 +48,7 @@ export class AuthService {
   }
   isIndividualCustomer():boolean{
     let user:LoginResponseModel=this.localService.getJsonValue('user');
+    console.log(user)
     if(user!==null&&user.role=='INDIVIDUAL_CUSTOMER'){
       return true;
     }

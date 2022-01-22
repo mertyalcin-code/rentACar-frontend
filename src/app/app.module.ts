@@ -1,3 +1,5 @@
+import { IndividualCustomerUpdateComponent } from './components/customer/individualCustomer/individual-customer-update/individual-customer-update.component';
+import { CorporateCustomerUpdateComponent } from './components/customer/corporate-customer/corporate-customer-update/corporate-customer-update.component';
 import { RentalAddCorporateCustomerComponent } from './components/rental/rental-add-corporate-customer/rental-add-corporate-customer.component';
 import { LoginComponent } from './components/login/login.component';
 import { InvoiceCorporateCustomerDetailComponent } from './components/invoice/invoice-corporate-customer-detail/invoice-corporate-customer-detail.component';
@@ -120,7 +122,9 @@ import { IndividualCustomerAddComponent } from './components/customer/individual
     LoginComponent,
     CorporateCustomerAddComponent,
     IndividualCustomerAddComponent,
-    RentalAddCorporateCustomerComponent
+    RentalAddCorporateCustomerComponent,
+    CorporateCustomerUpdateComponent,
+    IndividualCustomerUpdateComponent
     
   ],
   imports: [

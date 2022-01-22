@@ -1,29 +1,55 @@
-<div class="container" style="margin-top:3%">
-  <div class="row">
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body" >  
-        <a href="/my-rentals" class="btn btn-primary">Kiralamalar</a>  
-        <p class="card-text">Bu alanda Kiralama geçmişinizi görebilirsiniz</p>   
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body" >  
-        <a href="/my-account/cards" class="btn btn-primary">Kartlar</a>
-        <p class="card-text">Bu alanda Kredi Kartı Bilgilerinizi Görebilirsiniz</p> 
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <div class="card">
-      <div class="card-body" >  
-        <a href="my-account/update" class="btn btn-primary">Bilgi Güncelleme</a>
-        <p class="card-text">Bilgilerinizi Güncelleyin</p> 
-      </div>
-    </div>
-  </div>
+<section class="py-6 bg-light-primary" style="min-height: 500px;">
+  <div class="container">
 
-</div>
+    <div
+      class="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center justify-content-center px-xl-6 aos-init aos-animate"
+      data-aos="fade-up">
+      <!--rentals-->
+      <div class="col my-3">
+        <div class="card border-hover-primary hover-scale">
+          <div class="card-body">
+            <div class="text-primary mb-3">
+              <a class="btn btn-primary" href="/my-rentals"> <i class="fas fa-car-side fa-3x"></i></a>
+            </div>
+            <h4 class="font-weight-bold mb-1">Kirala Geçmişim</h4>
+          </div>
+        </div>
+      </div>
+      <!--credit cards-->
+      <div class="col my-3">
+        <div class="card border-hover-primary hover-scale">
+          <div class="card-body">
+            <div class="text-primary mb-3">
+              <a class="btn btn-primary" href="/my-account/cards"> <i class="fas fa-credit-card fa-3x"></i></a>
+            </div>
+            <h4 class="font-weight-bold mb-1">Kartlar</h4>
+          </div>
+        </div>
+      </div>
+      <!--profile update for individual customer-->
+      <div class="col my-3" *ngIf="isIndividualCustomer">
+        <div class="card border-hover-primary hover-scale">
+          <div class="card-body">
+            <div class="text-primary mb-3">
+              <a class="btn btn-primary" href="my-account/individual/update"> <i class="far fa-user fa-3x"></i></a>
+            </div>
+            <h4 class="font-weight-bold mb-1">Bilgi Güncelleme</h4>
+          </div>
+        </div>
+      </div>
+      <!--profile update for corporate customer-->
+      <div class="col my-3" *ngIf="isCorporateCustomer">
+        <div class="card border-hover-primary hover-scale">
+          <div class="card-body">
+            <div class="text-primary mb-3">
+              <a class="btn btn-primary" href="my-account/corporate/update"> <i class="far fa-user fa-3x"></i></a>
+            </div>
+            <h4 class="font-weight-bold mb-1">Bilgi Güncelleme</h4>
+          </div>
+        </div>
+      </div>
 
+
+    </div>
+  </div>
+</section>

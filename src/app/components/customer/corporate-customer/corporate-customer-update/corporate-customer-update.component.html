@@ -1,0 +1,50 @@
+<div class="container" style="margin: 1%;">
+
+
+  <a class="btn btn-info" href="/my-account" style="margin: 2%;">Hesabıma Geri Dön</a>
+  <div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><h5 class="title">Bilgilerini Güncelle</h5></div>
+            <div class="card-body">
+                <form [formGroup]="customerUpdateForm">
+                    <div class="mb-3">
+                        <label for="companyName">Şirket Adı</label>
+                        <div class="form-group">
+                            <input type="text" 
+                            id="companyName" 
+                            formControlName="companyName" class="form-control" 
+                            placeholder="Şirket Adı"/>
+                        </div>
+                    </div>                
+                  <div class="mb-3">
+                    <label for="email">Email</label>
+                    <div class="form-group">
+                        <input type="email" 
+                        id="email" 
+                        formControlName="email" class="form-control" 
+                        placeholder="Email"/>
+                    </div>
+                </div>
+                <div class="mb-3">
+                  <label for="taxNumber">Vergi Numarası</label>
+                  <div class="form-group">
+                      <input type="text" 
+                      id="taxNumber" 
+                      formControlName="taxNumber" class="form-control" 
+                      placeholder="Vergi Numarası"/>
+                  </div>
+              </div>
+             
+                </form>
+            </div>
+            <div class="card-footer">
+              <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="update()" [disabled]="customerUpdateForm.invalid">Güncelle</button>
+              <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Gönderiliyor...
+              </button>
+            </div>
+        </div>
+    </div>
+  </div></div>
