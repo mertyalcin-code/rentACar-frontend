@@ -1,3 +1,8 @@
+import { RentalAddCorporateCustomerComponent } from './components/rental/rental-add-corporate-customer/rental-add-corporate-customer.component';
+import { LoginComponent } from './components/login/login.component';
+import { InvoiceCorporateCustomerDetailComponent } from './components/invoice/invoice-corporate-customer-detail/invoice-corporate-customer-detail.component';
+import { InvoiceIndividualCustomerDetailComponent } from './components/invoice/invoice-individual-customer-detail/invoice-individual-customer-detail.component';
+import { RentalUpdateComponent } from './components/rental/rental-update/rental-update.component';
 import { PaymentAddComponent } from './components/payment/payment-add/payment-add.component';
 import { PaymentUpdateComponent } from './components/payment/payment-update/payment-update.component';
 import { PromoCodeUpdateComponent } from './components/promo-code/promo-code-update/promo-code-update.component';
@@ -48,7 +53,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastrModule} from "ngx-toastr";
 import { CommonModule } from '@angular/common';
-import { RentalAddComponent } from './components/rental/rental-add/rental-add.component';
+import { RentalAddForIndividualCustomerComponent } from './components/rental/rental-add-individual-customer/rental-add-individual-customer.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AdditionalServiceItemComponent } from './components/additional-service-item/additional-service-item.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
@@ -57,6 +62,8 @@ import { CarDamageComponent } from './components/car-damage/car-damage.component
 import { CarMaintenanceAddComponent } from './components/car-maintenance/car-maintenance-add/car-maintenance-add.component';
 import { PromoCodeComponent } from './components/promo-code/promo-code.component';
 import { PromoCodeAddComponent } from './components/promo-code/promo-code-add/promo-code-add.component';
+import { CorporateCustomerAddComponent } from './components/customer/corporate-customer/corporate-customer-add/corporate-customer-add.component';
+import { IndividualCustomerAddComponent } from './components/customer/individualCustomer/individual-customer-add/individual-customer-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +80,7 @@ import { PromoCodeAddComponent } from './components/promo-code/promo-code-add/pr
     BrandAddComponent,
     ColorAddComponent,
     CarAddComponent,
-    RentalAddComponent,
+    RentalAddForIndividualCustomerComponent,
     MyRentalComponent,
     CreditCardComponent,HomeComponent,
     EmployeePanelComponent,
@@ -106,7 +113,14 @@ import { PromoCodeAddComponent } from './components/promo-code/promo-code-add/pr
     PromoCodeAddComponent,
     PaymentComponent,
     PaymentUpdateComponent,
-    PaymentAddComponent
+    PaymentAddComponent,
+    RentalUpdateComponent,
+    InvoiceIndividualCustomerDetailComponent,
+    InvoiceCorporateCustomerDetailComponent,
+    LoginComponent,
+    CorporateCustomerAddComponent,
+    IndividualCustomerAddComponent,
+    RentalAddCorporateCustomerComponent
     
   ],
   imports: [

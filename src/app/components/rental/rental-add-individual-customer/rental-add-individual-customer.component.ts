@@ -1,27 +1,28 @@
-import { RentalAddResponseModel } from './../../../models/responseModels/rentalAddResponseModel';
-import { SingleResponseModel } from './../../../models/responseModels/singleResponseModel';
+import { AuthService } from '../../../services/auth.service';
+import { RentalAddResponseModel } from '../../../models/responseModels/rentalAddResponseModel';
+import { SingleResponseModel } from '../../../models/responseModels/singleResponseModel';
 import { ResponseModel } from 'src/app/models/responseModels/responseModel';
-import { CreateCustomerCardDetailModel } from './../../../models/createModels/createCustomerCardDetailModel';
-import { CustomerCardDetailService } from './../../../services/customer-card-detail.service';
-import { CarService } from './../../../services/car.service';
-import { CarListModel } from './../../../models/listModels/carListModel';
-import { TotalPriceRequestModel } from './../../../models/createModels/totalPriceRequestModel';
-import { RentalListModel } from './../../../models/listModels/rentalListModel';
-import { PaymentService } from './../../../services/payment.service';
-import { CreateAdditionalServiceModel } from './../../../models/createModels/createAdditionalServiceModel';
-import { AdditionalServiceListModel } from './../../../models/listModels/additionalServiceListModel';
-import { AdditionalServiceService } from './../../../services/additionalService.service';
-import { AdditionalServiceItemService } from './../../../services/additionalServiceItem.service';
-import { AdditionalServiceItemListModel } from './../../../models/listModels/additionalServiceItemListModel';
+import { CreateCustomerCardDetailModel } from '../../../models/createModels/createCustomerCardDetailModel';
+import { CustomerCardDetailService } from '../../../services/customer-card-detail.service';
+import { CarService } from '../../../services/car.service';
+import { CarListModel } from '../../../models/listModels/carListModel';
+import { TotalPriceRequestModel } from '../../../models/createModels/totalPriceRequestModel';
+import { RentalListModel } from '../../../models/listModels/rentalListModel';
+import { PaymentService } from '../../../services/payment.service';
+import { CreateAdditionalServiceModel } from '../../../models/createModels/createAdditionalServiceModel';
+import { AdditionalServiceListModel } from '../../../models/listModels/additionalServiceListModel';
+import { AdditionalServiceService } from '../../../services/additionalService.service';
+import { AdditionalServiceItemService } from '../../../services/additionalServiceItem.service';
+import { AdditionalServiceItemListModel } from '../../../models/listModels/additionalServiceItemListModel';
 
-import { CreateRentalModel } from './../../../models/createModels/createRentalModel';
+import { CreateRentalModel } from '../../../models/createModels/createRentalModel';
 import { HttpErrorResponse } from '@angular/common/http';
-import { PromoCodeListModel } from './../../../models/listModels/promoCodeListModel';
-import { IndividualCustomerListModel } from './../../../models/listModels/individualCustomerListModel';
-import { PromoCodeService } from './../../../services/promo-code.service';
+import { PromoCodeListModel } from '../../../models/listModels/promoCodeListModel';
+import { IndividualCustomerListModel } from '../../../models/listModels/individualCustomerListModel';
+import { PromoCodeService } from '../../../services/promo-code.service';
 import { Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { RentalService } from './../../../services/rental.service';
+import { RentalService } from '../../../services/rental.service';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -29,12 +30,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CreatePaymentModel } from 'src/app/models/createModels/createPaymentModel';
 
 @Component({
-  selector: 'app-rental-add',
-  templateUrl: './rental-add.component.html',
-  styleUrls: ['./rental-add.component.css']
+  selector: 'app-rental-individual-customer-add',
+  templateUrl: './rental-add-individual-customer.component.html',
+  styleUrls: ['./rental-add-individual-customer.component.css']
 })
-export class RentalAddComponent implements OnInit {
-  customerId =1;
+export class RentalAddForIndividualCustomerComponent implements OnInit {
+  customerId ;
   carId:number;
   car:CarListModel;
   addLoading=false;
@@ -58,12 +59,15 @@ export class RentalAddComponent implements OnInit {
     private linkRouter:Router,
     private carService:CarService,
     private customerCardDetailService: CustomerCardDetailService,
+    private authService: AuthService,
     ) { }
 
   ngOnInit() {
+    this.customerId=this.authService.getUserFromLocalStorage().id;
     this.carId = parseInt(this.router.snapshot.paramMap.get('carId'));   
     this.getAdditionalServiceItems();
     this.findCarById();
+    this.authService.isCorporateCustomer() ? this.linkRouter.navigateByUrl('/rental/corporate-customer/add/'+this.carId): null
   }
   rentalAddForm = new FormGroup({
     rentDate: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)]),

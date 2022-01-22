@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { CarListModel } from './../../../models/listModels/carListModel';
 
 import { CarService } from './../../../services/car.service';
@@ -15,7 +16,9 @@ export class CarDetailComponent implements OnInit {
   dataLoaded = false;
   constructor(private router: ActivatedRoute,
     private linkRouter:Router,
-    private carService: CarService) { }
+    private carService: CarService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit() {
     this.carId = parseInt(this.router.snapshot.paramMap.get('carId'));    
@@ -32,6 +35,15 @@ export class CarDetailComponent implements OnInit {
   }
   
   rentCar(id:number):void{
-    this.linkRouter.navigateByUrl('/rental/add/'+id);
+    if(this.authService.isCorporateCustomer){
+      this.linkRouter.navigateByUrl('/rental/add/corporate-customer/'+id);
+    }
+    else if(this.authService.isIndividualCustomer){
+      this.linkRouter.navigateByUrl('/rental/add/individual-customer/'+id);
+    }
+    else {
+      this.linkRouter.navigateByUrl('/login');
+    }
+   
   }
 }

@@ -1,0 +1,86 @@
+<table class="body-wrap">
+    <tbody>
+      <tr>
+        <td></td>
+        <td class="container" width="600">
+          <div class="content">
+            <table class="main" width="100%" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td class="content-wrap aligncenter">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                      <tbody>
+                        <tr>
+                          <td class="content-block">
+                            <h2>Rent A Car Fatura</h2>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="content-block">
+                            <table class="invoice">
+                              <tbody>
+                                <tr>
+                                  <td> {{"İsim: "}}{{invoice.companyName}}<br>
+                                    {{"TC No: "}}{{invoice.taxNumber}}<br>
+                                    {{"Email: "}} {{invoice.email}}<br>
+                                    {{"Kiralama Başlangıç: "}} {{invoice.rentDate|date:'d/mM/yyyy'}}<br>
+                                    {{"Kiralama Bitiş: "}} {{invoice.returnedDate|date:'d/mM/yyyy'}}<br>
+                                    <br>{{"Fatura No: "+invoice.id}}
+                                    <br> {{"Fatura Tarihi: "}}{{invoice.creationDate|date:'d/mM/yyyy'}}</td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <table class="invoice-items" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr >
+                                          <td>Kiralama Ücreti</td>
+                                          <td class="alignright">{{invoice.rentPrice|currency:'TRY'}}</td>
+                                        </tr>
+                                      </tbody>
+                                      <tbody *ngIf="invoice.additionalServiceItems.length>0">
+                                  
+                                          <tr *ngFor="let item of invoice.additionalServiceItems">
+                                            <td>{{item.name}}</td>
+                                            <td class="alignright">{{item.price|currency:'TRY'}}</td>
+                                          </tr>
+                                    
+                                      
+                                        <tr class="total">
+                                          <td class="alignright" width="80%">Toplam</td>
+                                          <td class="alignright">{{invoice.totalPrice|currency:'TRY'}}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                       
+                        <tr>
+                          <td class="content-block">
+                           Btk Akademi, Innova Eğitim Projesi, Ankara , Türkiye
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="footer">
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td class="aligncenter content-block">Sorunuz mu Var? Email <a href="mailto:">mert1943992@gmail.com</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>

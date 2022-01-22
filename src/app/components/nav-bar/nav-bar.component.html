@@ -5,7 +5,18 @@
       width="38" height="30" class="me-3" alt="RentACar"></a>  
       Rent A Car
     </h1>
-    <a href="" class="ms-auto link-light" hreflang="ar">Giriş Yap</a>
+    <a class="btn btn-primary" *ngIf="!isAuth" href="/login" class="btn btn-primary ms-auto link-light" hreflang="ar">Giriş Yap</a>
+
+    <div class="dropdown ms-auto" *ngIf="isAuth">
+      <button class="btn btn-light  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Merhaba
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="/my-account">Hesabım</a></li>
+        <li><a class="dropdown-item" href="/employee-panel">Yönetim Paneli</a></li>
+        <li><button class="dropdown-item" (click)="onLogout()">Çıkış</button></li>
+      </ul>
+    </div>
   
   </div>
 </header>

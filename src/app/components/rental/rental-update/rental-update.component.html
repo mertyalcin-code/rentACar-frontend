@@ -1,3 +1,41 @@
-<p>
-  rental-update works!
-</p>
+<a class="btn btn-info" href="/rental-management" style="margin: 2%;">Listeye Geri Dön</a>
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Kiralama Güncelle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="rentalUpdateForm">
+          <div class="mb-3">
+            <label for="returnedDate">Dönüş Tarihi</label>
+            <div class="form-group">
+              <input type="date" id="returnDate" formControlName="returnDate" class="form-control"
+                placeholder="Dönüş Tarihi" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="returnedKilometer">Dönüş Kilometresi</label>
+            <div class="form-group">
+              <input type="text" id="returnedKilometer" formControlName="returnedKilometer" class="form-control"
+                placeholder="Dönüş Kilometresi" />
+            </div>
+          </div>
+
+          <label for="city">Arabanın Bırakıldı Şehir</label>
+          <select class="form-select mb-3" aria-label="city" formControlName="returnCityId">
+            <option *ngFor="let city of cities" value="{{city.id}}">{{city.cityName}}</option>
+          </select>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="update()"
+          [disabled]="rentalUpdateForm.invalid">Güncelle</button>
+        <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Gönderiliyor...
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

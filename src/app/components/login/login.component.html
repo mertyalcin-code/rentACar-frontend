@@ -1,0 +1,40 @@
+<div class="text-center">
+  <main class="form-signin">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <i class="fas fa-car fa-6x"></i>
+      <h1 class="h3 mb-2 fw-normal">Lütfen Giriş Yapınız</h1>
+      <div class="form-floating">
+        <input type="email" class="form-control" name="email" formControlName="email"
+          placeholder="Email">
+        <label for="floatingInput">Email</label>
+      </div>
+    
+      <div class="form-floating">
+        <input type="password" class="form-control" name="password" formControlName="password" placeholder="Şifre">
+        <label for="floatingPassword">Şifre</label>
+      </div>
+
+      <button class="w-100 btn btn-lg btn-primary" name="button" type="submit" [disabled]="loginForm.invalid">
+        <span *ngIf="!loading">Giriş Yap</span>
+        <div *ngIf="loading">
+          <div class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></div>
+          Giriş Yapılıyor
+        </div>
+      </button>
+
+    </form>
+    <div class="mt-4">
+      <div class="d-flex justify-content-center links">        
+        <a routerLink="/individual-customer-register" class="ml-2" style="color: #2C3E50;">Bireysel Müşteri Kayıt </a>
+        <a routerLink="/corporate-customer-register" class="ml-2" style="color: #2C3E50;">Kurumsal Müşteri Kayıt </a>
+      </div>
+      <br>
+
+    </div>
+    <div class="alert alert-info" role="alert">
+      Admin Giriş<i></i> <br>
+      Email: admin@admin.com<br>
+      Şifre: sifrem<br>
+    </div>
+  </main>
+</div>

@@ -41,7 +41,7 @@ addForCorporateCustomer(rental:CreateRentalModel): Observable<SingleResponseMode
   return this.httpClient.post<SingleResponseModel<RentalAddResponseModel>>(this.apiUrl+"add-for-corporate-customer",rental)
 }
 update(model:UpdateRentalModel): Observable<ResponseModel>{ 
-  return this.httpClient.post<ResponseModel>(this.apiUrl+"update",model)
+  return this.httpClient.put<ResponseModel>(this.apiUrl+"update",model)
 }
 delete(id: number): Observable<ResponseModel> {
   return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)

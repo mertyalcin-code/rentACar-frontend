@@ -8,6 +8,7 @@ export interface InvoiceCorporateCustomerListModel{
     returnedDate:Date
     totalPrice:number
     creationDate:Date
-    additonalServiceItems: AdditionalServiceItemListModel[]
+    rentPrice:number
+    additionalServiceItems: AdditionalServiceItemListModel[]
    
 }

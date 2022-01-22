@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { CreateInvoiceModel } from './../../../models/createModels/createInvoiceModel';
 import { MyRentalListModel } from './../../../models/listModels/myRentalListModel';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -15,7 +16,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-rental.component.css']
 })
 export class MyRentalComponent implements OnInit {
-  customerId=1;
+  customerId:number;
   invoiceAddLoading=false;
   rentals:MyRentalListModel[]=[];
 
@@ -24,11 +25,13 @@ export class MyRentalComponent implements OnInit {
             private carService : CarService,
             private paymentService: PaymentService,
             private invoiceService: InvoiceService,
+            private authService:AuthService
     ) { }
 
   ngOnInit() {
+    this.customerId= this.authService.getUserFromLocalStorage().id;
     this.findRentalsByCustomerId();
-
+   
   }
   findRentalsByCustomerId (){
     this.rentalService.findAllByCustomerId(this.customerId).subscribe(response =>{

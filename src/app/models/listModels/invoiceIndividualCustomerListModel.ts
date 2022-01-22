@@ -1,6 +1,6 @@
 import { AdditionalServiceItemListModel } from "./additionalServiceItemListModel";
 
-export interface InvoiceIndividualListModel{
+export interface InvoiceIndividualCustomerListModel{
     id:number
     nationalityNo:string
     firstName:string
@@ -10,7 +10,8 @@ export interface InvoiceIndividualListModel{
     returnedDate:Date
     totalPrice:number
     creationDate:Date
-    additonalServiceItems: AdditionalServiceItemListModel[]
+    rentPrice:number
+    additionalServiceItems: AdditionalServiceItemListModel[]
   
    
 }

@@ -1,0 +1,53 @@
+<div class="text-center">
+  <main class="form-register">
+    <form [formGroup]="addIndividualCustomerForm" (ngSubmit)="add()">    
+      <i class="far fa-registered fa-6x"></i>
+      <h1 class="h3 mb-3 fw-normal">Kayıt Ol</h1>
+      <div class="form-floating">
+        <input type="email" class="form-control" name="firstName" formControlName="firstName" placeholder="Ad">
+        <label for="floatingInput">Ad</label>
+     
+      </div>
+      <div class="form-floating">
+        <input type="email" class="form-control" name="lastName" formControlName="lastName" placeholder="Soyad">
+        <label for="floatingInput">Soyad</label>
+        
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" name="password" formControlName="password"
+          placeholder="Şifre">
+        <label for="floatingInput">Şifre</label>
+      
+      </div>
+      <div class="form-floating">
+        <input type="email" class="form-control" name="email" formControlName="email" placeholder="Email">
+        <label for="floatingInput">Email</label>
+      
+      </div>
+      <div class="form-floating">
+        <input type="text" class="form-control" name="nationalityNo" formControlName="nationalityNo" placeholder="nationalityNo">
+        <label for="floatingInput">Tc Kimlik Numarası</label>
+      
+      </div>
+      <div class="form-floating">
+        <input type="date" class="form-control" name="birthDate" formControlName="birthDate" placeholder="birthDate">
+        <label for="floatingInput">Doğum günü</label>
+      
+      </div>
+  
+      <button class="w-100 btn btn-lg btn-primary" name="button" type="submit"
+        [disabled]="addIndividualCustomerForm.invalid || loading">
+        <span *ngIf="!loading">Kayıt Ol</span>
+        <div *ngIf="loading">
+          <div class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></div>
+          Kayıt olunuyor
+        </div>
+      </button>
+    </form>
+    <div class="mt-4">
+      <div class="d-flex justify-content-center links">
+        Zaten hesabın var mı ><p> <a routerLink="/login" class="ml-2" style="color: #2C3E50;"> Giriş Yap</a>
+      </div>
+    </div>
+  </main>
+</div>

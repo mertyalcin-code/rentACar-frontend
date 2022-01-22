@@ -4,7 +4,6 @@ import { ListResponseModel } from './../../models/responseModels/listResponseMod
 import { ToastrService } from 'ngx-toastr';
 import { InvoiceService } from './../../services/invoice.service';
 import { Component, OnInit } from '@angular/core';
-import { InvoiceIndividualListModel } from 'src/app/models/listModels/invoiceIndividualListModel';
 import { InvoiceListModel } from 'src/app/models/listModels/invoiceListModel';
 
 @Component({
