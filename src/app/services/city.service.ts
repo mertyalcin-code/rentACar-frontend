@@ -1,3 +1,4 @@
+import { UpdateCityModel } from './../models/updateModels/updateCityModel';
 import { ResponseModel } from 'src/app/models/responseModels/responseModel';
 import { CityListModel } from './../models/listModels/cityListModel';
 import { Observable } from 'rxjs';
@@ -25,6 +26,12 @@ export class CityService {
   }
   add(model:CreateCityModel): Observable<ResponseModel>{ 
     return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
+  }
+  update(model: UpdateCityModel): Observable<ResponseModel> {
+    return this.httpClient.put<ResponseModel>(this.apiUrl + "update", model)
+  }
+  delete(id: number): Observable<ResponseModel> {
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
   }
 
 }

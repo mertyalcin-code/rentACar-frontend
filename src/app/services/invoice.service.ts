@@ -1,3 +1,4 @@
+import { UpdateIndividualCustomerModel } from './../models/updateModels/updateIndividualCustomerModel';
 import { CreateInvoiceModel } from './../models/createModels/createInvoiceModel';
 import { ResponseModel } from 'src/app/models/responseModels/responseModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
@@ -28,4 +29,10 @@ export class InvoiceService {
  add(model:CreateInvoiceModel): Observable<ResponseModel>{ 
   return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
 }
+
+delete(id: number): Observable<ResponseModel> {
+  return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
+}
+
+
 }

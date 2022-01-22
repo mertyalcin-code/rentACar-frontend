@@ -1,3 +1,20 @@
+import { CarMaintenanceUpdateComponent } from './components/car-maintenance/car-maintenance-update/car-maintenance-update.component';
+import { CarMaintenanceComponent } from './components/car-maintenance/car-maintenance.component';
+import { CarDamageUpdateComponent } from './components/car-damage/car-damage-update/car-damage-update.component';
+import { CarDamageAddComponent } from './components/car-damage/car-damage-add/car-damage-add.component';
+import { CarDamageService } from './services/car-damage.service';
+import { SegmentUpdateComponent } from './components/segment/segment-update/segment-update.component';
+import { SegmentComponent } from './components/segment/segment.component';
+import { SegmentAddComponent } from './components/segment/segment-add/segment-add.component';
+import { CarUpdateComponent } from './components/car/car-update/car-update.component';
+import { CarManagementComponent } from './components/car/car-management/car-management.component';
+import { CityUpdateComponent } from './components/city/city-update/city-update.component';
+import { CityAddComponent } from './components/city/city-add/city-add.component';
+import { BrandUpdateComponent } from './components/brand/brand-update/brand-update.component';
+import { ColorUpdateComponent } from './components/color/color-update/color-update.component';
+import { CorporateCustomerComponent } from './components/customer/corporate-customer/corporate-customer.component';
+import { CityComponent } from './components/city/city.component';
+import { RentalManagementComponent } from './components/rental/rental-management/rental-management.component';
 import { EmployeePanelComponent } from './components/employee-panel/employee-panel.component';
 import { HomeComponent } from './components/home/home.component';
 import { CreditCardComponent } from './components/credit-card/credit-card.component';
@@ -28,6 +45,11 @@ import {ToastrModule} from "ngx-toastr";
 import { CommonModule } from '@angular/common';
 import { RentalAddComponent } from './components/rental/rental-add/rental-add.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AdditionalServiceItemComponent } from './components/additional-service-item/additional-service-item.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { CarDamageComponent } from './components/car-damage/car-damage.component';
+import { CarMaintenanceAddComponent } from './components/car-maintenance/car-maintenance-add/car-maintenance-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +69,29 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     RentalAddComponent,
     MyRentalComponent,
     CreditCardComponent,HomeComponent,
-    EmployeePanelComponent
+    EmployeePanelComponent,
+    RentalManagementComponent,
+    CityComponent,
+    AdditionalServiceItemComponent,
+    InvoiceComponent,
+    CorporateCustomerComponent,
+    PaymentComponent,
+    ColorUpdateComponent,
+    BrandUpdateComponent,
+    CityAddComponent,
+    CityUpdateComponent,
+    CarManagementComponent,
+    CarUpdateComponent,
+    SegmentComponent,
+    SegmentAddComponent,
+    SegmentUpdateComponent,
+    CarDamageComponent,
+    CarDamageAddComponent,
+    CarDamageUpdateComponent,
+    CarMaintenanceComponent,
+    CarMaintenanceAddComponent,
+    CarMaintenanceUpdateComponent
+    
   ],
   imports: [
     BrowserModule,

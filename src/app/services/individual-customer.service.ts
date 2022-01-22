@@ -7,7 +7,7 @@ import { ListResponseModel } from './../models/responseModels/listResponseModel'
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment.prod';
 import { Injectable } from '@angular/core';
-import { UpdateIndividualCustomerModel } from '../models/updateModels/updateIndividualCustomerDomain';
+import { UpdateIndividualCustomerModel } from '../models/updateModels/updateIndividualCustomerModel';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +30,7 @@ export class IndividualCustomerService {
   update(model:UpdateIndividualCustomerModel): Observable<ResponseModel>{ 
     return this.httpClient.post<ResponseModel>(this.apiUrl+"update",model)
   }
-  
+  delete(id: number): Observable<ResponseModel> {
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
+  }
 }

@@ -1,3 +1,4 @@
+import { UpdateSegmentModel } from './../models/updateModels/updateSegmentModel';
 import { ResponseModel } from 'src/app/models/responseModels/responseModel';
 import { CreateSegmentModel } from './../models/createModels/createSegmentModel';
 import { SegmentListModel } from './../models/listModels/segmentListModel';
@@ -25,5 +26,11 @@ export class SegmentService {
   }
   add(model:CreateSegmentModel): Observable<ResponseModel>{ 
     return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
+  }
+  update(model:UpdateSegmentModel): Observable<ResponseModel>{ 
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"update",model)
+  }
+  delete(id: number): Observable<ResponseModel> {
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
   }
 }

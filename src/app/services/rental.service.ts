@@ -1,3 +1,4 @@
+import { UpdateRentalModel } from './../models/updateModels/updateRentalModel';
 import { RentalAddResponseModel } from './../models/responseModels/rentalAddResponseModel';
 import { MyRentalListModel } from './../models/listModels/myRentalListModel';
 import { ResponseModel } from './../models/responseModels/responseModel';
@@ -38,5 +39,11 @@ export class RentalService {
 }
 addForCorporateCustomer(rental:CreateRentalModel): Observable<SingleResponseModel<RentalAddResponseModel>>{ 
   return this.httpClient.post<SingleResponseModel<RentalAddResponseModel>>(this.apiUrl+"add-for-corporate-customer",rental)
+}
+update(model:UpdateRentalModel): Observable<ResponseModel>{ 
+  return this.httpClient.post<ResponseModel>(this.apiUrl+"update",model)
+}
+delete(id: number): Observable<ResponseModel> {
+  return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
 }
 }

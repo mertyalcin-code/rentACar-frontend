@@ -1,4 +1,4 @@
 export interface CityListModel{
     id:number
-   name:string
+    cityName:string
 }

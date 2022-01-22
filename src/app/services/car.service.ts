@@ -1,3 +1,4 @@
+import { UpdateCarModel } from './../models/updateModels/updateCarModel';
 import { ResponseModel } from './../models/responseModels/responseModel';
 import { CreateCarModel } from './../models/createModels/createCarModel';
 import { ListResponseModel } from './../models/responseModels/listResponseModel';
@@ -27,5 +28,11 @@ export class CarService {
   add(car:CreateCarModel): Observable<ResponseModel>{ 
     return this.httpClient.post<ResponseModel>(this.apiUrl+"add",car)
   }
-
+  update(model: UpdateCarModel): Observable<ResponseModel> {
+    return this.httpClient.put<ResponseModel>(this.apiUrl + "update", model)
+  }
+  delete(id: number): Observable<ResponseModel> {
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
+  }
+  
 }

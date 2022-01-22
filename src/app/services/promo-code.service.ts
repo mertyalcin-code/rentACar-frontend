@@ -27,4 +27,11 @@ export class PromoCodeService {
   add(model:CreatePromoCodeModel): Observable<ResponseModel>{ 
     return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
   }
+  update(model:PromoCodeListModel): Observable<ResponseModel>{ 
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"update",model)
+  }
+  delete(id: number): Observable<ResponseModel> {
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
+  }
+  
 }

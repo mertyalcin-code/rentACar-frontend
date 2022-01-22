@@ -1,3 +1,5 @@
+import { UpdateCarDamageModel } from './../models/updateModels/updateCarDamageModel';
+import { UpdateCarMaintenanceModel } from './../models/updateModels/updateCarMaintenanceModel';
 import { ResponseModel } from 'src/app/models/responseModels/responseModel';
 import { CarDamageListModel } from './../models/listModels/carDamageListModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
@@ -17,13 +19,19 @@ export class CarDamageService {
   private  apiUrl: string = this.baseUrl + "car-damages/"
  constructor(private httpClient: HttpClient) { }
 
- findAll(carId:number): Observable<ListResponseModel<CarDamageListModel>>{ 
-   return this.httpClient.get<ListResponseModel<CarDamageListModel>>(this.apiUrl+"find-all-by-car-id"+carId)
+ findAllByCarId(carId:number): Observable<ListResponseModel<CarDamageListModel>>{ 
+   return this.httpClient.get<ListResponseModel<CarDamageListModel>>(this.apiUrl+"find-all-by-car-id/"+carId)
  }
  findById(id:number): Observable<SingleResponseModel<CarDamageListModel>>{ 
    return this.httpClient.get<SingleResponseModel<CarDamageListModel>>(this.apiUrl+"find-by-id/"+id)
  }
  add(model:CreateCarDamageModel): Observable<ResponseModel>{ 
   return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
+}
+update(model: UpdateCarDamageModel): Observable<ResponseModel> {
+  return this.httpClient.put<ResponseModel>(this.apiUrl + "update", model)
+}
+delete(id: number): Observable<ResponseModel> {
+  return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
 }
 }

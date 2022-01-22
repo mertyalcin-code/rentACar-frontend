@@ -1,3 +1,4 @@
+import { UpdateColorModel } from './../models/updateModels/updateColorModel';
 import { ResponseModel } from './../models/responseModels/responseModel';
 import { CreateColorModel } from './../models/createModels/createColorModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
@@ -28,5 +29,11 @@ export class ColorService {
   }
   add(color:CreateColorModel): Observable<ResponseModel>{ 
     return this.httpClient.post<ResponseModel>(this.apiUrl+"add",color)
+  }
+  update(model: UpdateColorModel): Observable<ResponseModel> {
+    return this.httpClient.put<ResponseModel>(this.apiUrl + "update", model)
+  }
+  delete(id: number): Observable<ResponseModel> {
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
   }
 }

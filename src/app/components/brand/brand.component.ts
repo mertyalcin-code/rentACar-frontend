@@ -1,3 +1,7 @@
+import { ListResponseModel } from './../../models/responseModels/listResponseModel';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { ResponseModel } from 'src/app/models/responseModels/responseModel';
 import { BrandListModel } from './../../models/listModels/brandListModel';
 
 import { BrandService } from './../../services/brand.service';
@@ -9,25 +13,56 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./brand.component.css']
 })
 export class BrandComponent implements OnInit {
-
-  title = 'Brand List';
+  searchTerm:string = ''; 
   brands:BrandListModel[] = [];
-  dataLoaded: boolean = false;
-  currentBrand: BrandListModel;
-  constructor(private brandService:BrandService) { }
+  brandsLoading: boolean = false;
+  deleteLoading:boolean = false;
+  constructor(private brandService:BrandService,
+              private toastrService:ToastrService
+    ) { }
 
   ngOnInit(): void {
-    this.getBrand()
+    this.findAll();
   }
 
-  getBrand(){
-    this.brandService.findAll().subscribe(response =>{
-      this.dataLoaded = false;
-      this.brands = response.data;
-      this.dataLoaded = true;
-    })
+  findAll(){
+    this.brandsLoading = true;   
+    this.brandService.findAll().subscribe(
+      (response: ListResponseModel<BrandListModel>) => {
+        if (response.success) {           
+          this.brandsLoading = false;
+          this.brands=response.data;
+          this.toastrService.success(response.message,"Başarılı");
+        } else {     
+          this.toastrService.warning(response.message,"Başarısız");
+          this.brandsLoading = false;
+        }
+      },
+      (errorResponse: HttpErrorResponse) => {       
+        this.toastrService.error(errorResponse.message,"Başarısız");
+        this.brandsLoading = false;
+      }
+    )
   }
-
   
-
+  
+  delete(id:number){
+    this.deleteLoading = true;   
+    this.brandService.delete(id).subscribe(
+      (response: ResponseModel) => {
+        if (response.success) {           
+          this.deleteLoading = false;
+          this.findAll();
+          this.toastrService.success(response.message,"Başarılı");
+        } else {     
+          this.toastrService.warning(response.message,"Başarısız");
+          this.deleteLoading = false;
+        }
+      },
+      (errorResponse: HttpErrorResponse) => {       
+        this.toastrService.error(errorResponse.message,"Başarısız");
+        this.deleteLoading = false;
+      }
+    )
+  }
 }

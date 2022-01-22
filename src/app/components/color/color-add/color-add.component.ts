@@ -1,12 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ResponseModel } from './../../../models/responseModels/responseModel';
-import { Validators } from '@angular/forms';
-import { FormControl } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
+import { ResponseModel } from 'src/app/models/responseModels/responseModel';
 import { ColorService } from './../../../services/color.service';
-import { FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-color-add',
@@ -14,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./color-add.component.css']
 })
 export class ColorAddComponent implements OnInit {
+
   loading=false;
   constructor(
     private colorService:ColorService,private toastrService:ToastrService) { }

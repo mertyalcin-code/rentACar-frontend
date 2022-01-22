@@ -1,0 +1,37 @@
+<a class="btn btn-info" href="/car-damage" style="margin: 2%;">Listeye Geri Dön</a>
+<div class="content">
+  <div class="col-md-12">
+      <div class="card">
+          <div class="card-header"><h5 class="title">Araba Hasarı Ekle</h5></div>
+          <div class="card-body">
+              <form [formGroup]="carDamageAddForm">
+                <div class="mb-3">
+                  <label for="carDamageName">Araba Id</label>
+                  <div class="form-group">
+                      <input type="number" 
+                      id="carDamageName" 
+                      formControlName="carId" class="form-control" 
+                      placeholder="Araba Id"/>
+                  </div>
+                   </div>
+                  <div class="mb-3">
+                      <label for="carDamageName">Hasar Açıklaması</label>
+                      <div class="form-group">
+                          <input type="text" 
+                          id="carDamageName" 
+                          formControlName="description" class="form-control" 
+                          placeholder="Hasar"/>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <div class="card-footer">
+            <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="add()" [disabled]="carDamageAddForm.invalid">Ekle</button>
+            <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Gönderiliyor...
+            </button>
+          </div>
+      </div>
+  </div>
+</div>

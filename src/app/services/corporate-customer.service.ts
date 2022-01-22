@@ -1,3 +1,4 @@
+import { UpdateCorporateCustomerModel } from './../models/updateModels/updateCorporateCustomerModel';
 import { ResponseModel } from 'src/app/models/responseModels/responseModel';
 import { CreateCorporateCustomerModel } from './../models/createModels/createCorporateCustomerModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
@@ -25,5 +26,11 @@ export class CorporateCustomerService {
   }
   add(model:CreateCorporateCustomerModel): Observable<ResponseModel>{ 
     return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
+  }
+  update(model: UpdateCorporateCustomerModel): Observable<ResponseModel> {
+    return this.httpClient.put<ResponseModel>(this.apiUrl + "update", model)
+  }
+  delete(id: number): Observable<ResponseModel> {
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
   }
 }

@@ -59,17 +59,17 @@ export class CarAddComponent implements OnInit {
   }
   carAddForm = new FormGroup({
     carName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)]),
-    model: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(60)]),
-    brandId: new FormControl("",[Validators.required,Validators.min(1)]),
-    colorId: new FormControl("",[Validators.required,,Validators.min(1)]),
+    model: new FormControl("",[Validators.required,Validators.min(1900),Validators.max(2023)]),
+    brandId: new FormControl("",[Validators.required]),
+    colorId: new FormControl("",[Validators.required,]),
     dailyPrice: new FormControl("",[Validators.required,,Validators.min(0)]),
     findexScore: new FormControl("",[Validators.required,Validators.min(650),Validators.max(1900)]),
     kilometer: new FormControl("",[Validators.required,Validators.min(0)]),
     imageUrl: new FormControl("",[Validators.required]),
     description: new FormControl("",[Validators.required,Validators.minLength(0),Validators.maxLength(250)]),
     minAge: new FormControl("",[Validators.required,Validators.min(18),Validators.min(50)]),
-    segmentId: new FormControl("",[Validators.required,Validators.min(1)]),
-    cityId: new FormControl("",[Validators.required,Validators.min(1)]),
+    segmentId: new FormControl("",[Validators.required]),
+    cityId: new FormControl("",[Validators.required]),
   })
   clearBrandAddForm() {
     this.carAddForm.patchValue({

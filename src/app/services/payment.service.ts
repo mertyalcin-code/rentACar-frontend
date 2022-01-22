@@ -1,3 +1,4 @@
+import { UpdatePaymentModel } from './../models/updateModels/updatePaymentModel';
 import { TotalPriceRequestModel as TotalPriceRequestModel } from './../models/createModels/totalPriceRequestModel';
 import { ResponseModel } from './../models/responseModels/responseModel';
 import { CreatePaymentModel } from '../models/createModels/createPaymentModel';
@@ -29,6 +30,12 @@ export class PaymentService {
   }
   add(payment:CreatePaymentModel): Observable<ResponseModel>{ 
     return this.httpClient.post<ResponseModel>(this.apiUrl+"add",payment)
+  }
+  update(model:UpdatePaymentModel): Observable<ResponseModel>{ 
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"update",model)
+  }
+  delete(id: number): Observable<ResponseModel> {
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
   }
   calculateTotalPrice(totalPriceRequestModel: TotalPriceRequestModel): Observable<SingleResponseModel<number>>{ 
     return this.httpClient.post<SingleResponseModel<number>>(this.apiUrl+"find-total-price/",totalPriceRequestModel)

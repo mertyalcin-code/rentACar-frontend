@@ -1,4 +1,4 @@
-import { UpdateIndividualCustomerModel } from './../../../../models/updateModels/updateIndividualCustomerDomain';
+import { UpdateIndividualCustomerModel } from '../../../../models/updateModels/updateIndividualCustomerModel';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';

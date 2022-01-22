@@ -5,7 +5,7 @@
         <button type="button" class="btn btn-primary" disabled>Şehir</button>
         <select class="btn btn-primary dropdown-toggle" [(ngModel)]="selectedCity" > 
             <option value="" selected>Hepsi</option>
-            <option *ngFor="let city of cities" [value]="city.name">{{city.name}}</option>
+            <option *ngFor="let city of cities" [value]="city.cityName">{{city.cityName}}</option>
           </select>
       </div>
     

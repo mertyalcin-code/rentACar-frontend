@@ -1,0 +1,99 @@
+<a class="btn btn-info" href="/car" style="margin: 2%;">Listeye Geri Dön</a>
+<div class="content" style="margin-left: 10%;margin-right: 10%;">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Araba Güncelle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="carUpdateForm">
+          <div class="mb-3">
+            <label for="carName">Araba İsmi</label>
+            <div class="form-group">
+              <input type="text" id="carName" formControlName="carName" class="form-control" placeholder="Araba ismi" />
+            </div>
+          </div>
+
+          <label for="brand">Marka</label>
+          <select class="form-select mb-3" aria-label="Brand" formControlName="brandId">
+            <option *ngFor="let brand of brands" value="{{brand.id}}">{{brand.name}}</option>
+          </select>
+
+          <label for="color">Renk</label>
+          <select class="form-select mb-3" aria-label="Color" formControlName="colorId">
+            <option *ngFor="let color of colors" value="{{color.id}}">{{color.name}}</option>
+          </select>
+
+          <div class="mb-3">
+            <label for="dailyPrice">Günlük Fiyatı</label>
+            <div class="form-group">
+              <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control"
+                placeholder="Günlük fiyat" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="model">Model Yılı</label>
+            <div class="form-group">
+              <input type="number" id="model" formControlName="model" class="form-control" placeholder="Model" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="findexScore">Minimum Findex Skoru </label>
+            <div class="form-group">
+              <input type="number" id="findexScore" formControlName="findexScore" class="form-control"
+                placeholder="Findex Score" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="kilometer">Kilometre </label>
+            <div class="form-group">
+              <input type="number" id="kilometer" formControlName="kilometer" class="form-control"
+                placeholder="Kilometer" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="imageUrl">Resim Linki</label>
+            <div class="form-group">
+              <input type="text" id="imageUrl" formControlName="imageUrl" class="form-control"
+                placeholder="Resim Linki" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="description">Açıklama</label>
+            <div class="form-group">
+              <input type="text" id="description" formControlName="description" class="form-control"
+                placeholder="Açıklama" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="minAge">Minimum Yaş</label>
+            <div class="form-group">
+              <input type="number" id="minAge" formControlName="minAge" class="form-control"
+                placeholder="Minimum Yaş" />
+            </div>
+          </div>
+
+          <label for="segment">Araba Sınıfı</label>
+          <select class="form-select mb-3" aria-label="segment" formControlName="segmentId">
+            <option *ngFor="let segment of segments" value="{{segment.id}}">{{segment.segmentName}}</option>
+          </select>
+
+          <label for="city">Arabanın Bulunduğu Şehir</label>
+          <select class="form-select mb-3" aria-label="city" formControlName="cityId">
+            <option *ngFor="let city of cities" value="{{city.id}}">{{city.cityName}}</option>
+          </select>
+
+        </form>
+      </div>
+      <div class="card-footer">
+        <button *ngIf="!carUpdateLoading" class="btn btn-fill btn-primary" (click)="update()" >Ekle</button>
+        <button *ngIf="carUpdateLoading" class="btn btn-primary" type="button" disabled>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Gönderiliyor...
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

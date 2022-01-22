@@ -14,6 +14,7 @@ export interface CarListModel{
     cityId:number
     cityName:string
     segmentName:string
-
+    brandId:number
+    colorId:number
 
 } 

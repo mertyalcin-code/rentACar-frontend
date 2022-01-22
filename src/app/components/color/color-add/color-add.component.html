@@ -1,3 +1,4 @@
+<a class="btn btn-info" href="/color" style="margin: 2%;">Listeye Geri Dön</a>
 <div class="content">
   <div class="col-md-12">
       <div class="card">
@@ -16,14 +17,12 @@
               </form>
           </div>
           <div class="card-footer">
-            <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+            <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="add()" [disabled]="colorAddForm.invalid">Ekle</button>
             <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
               <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
               Gönderiliyor...
             </button>
           </div>
       </div>
-      
   </div>
-  
 </div>

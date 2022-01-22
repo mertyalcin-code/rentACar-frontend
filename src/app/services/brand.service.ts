@@ -1,3 +1,4 @@
+import { UpdateBrandModel } from './../models/updateModels/updateBrandModel';
 import { CreateBrandModel } from './../models/createModels/createBrandModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
 import { ListResponseModel } from './../models/responseModels/listResponseModel';
@@ -25,8 +26,13 @@ export class BrandService {
   findById(id:number): Observable<SingleResponseModel<BrandListModel>>{ 
     return this.httpClient.get<SingleResponseModel<BrandListModel>>(this.apiUrl+"find-by-id/"+id)
   }
-  add(brand:CreateBrandModel): Observable<ResponseModel>{ 
-    return this.httpClient.post<ResponseModel>(this.apiUrl+"add",brand)
+  add(model:CreateBrandModel): Observable<ResponseModel>{ 
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
   }
- 
+  update(model: UpdateBrandModel): Observable<ResponseModel> {
+    return this.httpClient.put<ResponseModel>(this.apiUrl + "update", model)
+  }
+  delete(id: number): Observable<ResponseModel> {
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
+  }
 }
