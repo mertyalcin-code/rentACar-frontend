@@ -1,3 +1,37 @@
-<p>
-  car-maintenance-add works!
-</p>
+<a class="btn btn-info" href="/car-maintenance" style="margin: 2%;">Listeye Geri Dön</a>
+<div class="content">
+  <div class="col-md-12">
+      <div class="card">
+          <div class="card-header"><h5 class="title">Araba Bakıma Gönder</h5></div>
+          <div class="card-body">
+              <form [formGroup]="carMaintenanceAddForm">
+                  <div class="mb-3">
+                      <label for="id">Araba Id</label>
+                      <div class="form-group">
+                          <input type="number" 
+                          id="id" 
+                          formControlName="carId" class="form-control" 
+                          placeholder="Arada Id"/>
+                      </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="id">Bakıma Giriş Tarihi</label>
+                    <div class="form-group">
+                        <input type="date" 
+                        id="id" 
+                        formControlName="maintenanceStart" class="form-control" 
+                        placeholder="Arada Id"/>
+                    </div>
+                </div>
+              </form>
+          </div>
+          <div class="card-footer">
+            <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="add()" [disabled]="carMaintenanceAddForm.invalid">Ekle</button>
+            <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Gönderiliyor...
+            </button>
+          </div>
+      </div>
+  </div>
+</div>

@@ -18,12 +18,14 @@
         <td>{{rental.brandName}}</td>
         <td>{{rental.carName}}</td>           
         <td>{{rental.rentDate}}</td>
-        <td *ngIf="rental.isRentalFinished">{{rental?.returnDate}}</td> <td *ngIf="!rental.isRentalFinished"><span class="badge rounded-pill bg-light  text-dark">devam ediyor</span></td>
+        <td *ngIf="rental.rentalFinished">{{rental.returnDate}}</td> <td *ngIf="!rental.rentalFinished"><span class="badge rounded-pill bg-light  text-dark">devam ediyor</span></td>
         <td>{{rental.pickUpCityName}}</td>           
-        <td *ngIf="rental.isRentalFinished">{{rental?.returnCityName}}</td><td *ngIf="!rental.isRentalFinished"><span class="badge rounded-pill bg-light  text-dark">devam ediyor</span></td>
+        <td *ngIf="rental.rentalFinished">{{rental.returnCityName}}</td><td *ngIf="!rental.rentalFinished"><span class="badge rounded-pill bg-light  text-dark">devam ediyor</span></td>
         <td>{{rental?.totalPayment}}</td>
-        <td *ngIf="rental.isInvoiceCreated">{{rental?.totalPayment}}</td>
-        <td *ngIf="!rental.isInvoiceCreated"><span class="badge rounded-pill bg-warning text-dark">Oluşturulmadı</span></td>
+
+        <td *ngIf="!rental.invoiceCreated && !rental.rentalFinished"><span class="badge rounded-pill bg-warning text-dark">Oluşturulmadı</span></td>
+        <td *ngIf="!rental.invoiceCreated && rental.rentalFinished"><button class="badge rounded-pill bg-warning text-dark" (click)="addInvoice(rental.rentalId)">Oluştur</button></td>      
+        <td *ngIf="rental.invoiceCreated"><span class="badge rounded-pill bg-warning text-dark">Görüntüle</span></td>
       </tr>   
     </tbody>
   </table>

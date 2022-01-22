@@ -1,3 +1,8 @@
+import { PaymentAddComponent } from './components/payment/payment-add/payment-add.component';
+import { PaymentUpdateComponent } from './components/payment/payment-update/payment-update.component';
+import { PromoCodeUpdateComponent } from './components/promo-code/promo-code-update/promo-code-update.component';
+import { AdditionalServiceItemUpdateComponent } from './components/additional-service-item/additional-service-item-update/additional-service-item-update.component';
+import { AdditionalServiceItemAddComponent } from './components/additional-service-item/additional-service-item-add/additional-service-item-add.component';
 import { CarMaintenanceUpdateComponent } from './components/car-maintenance/car-maintenance-update/car-maintenance-update.component';
 import { CarMaintenanceComponent } from './components/car-maintenance/car-maintenance.component';
 import { CarDamageUpdateComponent } from './components/car-damage/car-damage-update/car-damage-update.component';
@@ -50,6 +55,8 @@ import { InvoiceComponent } from './components/invoice/invoice.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { CarDamageComponent } from './components/car-damage/car-damage.component';
 import { CarMaintenanceAddComponent } from './components/car-maintenance/car-maintenance-add/car-maintenance-add.component';
+import { PromoCodeComponent } from './components/promo-code/promo-code.component';
+import { PromoCodeAddComponent } from './components/promo-code/promo-code-add/promo-code-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,7 +97,16 @@ import { CarMaintenanceAddComponent } from './components/car-maintenance/car-mai
     CarDamageUpdateComponent,
     CarMaintenanceComponent,
     CarMaintenanceAddComponent,
-    CarMaintenanceUpdateComponent
+    CarMaintenanceUpdateComponent,
+    AdditionalServiceItemComponent,
+    AdditionalServiceItemAddComponent,
+    AdditionalServiceItemUpdateComponent,
+    PromoCodeComponent,
+    PromoCodeUpdateComponent,
+    PromoCodeAddComponent,
+    PaymentComponent,
+    PaymentUpdateComponent,
+    PaymentAddComponent
     
   ],
   imports: [

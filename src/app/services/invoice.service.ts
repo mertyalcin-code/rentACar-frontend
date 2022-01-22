@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { CreateCarDamageModel } from '../models/createModels/createCarDamageModel';
+import { InvoiceListModel } from '../models/listModels/invoiceListModel';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,9 @@ export class InvoiceService {
   private baseUrl: string = environment.baseUrl;
   private  apiUrl: string = this.baseUrl + "invoices/"
  constructor(private httpClient: HttpClient) { }
-
+ findAll(): Observable<ListResponseModel<InvoiceListModel>>{ 
+  return this.httpClient.get<ListResponseModel<InvoiceListModel>>(this.apiUrl+"find-all")
+}
  findByRentalIdForIndividualCustomer(id:number): Observable<SingleResponseModel<InvoiceIndividualListModel>>{ 
    return this.httpClient.get<SingleResponseModel<InvoiceIndividualListModel>>(this.apiUrl+"find-invoice-for-individual-customer/"+id)
  }

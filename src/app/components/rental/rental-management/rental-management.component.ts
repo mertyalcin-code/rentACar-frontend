@@ -1,3 +1,9 @@
+import { ListResponseModel } from './../../../models/responseModels/listResponseModel';
+import { RentalListModel } from './../../../models/listModels/rentalListModel';
+import { ToastrService } from 'ngx-toastr';
+import { RentalService } from './../../../services/rental.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ResponseModel } from 'src/app/models/responseModels/responseModel';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +13,54 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RentalManagementComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private rentalService:RentalService,
+    private toastrService: ToastrService
+    
+    ) { }
+  rentals:RentalListModel[]=[];
+  rentalLoading:boolean = false;
+  deleteLoading=false;
+  searchTerm:string='';
+  ngOnInit(): void {
+    this.findAll();
+  }
+  findAll(){
+    this.rentalLoading = true;   
+    this.rentalService.findAll().subscribe(
+      (response: ListResponseModel<RentalListModel>) => {
+        if (response.success) {           
+          this.rentalLoading = false;
+          this.rentals=response.data;
+          this.toastrService.success(response.message,"Başarılı");
+        } else {     
+          this.toastrService.warning(response.message,"Başarısız");
+          this.rentalLoading = false;
+        }
+      },
+      (errorResponse: HttpErrorResponse) => {       
+        this.toastrService.error(errorResponse.message,"Başarısız");
+        this.rentalLoading = false;
+      }
+    )
+  }
+  delete(id:number){
+    this.deleteLoading = true;   
+    this.rentalService.delete(id).subscribe(
+      (response: ResponseModel) => {
+        if (response.success) {           
+          this.deleteLoading = false;
+          this.findAll();
+          this.toastrService.success(response.message,"Başarılı");
+        } else {     
+          this.toastrService.warning(response.message,"Başarısız");
+          this.deleteLoading = false;
+        }
+      },
+      (errorResponse: HttpErrorResponse) => {       
+        this.toastrService.error(errorResponse.message,"Başarısız");
+        this.deleteLoading = false;
+      }
+    )
   }
 
 }

@@ -1,3 +1,12 @@
+import { RentalManagementComponent } from './components/rental/rental-management/rental-management.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
+import { PaymentUpdateComponent } from './components/payment/payment-update/payment-update.component';
+import { PaymentAddComponent } from './components/payment/payment-add/payment-add.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { PromoCodeUpdateComponent } from './components/promo-code/promo-code-update/promo-code-update.component';
+import { PromoCodeComponent } from './components/promo-code/promo-code.component';
+import { AdditionalServiceItemUpdateComponent } from './components/additional-service-item/additional-service-item-update/additional-service-item-update.component';
+import { AdditionalServiceItemAddComponent } from './components/additional-service-item/additional-service-item-add/additional-service-item-add.component';
 import { CarMaintenanceUpdateComponent } from './components/car-maintenance/car-maintenance-update/car-maintenance-update.component';
 import { CarMaintenanceAddComponent } from './components/car-maintenance/car-maintenance-add/car-maintenance-add.component';
 import { CarDamageUpdateComponent } from './components/car-damage/car-damage-update/car-damage-update.component';
@@ -32,10 +41,12 @@ import { CityAddComponent } from './components/city/city-add/city-add.component'
 import { SegmentComponent } from './components/segment/segment.component';
 import { CarDamageComponent } from './components/car-damage/car-damage.component';
 import { CarMaintenanceComponent } from './components/car-maintenance/car-maintenance.component';
+import { AdditionalServiceItemComponent } from './components/additional-service-item/additional-service-item.component';
+import { PromoCodeAddComponent } from './components/promo-code/promo-code-add/promo-code-add.component';
 
 const routes: Routes = [
   { path: 'car-detail/:carId', component: CarDetailComponent },
-  { path: 'cars', component: CarComponent },
+ // { path: 'cars', component: CarComponent },
 
   { path: 'contact', component: ContactComponent },
   { path: 'my-account', component: MyAccountComponent },
@@ -51,9 +62,9 @@ const routes: Routes = [
   { path: 'car-damage/add', component: CarDamageAddComponent },
   { path: 'car-damage/update/:id', component: CarDamageUpdateComponent },
 
-  { path: 'car-maintenence', component: CarMaintenanceComponent },
-  { path: 'car-maintenence/add', component: CarMaintenanceAddComponent },
-  { path: 'car-maintenence/update/:id', component: CarMaintenanceUpdateComponent },
+  { path: 'car-maintenance', component: CarMaintenanceComponent },
+  { path: 'car-maintenance/add', component: CarMaintenanceAddComponent },
+  { path: 'car-maintenance/update/:id', component: CarMaintenanceUpdateComponent },
   
   { path: 'brand', component: BrandComponent },
   { path: 'brand/add', component: BrandAddComponent },
@@ -70,6 +81,22 @@ const routes: Routes = [
   { path: 'segment', component: SegmentComponent },
   { path: 'segment/add', component: SegmentAddComponent },
   { path: 'segment/update/:id', component: SegmentUpdateComponent },
+
+  { path: 'promo-code', component: PromoCodeComponent },
+  { path: 'promo-code/add', component: PromoCodeAddComponent },
+  { path: 'promo-code/update/:id', component: PromoCodeUpdateComponent },
+
+  { path: 'additional-service-item', component: AdditionalServiceItemComponent },
+  { path: 'additional-service-item/add', component: AdditionalServiceItemAddComponent },
+  { path: 'additional-service-item/update/:id', component: AdditionalServiceItemUpdateComponent},
+
+  { path: 'payment', component: PaymentComponent },
+  { path: 'payment/add', component: PaymentAddComponent },
+  { path: 'payment/update/:id', component: PaymentUpdateComponent},
+
+  { path: 'invoice', component: InvoiceComponent },
+
+  { path: 'rental-management', component: RentalManagementComponent },
 
   { path: 'rental/add/:carId', component:RentalAddComponent },
   { path: 'my-rentals', component:MyRentalComponent },

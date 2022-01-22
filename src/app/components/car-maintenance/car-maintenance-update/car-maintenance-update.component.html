@@ -1,3 +1,46 @@
-<p>
-  car-maintenance-update works!
-</p>
+<a class="btn btn-info" href="/car-maintenance" style="margin: 2%;">Listeye Geri Dön</a>
+<div class="content">
+  <div class="col-md-12">
+      <div class="card">
+          <div class="card-header"><h5 class="title"> Araç Bakım Bilgisi Güncelle</h5></div>
+          <div class="card-body">
+              <form [formGroup]="carMaintenanceUpdateForm">
+                  <div class="mb-3">
+                      <label for="carId">Araba Id</label>
+                      <div class="form-group">
+                          <input type="number" 
+                          id="carId" 
+                          formControlName="carId" class="form-control" 
+                          placeholder="Araba Id"/>
+                      </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="maintenanceStart">Bakım Başlangıç Tarihi</label>
+                    <div class="form-group">
+                        <input type="date" 
+                        id="maintenanceStart" 
+                        formControlName="maintenanceStart" class="form-control" 
+                        placeholder="Bakım başlangıç"/>
+                    </div>
+                </div>
+                <div class="mb-3">
+                  <label for="carMaintenanceName">Bakım Bitiş Tarihi</label>
+                  <div class="form-group">
+                      <input type="date" 
+                      id="maintenanceEnd" 
+                      formControlName="maintenanceEnd" class="form-control" 
+                      placeholder="Bakım Bitiş"/>
+                  </div>
+              </div>
+              </form>
+          </div>
+          <div class="card-footer">
+            <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="update()" [disabled]="carMaintenanceUpdateForm.invalid">Güncelle</button>
+            <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Gönderiliyor...
+            </button>
+          </div>
+      </div>
+  </div>
+</div>

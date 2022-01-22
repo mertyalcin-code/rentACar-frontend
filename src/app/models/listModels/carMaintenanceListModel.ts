@@ -1,7 +1,7 @@
 export interface CarMaintenanceListModel{
     id:number
     carId:number;
-    maintananceStart:Date
-    maintananceEnd:Date
+    maintenanceStart:Date
+    maintenanceEnd:Date
    
 }

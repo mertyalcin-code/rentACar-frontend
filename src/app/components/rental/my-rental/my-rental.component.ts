@@ -1,3 +1,4 @@
+import { CreateInvoiceModel } from './../../../models/createModels/createInvoiceModel';
 import { MyRentalListModel } from './../../../models/listModels/myRentalListModel';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RentalListModel } from './../../../models/listModels/rentalListModel';
@@ -14,7 +15,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-rental.component.css']
 })
 export class MyRentalComponent implements OnInit {
-  customerId=4;
+  customerId=1;
+  invoiceAddLoading=false;
   rentals:MyRentalListModel[]=[];
 
   constructor(private toastrService: ToastrService,
@@ -22,9 +24,6 @@ export class MyRentalComponent implements OnInit {
             private carService : CarService,
             private paymentService: PaymentService,
             private invoiceService: InvoiceService,
-
-
-    
     ) { }
 
   ngOnInit() {
@@ -47,6 +46,26 @@ export class MyRentalComponent implements OnInit {
     }
     )
 
+  }
+  addInvoice(id:number){
+    this.invoiceAddLoading=true;
+    let createInvoiceModel:CreateInvoiceModel = {rentalId:id};
+    this.invoiceService.add(createInvoiceModel).subscribe(response =>{
+      if(response.success){
+        this.findRentalsByCustomerId();
+        this.invoiceAddLoading=false;
+        this.toastrService.success(response.message,"Başarılı");
+        
+      }else{
+        this.invoiceAddLoading=false;
+        this.toastrService.warning(response.message,"Başarısız");
+     
+      }
+    }, (errorResponse: HttpErrorResponse) => {
+      this.invoiceAddLoading=false;       
+      this.toastrService.error(errorResponse.message,"Başarısız");
+    }
+    )
   }
 
 }

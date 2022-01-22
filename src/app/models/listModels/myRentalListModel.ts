@@ -1,5 +1,5 @@
 export interface MyRentalListModel{
-    id:number
+    rentalId:number
     brandName:string
     carName:string
     rentDate:Date
@@ -7,6 +7,6 @@ export interface MyRentalListModel{
     pickUpCityName:string
     returnCityName:string
     totalPayment:number
-    isInvoiceCreated:boolean
-    isRentalFinished:boolean
+    invoiceCreated:boolean
+    rentalFinished:boolean
 }

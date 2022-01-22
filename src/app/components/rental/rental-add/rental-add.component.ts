@@ -34,7 +34,7 @@ import { CreatePaymentModel } from 'src/app/models/createModels/createPaymentMod
   styleUrls: ['./rental-add.component.css']
 })
 export class RentalAddComponent implements OnInit {
-  customerId =4;
+  customerId =1;
   carId:number;
   car:CarListModel;
   addLoading=false;
@@ -46,8 +46,8 @@ export class RentalAddComponent implements OnInit {
   isCardDetailSaved=false;
   paymentLoading=false;
   status:string='rental';
-  promoCode: PromoCodeListModel = {id:8,code:null, discountRate:null, startDate:null, endDate:null, description:null};
-  constructor(
+  promoCode: PromoCodeListModel;
+    constructor(
     private rentalService:RentalService,
     private toastrService :ToastrService,
     private promoCodeService:PromoCodeService,

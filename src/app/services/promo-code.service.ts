@@ -24,11 +24,14 @@ export class PromoCodeService {
   findByCode(code:string): Observable<SingleResponseModel<PromoCodeListModel>>{ 
     return this.httpClient.get<SingleResponseModel<PromoCodeListModel>>(this.apiUrl+"find-by-code/"+code)
   }
+  findById(id:number): Observable<SingleResponseModel<PromoCodeListModel>>{ 
+    return this.httpClient.get<SingleResponseModel<PromoCodeListModel>>(this.apiUrl+"find-by-id/"+id)
+  }
   add(model:CreatePromoCodeModel): Observable<ResponseModel>{ 
     return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
   }
   update(model:PromoCodeListModel): Observable<ResponseModel>{ 
-    return this.httpClient.post<ResponseModel>(this.apiUrl+"update",model)
+    return this.httpClient.put<ResponseModel>(this.apiUrl+"update",model)
   }
   delete(id: number): Observable<ResponseModel> {
     return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)

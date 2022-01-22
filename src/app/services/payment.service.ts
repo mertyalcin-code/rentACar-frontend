@@ -32,7 +32,7 @@ export class PaymentService {
     return this.httpClient.post<ResponseModel>(this.apiUrl+"add",payment)
   }
   update(model:UpdatePaymentModel): Observable<ResponseModel>{ 
-    return this.httpClient.post<ResponseModel>(this.apiUrl+"update",model)
+    return this.httpClient.put<ResponseModel>(this.apiUrl+"update",model)
   }
   delete(id: number): Observable<ResponseModel> {
     return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
