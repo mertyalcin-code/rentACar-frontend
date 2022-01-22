@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
    
-   baseUrl:'https://mertrentacar.herokuapp.com//api/'
+   baseUrl:'https://mertrentacar.herokuapp.com/api/'
   };
