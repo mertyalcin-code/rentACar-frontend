@@ -30,6 +30,7 @@
     "jquery": "^3.6.0",
     "ng2-search-filter": "^0.5.1",
     "ngx-toastr": "^14.2.1",
+    "path": "^0.12.7",
     "primeicons": "^5.0.0",
     "primeng": "^13.1.0",
     "rxjs": "~7.4.0",
