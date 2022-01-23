@@ -3,7 +3,7 @@ import { ResponseModel } from 'src/app/models/responseModels/responseModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
 import { CustomerCardDetailListModel } from './../models/listModels/customerCardDetailListModel';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment.prod';
+import { environment } from './../../environments/environment';
 import { Observable } from 'rxjs';
 import { ListResponseModel } from './../models/responseModels/listResponseModel';
 import { Injectable } from '@angular/core';

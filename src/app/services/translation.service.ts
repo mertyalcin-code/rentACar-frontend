@@ -1,4 +1,4 @@
-import { environment } from './../../environments/environment.prod';
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ListResponseModel } from './../models/responseModels/listResponseModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';

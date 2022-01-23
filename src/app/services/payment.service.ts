@@ -4,7 +4,7 @@ import { ResponseModel } from './../models/responseModels/responseModel';
 import { CreatePaymentModel } from '../models/createModels/createPaymentModel';
 import { SingleResponseModel } from './../models/responseModels/singleResponseModel';
 import { ListResponseModel } from './../models/responseModels/listResponseModel';
-import { environment } from './../../environments/environment.prod';
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';

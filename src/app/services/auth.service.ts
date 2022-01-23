@@ -4,7 +4,7 @@ import { LocalService } from './local.service';
 import { HttpClient } from '@angular/common/http';
 import { LoginModel } from './../models/loginModel';
 import { ResponseModel } from 'src/app/models/responseModels/responseModel';
-import { environment } from './../../environments/environment.prod';
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({

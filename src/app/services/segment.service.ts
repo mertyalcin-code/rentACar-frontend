@@ -6,7 +6,7 @@ import { SingleResponseModel } from './../models/responseModels/singleResponseMo
 import { Observable } from 'rxjs';
 import { ListResponseModel } from './../models/responseModels/listResponseModel';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment.prod';
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({
