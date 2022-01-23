@@ -161,7 +161,7 @@ export class CarAddComponent implements OnInit {
       (response: ResponseModel) => {
         if (response.success) {           
           this.carAddLoading = false;
-          this.clearBrandAddForm();
+        //  this.clearBrandAddForm();
           this.carAddForm.markAsUntouched();
           this.toastrService.success(response.message,"Başarılı");
         } else {     

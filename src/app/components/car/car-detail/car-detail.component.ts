@@ -35,10 +35,11 @@ export class CarDetailComponent implements OnInit {
   }
   
   rentCar(id:number):void{
-    if(this.authService.isCorporateCustomer){
+    if(this.authService.isCorporateCustomer()){
+      
       this.linkRouter.navigateByUrl('/rental/add/corporate-customer/'+id);
     }
-    else if(this.authService.isIndividualCustomer){
+    else if(this.authService.isIndividualCustomer()){
       this.linkRouter.navigateByUrl('/rental/add/individual-customer/'+id);
     }
     else {

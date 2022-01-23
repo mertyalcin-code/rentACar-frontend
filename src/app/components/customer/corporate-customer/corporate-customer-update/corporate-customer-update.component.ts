@@ -27,7 +27,7 @@ export class CorporateCustomerUpdateComponent implements OnInit {
     this.findById();
   }
   customerUpdateForm = new FormGroup({
-    taxNumber: new FormControl("",[Validators.required,]),
+    taxNumber: new FormControl("",[Validators.required,,Validators.pattern(/^[0-9]\d*$/)]),
     email: new FormControl("",[Validators.required,Validators.email]),
     companyName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(50)]),
 

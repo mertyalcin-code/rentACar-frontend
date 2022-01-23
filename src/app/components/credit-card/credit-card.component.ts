@@ -26,7 +26,7 @@ export class CreditCardComponent implements OnInit {
     this.customerCardDetailService.findAllByCustomerId(this.customerId).subscribe(response =>{
       if(response.success){     
         this.cards=response.data;
-        this.toastrService.success(response.message,"Başarılı");
+     //   this.toastrService.success(response.message,"Başarılı");
         
       }else{
         this.toastrService.warning(response.message,"Başarısız");

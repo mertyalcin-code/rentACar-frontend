@@ -22,6 +22,9 @@ export class CarService {
   findAll(): Observable<ListResponseModel<CarListModel>>{ 
     return this.httpClient.get<ListResponseModel<CarListModel>>(this.apiUrl+"find-all")
   }
+  findAllAvailable(): Observable<ListResponseModel<CarListModel>>{ 
+    return this.httpClient.get<ListResponseModel<CarListModel>>(this.apiUrl+"find-all-available")
+  }
   findById(carId:number): Observable<SingleResponseModel<CarListModel>>{ 
     return this.httpClient.get<SingleResponseModel<CarListModel>>(this.apiUrl+"find-by-id/"+carId)
   }

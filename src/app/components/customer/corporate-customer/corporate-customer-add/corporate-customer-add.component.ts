@@ -34,7 +34,7 @@ export class CorporateCustomerAddComponent implements OnInit {
     email: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)]),
     password: new FormControl("",[Validators.required,Validators.minLength(3),Validators.maxLength(30)]),
     companyName: new FormControl("",[Validators.required,Validators.minLength(3),Validators.maxLength(255)]),
-    taxNumber: new FormControl("",[Validators.required]),
+    taxNumber: new FormControl("",[Validators.required,,Validators.pattern(/^[0-9]\d*$/)]),
   })
   ClearAddCorporateCustomerForm() {
     this.addCorporateCustomerForm.patchValue({

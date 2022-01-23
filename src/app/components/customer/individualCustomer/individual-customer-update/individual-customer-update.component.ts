@@ -25,7 +25,7 @@ export class IndividualCustomerUpdateComponent implements OnInit {
     this.findById();
   }
   customerUpdateForm = new FormGroup({
-    nationalityNo: new FormControl("",[Validators.required,Validators.minLength(11),Validators.maxLength(11)]),
+    nationalityNo: new FormControl("",[Validators.required,Validators.minLength(11),Validators.maxLength(11),,Validators.pattern(/^[0-9]\d*$/)]),
     email: new FormControl("",[Validators.required,Validators.email]),
     firstName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(50)]),
     lastName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(50)]),

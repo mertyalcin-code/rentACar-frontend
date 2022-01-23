@@ -15,7 +15,7 @@
         <td>{{card.month}}</td>           
         <td>{{card.year}}</td>       
         <td>{{card.cvv}}</td>   
-        <td><button class="btn btn-danger"><i class="far fa-trash-alt"></i></button></td>   
+        <td><button class="btn btn-danger" (click)="deleteCard(card.id)"><i class="far fa-trash-alt"></i></button></td>   
         <td></td>           
        
       </tr>   

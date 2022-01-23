@@ -35,7 +35,7 @@ export class IndividualCustomerAddComponent implements OnInit {
     firstName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(50)]),
     lastName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(50)]),
     birthDate: new FormControl("",[Validators.required,]),
-    nationalityNo: new FormControl("",[Validators.required,Validators.minLength(11),Validators.maxLength(11)]),
+    nationalityNo: new FormControl("",[Validators.required,Validators.minLength(11),Validators.maxLength(11),Validators.pattern(/^[0-9]\d*$/)]),
   })
   ClearAddindividualCustomerForm() {
     this.addIndividualCustomerForm.patchValue({

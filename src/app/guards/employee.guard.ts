@@ -22,7 +22,7 @@ export class EmployeeGuard implements CanActivate {
       if(this.authService.isEmployee()){
         return true;
       }else{
-        this.router.navigate(["/#"])
+        this.router.navigate(["/home"])
         this.toastrService.info("Yetkin Yok")
         return false;
       }

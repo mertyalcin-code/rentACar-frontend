@@ -85,10 +85,10 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
 
   paymentAddForm = new FormGroup({
     name: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(250)]),
-    cardNo: new FormControl("",[Validators.required,Validators.minLength(16),Validators.maxLength(16)]),
-    month: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(2)]),
-    year: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(2)]),
-    cvv: new FormControl("",[Validators.required,Validators.minLength(3),Validators.maxLength(3)]),
+    cardNo: new FormControl("",[Validators.required,Validators.minLength(16),Validators.maxLength(16),Validators.pattern(/^[0-9]\d*$/)]),
+    month: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(2),Validators.pattern(/^[0-9]\d*$/)]),
+    year: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(2),Validators.pattern(/^[0-9]\d*$/)]),
+    cvv: new FormControl("",[Validators.required,Validators.minLength(3),Validators.maxLength(3),Validators.pattern(/^[0-9]\d*$/)]),
    
   })
   additionalServiceAddForm = new FormGroup({
