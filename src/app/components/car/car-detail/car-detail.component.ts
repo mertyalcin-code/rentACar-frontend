@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './../../../services/auth.service';
 import { CarListModel } from './../../../models/listModels/carListModel';
 
@@ -17,7 +18,8 @@ export class CarDetailComponent implements OnInit {
   constructor(private router: ActivatedRoute,
     private linkRouter:Router,
     private carService: CarService,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastrService: ToastrService
     ) { }
 
   ngOnInit() {
@@ -35,7 +37,11 @@ export class CarDetailComponent implements OnInit {
   }
   
   rentCar(id:number):void{
-    if(this.authService.isCorporateCustomer()){
+    if(this.authService.isEmployee()){
+      this.toastrService.info("Sistem Çalışanı Araç Kiralayamaz","Başarısız");
+      this.linkRouter.navigateByUrl('/home');
+    }
+    else if(this.authService.isCorporateCustomer()){
       
       this.linkRouter.navigateByUrl('/rental/add/corporate-customer/'+id);
     }
