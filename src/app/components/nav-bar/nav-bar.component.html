@@ -13,7 +13,7 @@
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li><a class="dropdown-item" href="/my-account">Hesabım</a></li>
-        <li><a class="dropdown-item" href="/employee-panel">Yönetim Paneli</a></li>
+        <li *ngIf="isEmployee"> <a class="dropdown-item" href="/employee-panel">Yönetim Paneli</a></li>
         <li><button class="dropdown-item" (click)="onLogout()">Çıkış</button></li>
       </ul>
     </div>
