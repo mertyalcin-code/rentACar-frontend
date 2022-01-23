@@ -10,6 +10,7 @@
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Kiralama Id</th>
+        <th scope="col">Oluşturulma Tarihi</th>
         <th scope="col">Görüntüle</th>
         <th scope="col">İşlem</th>
       </tr>
@@ -17,8 +18,10 @@
     <tbody *ngFor="let invoice of invoices|filter:searchTerm">
       <tr  > 
         <td>{{invoice.id}}</td>
-        <td>{{invoice.name}}</td>     
-        <td><a class="btn btn-success" href="{{'/invoice/detail/'+invoice.id}}">Görüntüle</a></td>    
+        <td>{{invoice.rentalId}}</td>     
+        <td>{{invoice.creationDate}}</td>
+        <td *ngIf="invoice.customerRole=='INDIVIDUAL_CUSTOMER'"><a class="btn btn-success" href="{{'/invoice/individual-customer/'+invoice.rentalId}}">Görüntüle</a></td>    
+        <td *ngIf="invoice.customerRole=='CORPORATE_CUSTOMER'"><a class="btn btn-success" href="{{'invoice/corporate-customer/'+invoice.rentalId}}">Görüntüle</a></td>    
        <td>
          <button *ngIf="!deleteLoading" class="btn btn-danger" (click)="delete(invoice.id)"><i class="fas fa-trash-alt"></i></button>
          <button *ngIf="deleteLoading" class="btn btn-danger"><div class="spinner-grow text-secondary spinner-grow-sm " role="status">

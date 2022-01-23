@@ -25,7 +25,7 @@
 
         <td *ngIf="!rental.invoiceCreated && !rental.rentalFinished"><span class="badge rounded-pill bg-warning text-dark">Oluşturulmadı</span></td>
         <td *ngIf="!rental.invoiceCreated && rental.rentalFinished"><button class="badge rounded-pill bg-warning text-dark" (click)="addInvoice(rental.rentalId)">Oluştur</button></td>      
-        <td *ngIf="rental.invoiceCreated"><span class="badge rounded-pill bg-warning text-dark">Görüntüle</span></td>
+        <td *ngIf="rental.invoiceCreated"><button class="badge rounded-pill bg-warning text-dark" (click)="routeToInvoice(rental.rentalId)">Görüntüle</button></td>
       </tr>   
     </tbody>
   </table>

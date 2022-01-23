@@ -116,8 +116,8 @@ const routes: Routes = [
   { path: 'payment/update/:id', component: PaymentUpdateComponent,canActivate:[EmployeeGuard]},
 
   { path: 'invoice', component: InvoiceComponent ,canActivate:[EmployeeGuard]},
-  { path: 'invoice/individual-customer/:id', component: InvoiceIndividualCustomerDetailComponent,canActivate:[EmployeeGuard] },
-  { path: 'invoice/corporate-customer/:id', component: InvoiceCorporateCustomerDetailComponent,canActivate:[EmployeeGuard] },
+  { path: 'invoice/individual-customer/:id', component: InvoiceIndividualCustomerDetailComponent,canActivate:[LoginGuard] },
+  { path: 'invoice/corporate-customer/:id', component: InvoiceCorporateCustomerDetailComponent,canActivate:[LoginGuard] },
 
   { path: 'rental-management', component: RentalManagementComponent ,canActivate:[EmployeeGuard]},
   { path: 'rental-management/update/:id', component: RentalUpdateComponent ,canActivate:[EmployeeGuard]},

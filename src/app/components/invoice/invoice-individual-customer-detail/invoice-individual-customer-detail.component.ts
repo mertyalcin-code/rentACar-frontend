@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SingleResponseModel } from './../../../models/responseModels/singleResponseModel';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +17,7 @@ export class InvoiceIndividualCustomerDetailComponent implements OnInit {
   invoice: InvoiceIndividualCustomerListModel;
   constructor(private InvoiceService: InvoiceService,
     private toastrService: ToastrService,
-    private router:ActivatedRoute
+    private router:ActivatedRoute,authService:AuthService
     ) { }
 
   ngOnInit() {
@@ -31,6 +32,7 @@ export class InvoiceIndividualCustomerDetailComponent implements OnInit {
           this.invoice=response.data;
           this.toastrService.success(response.message,"Başarılı");
         } else {     
+          console.log(response)
           this.toastrService.warning(response.message,"Başarısız");
         }
       },

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../../../services/auth.service';
 import { CreateInvoiceModel } from './../../../models/createModels/createInvoiceModel';
 import { MyRentalListModel } from './../../../models/listModels/myRentalListModel';
@@ -19,13 +20,13 @@ export class MyRentalComponent implements OnInit {
   customerId:number;
   invoiceAddLoading=false;
   rentals:MyRentalListModel[]=[];
-
   constructor(private toastrService: ToastrService,
             private rentalService: RentalService,
             private carService : CarService,
             private paymentService: PaymentService,
             private invoiceService: InvoiceService,
-            private authService:AuthService
+            private authService:AuthService,
+            private router:Router
     ) { }
 
   ngOnInit() {
@@ -70,5 +71,12 @@ export class MyRentalComponent implements OnInit {
     }
     )
   }
-
+  routeToInvoice(id:number){
+    if(this.authService.isIndividualCustomer()){
+      this.router.navigateByUrl('/invoice/individual-customer/'+id);
+    }
+    else if(this.authService.isCorporateCustomer()){
+      this.router.navigateByUrl('/invoice/corporate-customer/'+id);
+    }
+  }
 }
