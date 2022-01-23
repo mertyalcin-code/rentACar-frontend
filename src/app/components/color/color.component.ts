@@ -12,14 +12,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./color.component.css']
 })
 export class ColorComponent implements OnInit {
-  constructor(private colorService:ColorService,
-    private toastrService: ToastrService
-    
-    ) { }
+
   colors:ColorListModel[]=[];
   colorsLoading:boolean = false;
   deleteLoading=false;
   searchTerm:string='';
+  constructor(private colorService:ColorService,
+    private toastrService: ToastrService
+    
+    ) { }
   ngOnInit(): void {
     this.findAll();
   }
