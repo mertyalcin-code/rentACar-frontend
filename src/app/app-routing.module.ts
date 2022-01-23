@@ -60,6 +60,7 @@ import { RentalAddCorporateCustomerComponent } from './components/rental/rental-
 
 const routes: Routes = [
   // public url
+  
   { path: 'car-detail/:carId', component: CarDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'contact', component: ContactComponent },
@@ -131,7 +132,8 @@ const routes: Routes = [
   { path: 'employee-panel', component:EmployeePanelComponent,canActivate:[EmployeeGuard] },
   //home
   { path: 'home', component: HomeComponent },
-  { path: '', component: HomeComponent }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+
 ];
 
 @NgModule({
