@@ -1,15 +1,17 @@
 {
   "name": "rent-acar",
   "version": "0.0.0",
-  
+  "engines": {
+    "node": "16.13.2",
+    "npm": "8.1.2"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "heroku-postbuild": "ng build --prod"
-
+    "postinstall": "ng build  --aot --prod"
   },
   "private": true,
   "dependencies": {
@@ -53,9 +55,6 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.5.2"
-  },
-  "engines": {
-    "node": "16.13.2",
-    "npm": "8.1.2"
   }
+
 }
