@@ -1,3 +1,5 @@
+import { IndividualCustomerComponent } from './components/customer/individualCustomer/individual-customer.component';
+import { CorporateCustomerComponent } from './components/customer/corporate-customer/corporate-customer.component';
 import { UserComponent } from './components/user/user.component';
 import { CorporateCustomerUpdateComponent } from './components/customer/corporate-customer/corporate-customer-update/corporate-customer-update.component';
 import { IndividualCustomerUpdateComponent } from './components/customer/individualCustomer/individual-customer-update/individual-customer-update.component';
@@ -123,6 +125,8 @@ const routes: Routes = [
   { path: 'rental-management/update/:id', component: RentalUpdateComponent ,canActivate:[EmployeeGuard]},
 
   { path: 'user', component:UserComponent,canActivate:[EmployeeGuard] },
+  { path: 'corporate-customer', component:CorporateCustomerComponent,canActivate:[EmployeeGuard] },
+  { path: 'individual-customer', component:IndividualCustomerComponent,canActivate:[EmployeeGuard] },
 
   { path: 'employee-panel', component:EmployeePanelComponent,canActivate:[EmployeeGuard] },
   //home

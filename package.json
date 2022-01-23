@@ -2,16 +2,16 @@
   "name": "rent-acar",
   "version": "0.0.0",
   "engines": {
-    "node": "16.13.2",
-    "npm": "8.1.2"
+    "node": "14.18.1",
+    "npm": "6.14.15"
   },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "postinstall": "ng build  --aot --prod",
-    "heroku-postbuild": "ng build --prod"
+    "postinstall": "ng build  --aot --prod"
   },
   "private": true,
   "dependencies": {
