@@ -30,7 +30,7 @@ export class IndividualCustomerAddComponent implements OnInit {
     }
   }
   addIndividualCustomerForm = new FormGroup({
-    email: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(150)]),
+    email: new FormControl("",[Validators.required,Validators.email]),
     password: new FormControl("",[Validators.required,Validators.minLength(3),Validators.maxLength(30)]),
     firstName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(50)]),
     lastName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(50)]),

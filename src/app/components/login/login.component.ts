@@ -19,21 +19,20 @@ export class LoginComponent implements OnInit {
   constructor(
    private authService : AuthService,
    private toastrService: ToastrService,
-  private localService: LocalService,
-  private router:Router
+   private localService: LocalService,
+   private router:Router
 
   ) { }
 
   ngOnInit() {
     if(this.authService.isAuthenticated()){
-      this.router.navigateByUrl('/#');
+      this.router.navigateByUrl('/home');
     }
     
   }
   loginForm = new FormGroup({
     email: new FormControl("",[Validators.required,Validators.email]),
-    password: new FormControl("",[Validators.required,]),
- 
+    password: new FormControl("",[Validators.required,]), 
   })
   clearLoginForm() {
     this.loginForm.patchValue({

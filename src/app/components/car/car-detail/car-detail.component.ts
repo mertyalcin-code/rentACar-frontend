@@ -15,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CarDetailComponent implements OnInit {
   carId:number;
   car:CarListModel;
-  dataLoaded = false;
+  carLoading = false;
   constructor(private router: ActivatedRoute,
     private linkRouter:Router,
     private carService: CarService,
@@ -28,11 +28,12 @@ export class CarDetailComponent implements OnInit {
     this.getById(this.carId);
   }
   getById(carId:number):void{ 
+    this.carLoading = true;
     this.carService.findById(carId).subscribe(
       (response:SingleResponseModel<CarListModel>)=>{
-        this.dataLoaded = false;
+    
         this.car = response.data;
-        this.dataLoaded = true;
+        this.carLoading = false;
       }
     )
   }

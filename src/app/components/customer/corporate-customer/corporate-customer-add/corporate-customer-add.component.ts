@@ -31,7 +31,7 @@ export class CorporateCustomerAddComponent implements OnInit {
     }
   }
   addCorporateCustomerForm = new FormGroup({
-    email: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)]),
+    email: new FormControl("",[Validators.required,Validators.email]),
     password: new FormControl("",[Validators.required,Validators.minLength(3),Validators.maxLength(30)]),
     companyName: new FormControl("",[Validators.required,Validators.minLength(3),Validators.maxLength(255)]),
     taxNumber: new FormControl("",[Validators.required,,Validators.pattern(/^[0-9]\d*$/)]),

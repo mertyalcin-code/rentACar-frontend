@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container" *ngIf="!carsLoading">
   <div class="row">    
     <div *ngFor="let car of cars|filter:selectedColor|filter:selectedSegment|filter:selectedBrand|filter:selectedCity"  class="card text-dark bg-light mb-2" style="max-width: 22rem;margin:1%">
       <img  src="{{car?.imageUrl}}" class="card-img-top" alt="thumbnail" width="100" height="200">
@@ -19,6 +19,13 @@
       </div>
     </div>
     </div>    
+</div>
+<!-- spinner-->
+<div class="container " *ngIf="carsLoading" style="margin: 20%;">
+  <button class="btn btn-primary" type="button" disabled>
+    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    Araçlar Yükleniyor...
+  </button>
 </div>
 
 

@@ -20,17 +20,16 @@ export class CarComponent implements OnInit {
  
   colors:ColorListModel[]=[]
   cars:CarListModel[]=[];
-  dataLoaded:boolean = false;
-  ngOnInit(): void {
-   
+  carsLoading:boolean = false;
+  ngOnInit(): void {   
     this.getCars();
   }
   getCars(){ 
+    this.carsLoading=true;
     this.carService.findAllAvailable().subscribe(
       response=>{
-        this.dataLoaded = false;
         this.cars = response.data;
-        this.dataLoaded = true;
+        this.carsLoading = false;
       }
     )
   }

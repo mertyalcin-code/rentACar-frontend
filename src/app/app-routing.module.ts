@@ -1,3 +1,4 @@
+import { RegisterSuccessComponent } from './components/customer/registerSuccess/registerSuccess.component';
 import { IndividualCustomerComponent } from './components/customer/individualCustomer/individual-customer.component';
 import { CorporateCustomerComponent } from './components/customer/corporate-customer/corporate-customer.component';
 import { UserComponent } from './components/user/user.component';
@@ -67,6 +68,7 @@ const routes: Routes = [
   { path: 'corporate-customer-register', component: CorporateCustomerAddComponent },
   { path: 'individual-customer-register', component: IndividualCustomerAddComponent },
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'register-success', component: RegisterSuccessComponent },
   //auth needed
   { path: 'my-account', component: MyAccountComponent,canActivate:[LoginGuard] },
   { path: 'my-account/cards', component: CreditCardComponent,canActivate:[LoginGuard] },
