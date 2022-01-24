@@ -113,6 +113,9 @@ export class RentalAddCorporateCustomerComponent implements OnInit {
     this.addLoading = true;
     let createRentalModel:CreateRentalModel = Object.assign({},this.rentalAddForm.value);
     createRentalModel.customerId=this.customerId;
+    if(this.promoCode==null){
+      createRentalModel.promoCodeId=7;
+    }
     createRentalModel.promoCodeId=this.promoCode.id;
  
     createRentalModel.carId=this.carId;

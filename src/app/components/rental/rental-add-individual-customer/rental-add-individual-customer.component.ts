@@ -111,16 +111,19 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
     )
 
   }
-  
+
   addRental(){
     this.addLoading = true;
     let createRentalModel:CreateRentalModel = Object.assign({},this.rentalAddForm.value);
     createRentalModel.customerId=this.customerId;
+    if(this.promoCode==null){
+      createRentalModel.promoCodeId=7;
+    }
     createRentalModel.promoCodeId=this.promoCode.id;
- 
     createRentalModel.carId=this.carId;
     this.rentalService.addForIndividualCustomer(createRentalModel).subscribe(
       (response: SingleResponseModel<RentalAddResponseModel>) => {
+        console.log(response)
         if (response.success) {          
           this.returnDate=this.rentalAddForm.get('returnDate').value;
           this.addLoading = false;
@@ -143,6 +146,7 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
     )
     this.addLoading = false;
   }
+
   getAdditionalServiceItems(){
     this.additionalServiceItemService.findAll().subscribe(response =>{
       if(response.success){

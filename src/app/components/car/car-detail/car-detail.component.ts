@@ -1,3 +1,4 @@
+import { SingleResponseModel } from './../../../models/responseModels/singleResponseModel';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './../../../services/auth.service';
 import { CarListModel } from './../../../models/listModels/carListModel';
@@ -28,7 +29,7 @@ export class CarDetailComponent implements OnInit {
   }
   getById(carId:number):void{ 
     this.carService.findById(carId).subscribe(
-      response=>{
+      (response:SingleResponseModel<CarListModel>)=>{
         this.dataLoaded = false;
         this.car = response.data;
         this.dataLoaded = true;

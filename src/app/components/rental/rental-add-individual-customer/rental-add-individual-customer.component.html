@@ -122,18 +122,18 @@
     <div class="col-4 ">
       <!-- Summary-->
       <div class="card" style="width: 22rem;">
-        <img src="{{car.imageUrl}}" class="card-img-top" alt="...">
+        <img src="{{car?.imageUrl}}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">{{car.brandName}} {{car.carName}}</h5>
-          <p class="card-text">{{car.description}}</p>
+          <h5 class="card-title">{{car?.brandName}} {{car.carName}}</h5>
+          <p class="card-text">{{car?.description}}</p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Renk: {{car.colorName}} </li>
-          <li class="list-group-item">Model: {{car.model}}</li>
-          <li class="list-group-item">Günlük Fiyat: {{car.dailyPrice+" TRY"}} </li>
-          <li class="list-group-item">Bulunduğu Şehir: {{car.cityName}} </li>
-          <li class="list-group-item">Minimum Kiralama Yaşı: {{car.minAge}} </li>
-          <li class="list-group-item">Minimum Findex Skoru: {{car.findexScore}} </li>
+          <li class="list-group-item">Renk: {{car?.colorName}} </li>
+          <li class="list-group-item">Model: {{car?.model}}</li>
+          <li class="list-group-item">Günlük Fiyat: {{car?.dailyPrice+" TRY"}} </li>
+          <li class="list-group-item">Bulunduğu Şehir: {{car?.cityName}} </li>
+          <li class="list-group-item">Minimum Kiralama Yaşı: {{car?.minAge}} </li>
+          <li class="list-group-item">Minimum Findex Skoru: {{car?.findexScore}} </li>
         </ul>
     
       </div>
