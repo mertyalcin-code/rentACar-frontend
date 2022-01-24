@@ -30,9 +30,11 @@
                     <input type="text" id="code" formControlName="code" class="form-control"
                       placeholder="Promosyon Kodu" />
                   </div>
-                  <button class="btn btn-primary" (click)="findPromoCodeByCode(promoCodeForm.get('code').value)">
+                  <button class="btn btn-primary" (click)="findPromoCodeByCode(promoCodeForm.get('code').value)" style="margin: 1%;" [disabled]="promoCodeForm.invalid"> 
                     Uygula
-                  </button>
+                  </button>    <span class="badge rounded-pill bg-success" style="margin-left: 4%;"
+                  *ngIf="promoCode!=null">%{{promoCode?.discountRate*100}} Kiralama Ücretinde İndirim
+                  Tanımlandı</span>
                 </div>
               </form>
             </form>

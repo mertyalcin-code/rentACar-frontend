@@ -81,7 +81,7 @@ export class RentalAddCorporateCustomerComponent implements OnInit {
   });
   //adds promotion codes
   promoCodeForm = new FormGroup({
-    code: new FormControl('', [Validators.maxLength(30)]),
+    code: new FormControl('', [Validators.maxLength(30),Validators.required]),
   });
   //clears the rental form
   clearRentalAddForm() {

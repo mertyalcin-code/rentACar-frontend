@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-8">
       <!-- Rental -->
-      <div class="container md-2">
+      <div class="container md-2" style="margin-top:4%">
         <div *ngIf="status=='rental'" class="card">
           <div class="card-header">
             <h5 class="title">Araç Kiralama</h5>
@@ -30,9 +30,13 @@
                     <input type="text" id="code" formControlName="code" class="form-control"
                       placeholder="Promosyon Kodu" />
                   </div>
-                  <button class="btn btn-primary" (click)="findPromoCodeByCode(promoCodeForm.get('code').value)">
+                  <button class="btn btn-primary" (click)="findPromoCodeByCode(promoCodeForm.get('code').value)"
+                    style="margin-top:1%" [disabled]="promoCodeForm.invalid">
                     Uygula
                   </button>
+                  <span class="badge rounded-pill bg-success" style="margin-left: 4%;"
+                    *ngIf="promoCode!=null">%{{promoCode?.discountRate*100}} Kiralama Ücretinde İndirim
+                    Tanımlandı</span>
                 </div>
               </form>
             </form>
@@ -48,7 +52,7 @@
         </div>
       </div>
       <!-- Additional Service-->
-      <div class="container md-2">
+      <div class="container md-2" style="margin-top:4%">
         <div class="row">
           <div *ngIf="status=='service'" class="card">
             <div class="card-header">
@@ -74,7 +78,7 @@
       </div>
 
       <!--Payment -->
-      <div *ngIf="status=='payment'" class="card">
+      <div *ngIf="status=='payment'" class="card" style="margin-top:4%">
         <div class="card-header">
           <h5 class="title">Ödeme</h5>
         </div>
@@ -121,12 +125,13 @@
         </div>
       </div>
       <!--Success-->
-      <div *ngIf="status=='success'" class="alert alert-secondary" role="alert">
+      <div *ngIf="status=='success'" class="alert alert-secondary" role="alert" style="margin-top:4%">
         Tüm İşlemler Başarılı Hesabınızı Görüntülemek İçin <a href="/my-account" class="alert-link">Tıklayınız</a>
       </div>
     </div>
-    <div class="col-4 ">
-      <!-- Summary-->
+
+   <!-- Summary-->
+    <div class="col-4 ">   
       <div class="card" style="width: 22rem;">
         <img src="{{car?.imageUrl}}" class="card-img-top" alt="...">
         <div class="card-body">

@@ -86,7 +86,7 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
   });
   //promo code add form
   promoCodeForm = new FormGroup({
-    code: new FormControl('', [Validators.maxLength(30)]),
+    code: new FormControl('', [Validators.maxLength(30),Validators.required]),
   });
   //clear rental form
   clearRentalAddForm() {
@@ -142,7 +142,7 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
         if (response.success) {
           console.log(response.data);
           this.promoCode = response.data;
-          this.toastrService.success(response.message, 'Başarılı');
+     //     this.toastrService.success(response.message, 'Başarılı');
         } else {
           this.toastrService.warning(response.message, 'Başarısız');
         }
@@ -179,7 +179,7 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
           //   this.clearRentalAddForm();
           //   this.rentalAddForm.markAsUntouched();
           this.status = 'service';
-          this.toastrService.success(response.message, 'Başarılı');
+     //     this.toastrService.success(response.message, 'Başarılı');
         } else {
           this.toastrService.warning(response.message, 'Başarısız');
           this.addLoading = false;
@@ -238,7 +238,7 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
           if (response.success) {
             this.status = 'payment';
             this.calculateTotalPrice();
-            this.toastrService.success(response.message, 'Başarılı');
+   //         this.toastrService.success(response.message, 'Başarılı');
           } else {
             this.toastrService.warning(response.message, 'Başarısız');
           }
@@ -288,7 +288,7 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
         if (response.success) {
           this.paymentLoading = false;
           this.status = 'success';
-          this.toastrService.success(response.message, 'Başarılı');
+      //    this.toastrService.success(response.message, 'Başarılı');
         } else {
           this.toastrService.warning(response.message, 'Başarısız');
           this.paymentLoading = false;
@@ -311,7 +311,7 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
     this.paymentService.calculateTotalPrice(model).subscribe(
       (response) => {
         if (response.success) {
-          this.toastrService.success('Toplam Ücret:' + response, 'Başarılı');
+          this.toastrService.success('Toplam Ücret: ' + response.data, 'Başarılı');
           this.totalPrice = response.data;
         } else {
           this.toastrService.warning(response.message, 'Başarısız');
