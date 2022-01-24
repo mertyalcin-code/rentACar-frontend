@@ -118,8 +118,10 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
     createRentalModel.customerId=this.customerId;
     if(this.promoCode==null){
       createRentalModel.promoCodeId=7;
+    }else{
+      createRentalModel.promoCodeId=this.promoCode.id;
     }
-    createRentalModel.promoCodeId=this.promoCode.id;
+ 
     createRentalModel.carId=this.carId;
     this.rentalService.addForIndividualCustomer(createRentalModel).subscribe(
       (response: SingleResponseModel<RentalAddResponseModel>) => {
