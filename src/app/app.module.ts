@@ -138,7 +138,6 @@ import { IndividualCustomerAddComponent } from './components/customer/individual
     CommonModule,
     BrowserAnimationsModule,
     FormsModule,
-    FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
