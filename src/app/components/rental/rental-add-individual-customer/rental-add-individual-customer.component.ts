@@ -111,7 +111,6 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
     )
 
   }
-
   addRental(){
     this.addLoading = true;
     let createRentalModel:CreateRentalModel = Object.assign({},this.rentalAddForm.value);
