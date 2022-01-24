@@ -39,14 +39,14 @@
                                         <td class="alignright">{{invoice.rentPrice|currency:'TRY'}}</td>
                                       </tr>
                                     </tbody>
-                                    <tbody *ngIf="invoice.additionalServiceItems.length>0">
+                                    <tbody *ngIf="invoice?.additionalServiceItems?.length>0">
 
                                       <tr *ngFor="let item of invoice.additionalServiceItems">
                                         <td>{{item.name}}</td>
                                         <td class="alignright">{{item.price|currency:'TRY'}}</td>
                                       </tr>
-
-
+                                    </tbody>
+                                    <tbody >
                                       <tr class="total">
                                         <td class="alignright" width="80%">Toplam</td>
                                         <td class="alignright">{{invoice.totalPrice|currency:'TRY'}}</td>

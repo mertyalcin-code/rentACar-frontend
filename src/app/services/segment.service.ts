@@ -31,7 +31,7 @@ export class SegmentService {
     return this.httpClient.post<ResponseModel>(this.apiUrl + 'add', model);
   }
   update(model: UpdateSegmentModel): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(this.apiUrl + 'update', model);
+    return this.httpClient.put<ResponseModel>(this.apiUrl + 'update', model);
   }
   delete(id: number): Observable<ResponseModel> {
     return this.httpClient.delete<ResponseModel>(this.apiUrl + 'delete/' + id);

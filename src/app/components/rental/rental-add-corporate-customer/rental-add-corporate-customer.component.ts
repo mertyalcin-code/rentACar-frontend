@@ -135,7 +135,6 @@ export class RentalAddCorporateCustomerComponent implements OnInit {
     this.promoCodeService.findByCode(code).subscribe(
       (response) => {
         if (response.success) {
-          console.log(response.data);
           this.promoCode = response.data;
           this.toastrService.success(response.message, 'Başarılı');
         } else {
@@ -172,7 +171,7 @@ export class RentalAddCorporateCustomerComponent implements OnInit {
           //   this.clearRentalAddForm();
           //   this.rentalAddForm.markAsUntouched();
           this.status = 'service';
-          this.toastrService.success(response.message, 'Başarılı');
+    //      this.toastrService.success(response.message, 'Başarılı');
         } else {
           this.toastrService.warning(response.message, 'Başarısız');
           this.addLoading = false;
@@ -231,7 +230,7 @@ export class RentalAddCorporateCustomerComponent implements OnInit {
           if (response.success) {
             this.status = 'payment';
             this.calculateTotalPrice();
-            this.toastrService.success(response.message, 'Başarılı');
+     //       this.toastrService.success(response.message, 'Başarılı');
           } else {
             this.toastrService.warning(response.message, 'Başarısız');
           }

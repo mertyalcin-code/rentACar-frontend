@@ -30,7 +30,7 @@ export class SegmentUpdateComponent implements OnInit {
   }
   //update form
   segmentUpdateForm = new FormGroup({
-    name: new FormControl('', [
+    segmentName: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(30),
@@ -39,7 +39,7 @@ export class SegmentUpdateComponent implements OnInit {
   //clear segment form
   clearsegmentUpdateForm() {
     this.segmentUpdateForm.patchValue({
-      name: '',
+      segmentName: '',
     });
   }
   //finds segment by id and patches value to the update form

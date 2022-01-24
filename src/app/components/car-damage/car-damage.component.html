@@ -15,7 +15,7 @@
     <a class="btn btn-primary" href="car-damage/add"><i class="fas fa-plus"></i></a>
   </div>
   <!--car damage table-->
-  <table class="table  table-striped">
+  <table class="table  table-striped" *ngIf="damages.length>0">
     <thead>
       <tr>
         <th scope="col">Id</th>
@@ -41,4 +41,7 @@
         </td>
     </tbody>
   </table>
+  <div class="alert alert-danger" role="alert" *ngIf="damages.length==0" style="margin: 3%;">
+    Hasar Bulunamadı
+  </div>
 </div>
