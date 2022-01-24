@@ -1,4 +1,4 @@
-export interface LanguageListModel{
-    id:number
-   name:string
+export interface LanguageListModel {
+  id: number;
+  name: string;
 }

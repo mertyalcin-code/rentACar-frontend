@@ -1,7 +1,3 @@
 export interface CreateCityModel {
-    cityName:string
-
-
+  cityName: string;
 }
-
-

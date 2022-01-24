@@ -1,5 +1,5 @@
-export interface AdditionalServiceItemListModel{
-    id:number
-    name:string
-    price:number
+export interface AdditionalServiceItemListModel {
+  id: number;
+  name: string;
+  price: number;
 }

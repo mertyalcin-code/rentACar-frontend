@@ -8,45 +8,53 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-segment-add',
   templateUrl: './segment-add.component.html',
-  styleUrls: ['./segment-add.component.css']
+  styleUrls: ['./segment-add.component.css'],
 })
 export class SegmentAddComponent implements OnInit {
-  loading=false;
+  //variables
+  loading = false;
+  //constructor
   constructor(
-    private segmentService:SegmentService,private toastrService:ToastrService) { }
-  ngOnInit() {
-  }
+    private segmentService: SegmentService,
+    private toastrService: ToastrService
+  ) {}
+  //starter
+  ngOnInit() {}
+  //add form
   segmentAddForm = new FormGroup({
-    segmentName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)])
-  })
+    segmentName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(30),
+    ]),
+  });
+  //clears form
   clearSegmentAddForm() {
     this.segmentAddForm.patchValue({
-      segmentName: '',   
+      segmentName: '',
     });
   }
-  add(){
+  //sends request to create a new segment
+  add() {
     this.loading = true;
-    let segmentModel = Object.assign({},this.segmentAddForm.value);
+    let segmentModel = Object.assign({}, this.segmentAddForm.value);
     this.segmentService.add(segmentModel).subscribe(
       (response: ResponseModel) => {
         if (response.success) {
-          console.log(response)                
+          console.log(response);
           this.loading = false;
           this.clearSegmentAddForm();
           this.segmentAddForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.loading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.loading = false;
       }
-    )
-   
-
+    );
   }
-  
 }

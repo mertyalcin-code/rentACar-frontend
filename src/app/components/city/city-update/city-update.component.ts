@@ -15,17 +15,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./city-update.component.css']
 })
 export class CityUpdateComponent implements OnInit {
-
+  //variables
   loading:boolean = false;
   editCity:CityListModel;
+  //constructor
   constructor(private cityService : CityService,
               private toastrService : ToastrService,
               private router : ActivatedRoute
     ) { }
-
+    //starter
   ngOnInit() {
     this.findById(parseInt(this.router.snapshot.paramMap.get('id'))) ;  
   }
+    //update form
   cityUpdateForm = new FormGroup({
     cityName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)])
   })
@@ -34,6 +36,7 @@ export class CityUpdateComponent implements OnInit {
       cityName: '',   
     });
   }
+    //finds city by id and patches the value to the form
   findById(id:number){
     this.cityService.findById(id).subscribe(
       (response: SingleResponseModel<CityListModel>) => {
@@ -53,7 +56,7 @@ export class CityUpdateComponent implements OnInit {
       }
     )
   }
-  
+    //sends update request
   update(){
     this.loading = true;
     let cityModel:UpdateCityModel = Object.assign({},this.cityUpdateForm.value);

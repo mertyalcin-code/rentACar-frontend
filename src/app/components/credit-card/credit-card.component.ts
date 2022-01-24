@@ -8,50 +8,55 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-credit-card',
   templateUrl: './credit-card.component.html',
-  styleUrls: ['./credit-card.component.css']
+  styleUrls: ['./credit-card.component.css'],
 })
 export class CreditCardComponent implements OnInit {
-  customerId:number;
-  cards:CustomerCardDetailListModel[]=[]
-
-  constructor(private customerCardDetailService: CustomerCardDetailService,
-            private toastrService:ToastrService,private authService:AuthService
-    ) { }
-
+  //variables
+  customerId: number;
+  cards: CustomerCardDetailListModel[] = [];
+  //constructor
+  constructor(
+    private customerCardDetailService: CustomerCardDetailService,
+    private toastrService: ToastrService,
+    private authService: AuthService
+  ) {}
+  //starter
   ngOnInit() {
-   this.customerId=this.authService.getUserFromLocalStorage().id;
+    this.customerId = this.authService.getUserFromLocalStorage().id;
     this.findAllCustomerCardDetailsByCustomerId();
   }
-  findAllCustomerCardDetailsByCustomerId (){
-    this.customerCardDetailService.findAllByCustomerId(this.customerId).subscribe(response =>{
-      if(response.success){     
-        this.cards=response.data;
-     //   this.toastrService.success(response.message,"Başarılı");
-        
-      }else{
-        this.toastrService.warning(response.message,"Başarısız");
-     
-      }
-    }, (errorResponse: HttpErrorResponse) => {       
-      this.toastrService.error(errorResponse.message,"Başarısız");
-    }
-    )
-
+  //finds credi cards for customer
+  findAllCustomerCardDetailsByCustomerId() {
+    this.customerCardDetailService
+      .findAllByCustomerId(this.customerId)
+      .subscribe(
+        (response) => {
+          if (response.success) {
+            this.cards = response.data;
+            //   this.toastrService.success(response.message,"Başarılı");
+          } else {
+            this.toastrService.warning(response.message, 'Başarısız');
+          }
+        },
+        (errorResponse: HttpErrorResponse) => {
+          this.toastrService.error(errorResponse.message, 'Başarısız');
+        }
+      );
   }
-  deleteCard (id:number){
-    this.customerCardDetailService.delete(id).subscribe(response =>{
-      if(response.success){     
-        this.findAllCustomerCardDetailsByCustomerId();
-        this.toastrService.success(response.message,"Başarılı");
-        
-      }else{
-        this.toastrService.warning(response.message,"Başarısız");
-     
+  //deletes a card
+  deleteCard(id: number) {
+    this.customerCardDetailService.delete(id).subscribe(
+      (response) => {
+        if (response.success) {
+          this.findAllCustomerCardDetailsByCustomerId();
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
+        }
+      },
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
       }
-    }, (errorResponse: HttpErrorResponse) => {       
-      this.toastrService.error(errorResponse.message,"Başarısız");
-    }
-    )
-
+    );
   }
 }

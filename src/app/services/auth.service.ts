@@ -8,64 +8,62 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  apiUrl = environment.baseUrl + 'auth/';
+  constructor(
+    private httpClient: HttpClient,
+    private localService: LocalService
+  ) {}
 
-  apiUrl = environment.baseUrl+ 'auth/';
-  constructor(private httpClient:HttpClient,
-              private localService: LocalService
-    ) { }
-
-  login(loginModel:LoginModel){
-    console.log(environment.baseUrl+ 'auth/'+'login')
-    return this.httpClient.post<SingleResponseModel<LoginResponseModel>>(this.apiUrl+"login",loginModel)
+  login(loginModel: LoginModel) {
+    console.log(environment.baseUrl + 'auth/' + 'login');
+    return this.httpClient.post<SingleResponseModel<LoginResponseModel>>(
+      this.apiUrl + 'login',
+      loginModel
+    );
   }
-  getUserFromLocalStorage():LoginResponseModel{
-    if(this.localService.getJsonValue('user')){
+  getUserFromLocalStorage(): LoginResponseModel {
+    if (this.localService.getJsonValue('user')) {
       return this.localService.getJsonValue('user');
-    }
-    else{
+    } else {
       return null;
     }
   }
-  isAuthenticated(){
-    if(this.localService.getJsonValue('user')){
+  isAuthenticated() {
+    if (this.localService.getJsonValue('user')) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
-  isEmployee():boolean{
-    let user:LoginResponseModel=this.localService.getJsonValue('user');
-    if(user!==null&&user.role=='EMPLOYEE'){
+  isEmployee(): boolean {
+    let user: LoginResponseModel = this.localService.getJsonValue('user');
+    if (user !== null && user.role == 'EMPLOYEE') {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
-  isIndividualCustomer():boolean{
-    let user:LoginResponseModel=this.localService.getJsonValue('user');
-    console.log(user)
-    if(user!==null&&user.role=='INDIVIDUAL_CUSTOMER'){
+  isIndividualCustomer(): boolean {
+    let user: LoginResponseModel = this.localService.getJsonValue('user');
+    console.log(user);
+    if (user !== null && user.role == 'INDIVIDUAL_CUSTOMER') {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
-  isCorporateCustomer():boolean{
-    let user:LoginResponseModel=this.localService.getJsonValue('user');
-    if(user!==null&&user.role=='CORPORATE_CUSTOMER'){
+  isCorporateCustomer(): boolean {
+    let user: LoginResponseModel = this.localService.getJsonValue('user');
+    if (user !== null && user.role == 'CORPORATE_CUSTOMER') {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
-  logout(){
+  logout() {
     this.localService.clearToken();
   }
 }

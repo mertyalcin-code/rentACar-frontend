@@ -1,3 +1,4 @@
+<!-- credit card table-->
 <div class="container" style=" margin-top: 3%;min-height: 400px;">
   <table class="table  table-striped" *ngIf="cards.length>0">
     <thead>
@@ -10,17 +11,18 @@
       </tr>
     </thead>
     <tbody *ngFor="let card of cards">
-      <tr  > 
+      <tr>
         <td>{{card.cardNo}}</td>
-        <td>{{card.month}}</td>           
-        <td>{{card.year}}</td>       
-        <td>{{card.cvv}}</td>   
-        <td><button class="btn btn-danger" (click)="deleteCard(card.id)"><i class="far fa-trash-alt"></i></button></td>   
-        <td></td>           
-       
-      </tr>   
+        <td>{{card.month}}</td>
+        <td>{{card.year}}</td>
+        <td>{{card.cvv}}</td>
+        <td><button class="btn btn-danger" (click)="deleteCard(card.id)"><i class="far fa-trash-alt"></i></button></td>
+        <td></td>
+
+      </tr>
     </tbody>
   </table>
+  <!-- alert -->
   <div class="alert alert-danger" role="alert" *ngIf="cards.length<1">
     Kayıtlı Kart Bulunamadı
   </div>

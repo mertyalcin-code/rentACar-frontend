@@ -1,8 +1,4 @@
 export interface UpdateCityModel {
-    id:number
-    cityName:string
-
-
+  id: number;
+  cityName: string;
 }
-
-

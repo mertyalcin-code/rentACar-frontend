@@ -1,37 +1,37 @@
 <a class="btn btn-info" href="/additional-service-item" style="margin: 2%;">Listeye Geri Dön</a>
+
+<!--Update Form-->
 <div class="content">
   <div class="col-md-12">
-      <div class="card">
-          <div class="card-header"><h5 class="title">Ek Servis Güncelle</h5></div>
-          <div class="card-body">
-              <form [formGroup]="itemUpdateForm">
-                  <div class="mb-3">
-                      <label for="itemName">Servis Adı</label>
-                      <div class="form-group">
-                          <input type="text" 
-                          id="itemName" 
-                          formControlName="name" class="form-control" 
-                          placeholder="Servis Ücreti"/>
-                      </div>
-                  </div>
-                  <div class="mb-3">
-                    <label for="price">Servis Ücreti</label>
-                    <div class="form-group">
-                        <input type="text" 
-                        id="price" 
-                        formControlName="price" class="form-control" 
-                        placeholder="Servis Ücreti"/>
-                    </div>
-                </div>
-              </form>
-          </div>
-          <div class="card-footer">
-            <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="update()" [disabled]="itemUpdateForm.invalid">Güncelle</button>
-            <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
-              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-              Gönderiliyor...
-            </button>
-          </div>
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Ek Servis Güncelle</h5>
       </div>
+      <div class="card-body">
+        <form [formGroup]="itemUpdateForm">
+          <div class="mb-3">
+            <label for="itemName">Servis Adı</label>
+            <div class="form-group">
+              <input type="text" id="itemName" formControlName="name" class="form-control"
+                placeholder="Servis Ücreti" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="price">Servis Ücreti</label>
+            <div class="form-group">
+              <input type="text" id="price" formControlName="price" class="form-control" placeholder="Servis Ücreti" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="update()"
+          [disabled]="itemUpdateForm.invalid">Güncelle</button>
+        <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Gönderiliyor...
+        </button>
+      </div>
+    </div>
   </div>
 </div>

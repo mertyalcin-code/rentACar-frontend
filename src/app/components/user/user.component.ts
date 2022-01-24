@@ -12,19 +12,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  //variables
   users:UserListModel[]=[];
   usersLoading:boolean = false;
   deleteLoading=false;
   searchTerm:string='';
-
+  //constructor
   constructor(private userService:UserService,
     private toastrService: ToastrService
     
     ) { }
- 
+ //starter
   ngOnInit(): void {
     this.findAll();
   }
+  //finds all users
   findAll(){
     this.usersLoading = true;   
     this.userService.findAll().subscribe(
@@ -44,6 +46,7 @@ export class UserComponent implements OnInit {
       }
     )
   }
+  //deletes user if there is no relation in the database
   delete(id:number){
     this.deleteLoading = true;   
     this.userService.delete(id).subscribe(

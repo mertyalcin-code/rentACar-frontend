@@ -1,5 +1,4 @@
 export interface UpdateSegmentModel {
-    id:number
-    segmentName:string
-
+  id: number;
+  segmentName: string;
 }

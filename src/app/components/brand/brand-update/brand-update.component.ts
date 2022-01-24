@@ -16,68 +16,73 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./brand-update.component.css']
 })
 export class BrandUpdateComponent implements OnInit {
-  loading:boolean = false;
-  editBrand:BrandListModel;
-  constructor(private brandService : BrandService,
-              private toastrService : ToastrService,
-              private router : ActivatedRoute
-    ) { }
-
+  //variables
+  loading: boolean = false;
+  editBrand: BrandListModel;
+  //constructor
+  constructor(private brandService: BrandService,
+    private toastrService: ToastrService,
+    private router: ActivatedRoute
+  ) { }
+  //starter
   ngOnInit() {
-    this.findById(parseInt(this.router.snapshot.paramMap.get('id'))) ;  
+    this.findById(parseInt(this.router.snapshot.paramMap.get('id')));
   }
+  //update form
   brandUpdateForm = new FormGroup({
-    name: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)])
+    name: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(30)])
   })
+  //clear form
   clearBrandUpdateForm() {
     this.brandUpdateForm.patchValue({
-      name: '',   
+      name: '',
     });
   }
-  findById(id:number){
+  //finds brand by id and patches the values to the update form
+  findById(id: number) {
     this.brandService.findById(id).subscribe(
       (response: SingleResponseModel<BrandListModel>) => {
-        if (response.success) {   
-          this.editBrand=response.data;
+        if (response.success) {
+          this.editBrand = response.data;
           this.brandUpdateForm.patchValue({
-            name:response.data.name,   
+            name: response.data.name,
           });
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, "Başarılı");
+        } else {
+          this.toastrService.warning(response.message, "Başarısız");
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, "Başarısız");
 
       }
     )
   }
-  
-  update(){
+  //update request
+  update() {
     this.loading = true;
-    let brandModel:UpdateBrandModel = Object.assign({},this.brandUpdateForm.value);
-    brandModel.id=this.editBrand.id;
+    let brandModel: UpdateBrandModel = Object.assign({}, this.brandUpdateForm.value);
+    brandModel.id = this.editBrand.id;
     this.brandService.update(brandModel).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {             
+        if (response.success) {
           this.loading = false;
           this.clearBrandUpdateForm();
           this.brandUpdateForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, "Başarılı");
+        } else {
+          this.toastrService.warning(response.message, "Başarısız");
           this.loading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, "Başarısız");
         this.loading = false;
       }
     )
   }
-  
-  
-  
-  
-  }
+
+
+
+
+}

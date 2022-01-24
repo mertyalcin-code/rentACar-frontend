@@ -10,37 +10,38 @@ import { InvoiceIndividualCustomerListModel } from 'src/app/models/listModels/in
 @Component({
   selector: 'app-invoice-individual-customer-detail',
   templateUrl: './invoice-individual-customer-detail.component.html',
-  styleUrls: ['./invoice-individual-customer-detail.component.css']
+  styleUrls: ['./invoice-individual-customer-detail.component.css'],
 })
 export class InvoiceIndividualCustomerDetailComponent implements OnInit {
-  id:number=0;
+  //variables
+  id: number = 0;
   invoice: InvoiceIndividualCustomerListModel;
-  constructor(private InvoiceService: InvoiceService,
+  //constructor
+  constructor(
+    private InvoiceService: InvoiceService,
     private toastrService: ToastrService,
-    private router:ActivatedRoute,authService:AuthService
-    ) { }
-
+    private router: ActivatedRoute,
+    authService: AuthService
+  ) {}
+  //starter
   ngOnInit() {
-    this.id = parseInt(this.router.snapshot.paramMap.get('id')); 
-    this.findById();  
+    this.id = parseInt(this.router.snapshot.paramMap.get('id'));
+    this.findById();
   }
-  findById(){
+  //finds invıice by rental id
+  findById() {
     this.InvoiceService.findByRentalIdForIndividualCustomer(this.id).subscribe(
       (response: SingleResponseModel<InvoiceIndividualCustomerListModel>) => {
-        if (response.success) {   
-          console.log(response.data)
-          this.invoice=response.data;
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          console.log(response)
-          this.toastrService.warning(response.message,"Başarısız");
+        if (response.success) {
+          this.invoice = response.data;
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
-
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
       }
-    )
+    );
   }
-
 }

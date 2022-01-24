@@ -11,59 +11,61 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  styleUrls: ['./payment.component.css'],
 })
 export class PaymentComponent implements OnInit {
-
-  constructor(private paymentService:PaymentService,
+  //variables
+  payments: PaymentListModel[] = [];
+  paymentsLoading: boolean = false;
+  deleteLoading = false;
+  searchTerm: string = '';
+  //constructor
+  constructor(
+    private paymentService: PaymentService,
     private toastrService: ToastrService
-
-    
-    ) { }
-  payments:PaymentListModel[]=[];
-  paymentsLoading:boolean = false;
-  deleteLoading=false;
-  searchTerm:string='';
+  ) {}
+  //starter
   ngOnInit(): void {
     this.findAll();
   }
-  findAll(){
-    this.paymentsLoading = true;   
+  //finds all payments
+  findAll() {
+    this.paymentsLoading = true;
     this.paymentService.findAll().subscribe(
       (response: ListResponseModel<PaymentListModel>) => {
-        if (response.success) {           
+        if (response.success) {
           this.paymentsLoading = false;
-          this.payments=response.data;
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.payments = response.data;
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.paymentsLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.paymentsLoading = false;
       }
-    )
+    );
   }
-  delete(id:number){
-    this.deleteLoading = true;   
+  //deletes payment
+  delete(id: number) {
+    this.deleteLoading = true;
     this.paymentService.delete(id).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.deleteLoading = false;
           this.findAll();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.deleteLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.deleteLoading = false;
       }
-    )
+    );
   }
-
 }

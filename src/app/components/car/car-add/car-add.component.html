@@ -1,4 +1,5 @@
 <a class="btn btn-info" href="/car" style="margin: 2%;">Listeye Geri Dön</a>
+<!--Car add-->
 <div class="content" style="margin-left: 10%;margin-right: 10%;">
   <div class="col-md-12">
     <div class="card">
@@ -86,7 +87,7 @@
         </form>
       </div>
       <div class="card-footer">
-        <button *ngIf="!carAddLoading" class="btn btn-fill btn-primary" (click)="add()" >Ekle</button>
+        <button *ngIf="!carAddLoading" class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
         <button *ngIf="carAddLoading" class="btn btn-primary" type="button" disabled>
           <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
           Gönderiliyor...

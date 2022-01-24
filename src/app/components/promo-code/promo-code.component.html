@@ -1,8 +1,10 @@
 <a class="btn btn-info" href="/employee-panel" style="margin: 1%;">Panele Geri Dön</a>
+<!--promo code table-->
 <div class="container" style=" margin-top: 3%">
- 
+
   <div class="btn-group" role="group" aria-label="Basic example">
-    <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search" [(ngModel)]="searchTerm" style="margin:3%;max-width: 300px;">
+    <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search" [(ngModel)]="searchTerm"
+      style="margin:3%;max-width: 300px;">
     <a class="btn btn-primary" href="promo-code/add"><i class="fas fa-plus"></i></a>
   </div>
 
@@ -19,20 +21,23 @@
       </tr>
     </thead>
     <tbody *ngFor="let code of codes |filter:searchTerm">
-      <tr  > 
+      <tr>
         <td>{{code.id}}</td>
-        <td>{{code.code}}</td>        
-        <td>{{code.discountRate}}</td>      
-        <td>{{code.startDate}}</td>      
-        <td>{{code.endDate}}</td>      
-        <td>{{code.description}}</td>     
-       <td>
-         <a class="btn btn-primary" href='{{"/promo-code/update/"+code.id}}' ><i class="fas fa-pen"></i></a>
-         <button *ngIf="!deleteLoading" class="btn btn-danger" (click)="delete(code.id)"><i class="fas fa-trash-alt"></i></button>
-         <button *ngIf="deleteLoading" class="btn btn-danger"><div class="spinner-grow text-secondary spinner-grow-sm " role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div></button>
-      </td>        
+        <td>{{code.code}}</td>
+        <td>{{code.discountRate}}</td>
+        <td>{{code.startDate}}</td>
+        <td>{{code.endDate}}</td>
+        <td>{{code.description}}</td>
+        <td>
+          <a class="btn btn-primary" href='{{"/promo-code/update/"+code.id}}'><i class="fas fa-pen"></i></a>
+          <button *ngIf="!deleteLoading" class="btn btn-danger" (click)="delete(code.id)"><i
+              class="fas fa-trash-alt"></i></button>
+          <button *ngIf="deleteLoading" class="btn btn-danger">
+            <div class="spinner-grow text-secondary spinner-grow-sm " role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </button>
+        </td>
     </tbody>
   </table>
 </div>

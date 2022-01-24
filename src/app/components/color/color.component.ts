@@ -9,58 +9,61 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-color',
   templateUrl: './color.component.html',
-  styleUrls: ['./color.component.css']
+  styleUrls: ['./color.component.css'],
 })
 export class ColorComponent implements OnInit {
-
-  colors:ColorListModel[]=[];
-  colorsLoading:boolean = false;
-  deleteLoading=false;
-  searchTerm:string='';
-  constructor(private colorService:ColorService,
+  //variable
+  colors: ColorListModel[] = [];
+  colorsLoading: boolean = false;
+  deleteLoading = false;
+  searchTerm: string = '';
+  //constructor
+  constructor(
+    private colorService: ColorService,
     private toastrService: ToastrService
-    
-    ) { }
+  ) {}
+  //starter
   ngOnInit(): void {
     this.findAll();
   }
-  findAll(){
-    this.colorsLoading = true;   
+  //finds all colors
+  findAll() {
+    this.colorsLoading = true;
     this.colorService.findAll().subscribe(
       (response: ListResponseModel<ColorListModel>) => {
-        if (response.success) {           
+        if (response.success) {
           this.colorsLoading = false;
-          this.colors=response.data;
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.colors = response.data;
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.colorsLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.colorsLoading = false;
       }
-    )
+    );
   }
-  delete(id:number){
-    this.deleteLoading = true;   
+  //deletes color if there is no relation in the database
+  delete(id: number) {
+    this.deleteLoading = true;
     this.colorService.delete(id).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.deleteLoading = false;
           this.findAll();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.deleteLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.deleteLoading = false;
       }
-    )
+    );
   }
-
 }

@@ -1,4 +1,4 @@
 export interface CreateAdditionalServiceModel {
-    rentalId:number
-    additionalServiceItemId:number
+  rentalId: number;
+  additionalServiceItemId: number;
 }

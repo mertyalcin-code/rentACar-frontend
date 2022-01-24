@@ -14,96 +14,104 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-rental-update',
   templateUrl: './rental-update.component.html',
-  styleUrls: ['./rental-update.component.css']
+  styleUrls: ['./rental-update.component.css'],
 })
 export class RentalUpdateComponent implements OnInit {
-  citiesLoading:boolean = false;
-  loading:boolean = false;
-  editrental:RentalListModel;
-  cities :CityListModel[]=[]
-
-
-
-  constructor(private rentalService : RentalService,
-              private toastrService : ToastrService,
-              private router : ActivatedRoute,
-              private cityService: CityService
-    ) { }
-
+  //varaibles
+  citiesLoading: boolean = false;
+  loading: boolean = false;
+  editrental: RentalListModel;
+  cities: CityListModel[] = [];
+  //constructor
+  constructor(
+    private rentalService: RentalService,
+    private toastrService: ToastrService,
+    private router: ActivatedRoute,
+    private cityService: CityService
+  ) {}
+  //starter
   ngOnInit() {
-    this.findById(parseInt(this.router.snapshot.paramMap.get('id'))) ; 
-    this.getCities(); 
+    this.findById(parseInt(this.router.snapshot.paramMap.get('id')));
+    this.getCities();
   }
+  //rental form
   rentalUpdateForm = new FormGroup({
-    returnDate: new FormControl("",[Validators.required,]),
-    returnedKilometer: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)]),
-    returnCityId: new FormControl("",[Validators.required])
-  })
-
+    returnDate: new FormControl('', [Validators.required]),
+    returnedKilometer: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(30),
+    ]),
+    returnCityId: new FormControl('', [Validators.required]),
+  });
+  //clear form
   clearRentalUpdateForm() {
     this.rentalUpdateForm.patchValue({
-      returnDate: '',   
-      returnedKilometer:'',
-      returnCityId:'',
+      returnDate: '',
+      returnedKilometer: '',
+      returnCityId: '',
     });
   }
-  findById(id:number){
+  //finds rental by id and pactches the value
+  findById(id: number) {
     this.rentalService.findById(id).subscribe(
       (response: SingleResponseModel<RentalListModel>) => {
-        if (response.success) {   
-          this.editrental=response.data;
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+        if (response.success) {
+          this.editrental = response.data;
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
-
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
       }
-    )
+    );
   }
-  
-  update(){
+  //sends request to update rental
+  update() {
     this.loading = true;
-    let rentalModel:UpdateRentalModel = Object.assign({},this.rentalUpdateForm.value);
-    rentalModel.id=this.editrental.id;
+    let rentalModel: UpdateRentalModel = Object.assign(
+      {},
+      this.rentalUpdateForm.value
+    );
+    rentalModel.id = this.editrental.id;
     this.rentalService.update(rentalModel).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.loading = false;
           this.clearRentalUpdateForm();
           this.rentalUpdateForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.loading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.loading = false;
       }
-    )
+    );
   }
-  
-  getCities(){
+  //finds all cities
+  getCities() {
     this.citiesLoading = true;
-    this.cityService.findAll().subscribe(response =>{
-      if(response.success){
-        this.cities = response.data;
-     //   this.toastrService.success(response.message,"Başarılı");
-        this.citiesLoading = false;
-      }else{
-        this.toastrService.warning(response.message,"Başarısız");
+    this.cityService.findAll().subscribe(
+      (response) => {
+        if (response.success) {
+          this.cities = response.data;
+          //   this.toastrService.success(response.message,"Başarılı");
+          this.citiesLoading = false;
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
+          this.citiesLoading = false;
+        }
+      },
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.citiesLoading = false;
       }
-    }, (errorResponse: HttpErrorResponse) => {       
-      this.toastrService.error(errorResponse.message,"Başarısız");
-      this.citiesLoading = false;
-    }
-    )
+    );
   }
-  
-  
-  }
+}

@@ -2,11 +2,10 @@ import { StorageService } from './storage.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalService {
-
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService) {}
   // Set the json data to local storage
   setJsonValue(key: string, value: any) {
     this.storageService.secureStorage.setItem(key, value);

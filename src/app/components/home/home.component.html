@@ -1,6 +1,6 @@
 
-
-  <div class="container-fluid " style="margin: 1%;"> 
+  <!-- filter container-->
+  <div class="container-fluid justify-content-center " style="margin-top: 1%;margin-bottom: 1%;margin-left: 10%;"> 
     <div class="btn-group" role="group"  style="margin: 1%;">
         <button type="button" class="btn btn-primary" disabled>Şehir</button>
         <select class="btn btn-primary dropdown-toggle" [(ngModel)]="selectedCity" > 
@@ -34,7 +34,7 @@
       <button class="btn btn-primary" (click)="resetFilter()"><i class="fas fa-sync"></i></button>
 
   </div>
-
+<!-- car cards-->
 <app-car 
 [selectedCity]="selectedCity" 
 [selectedBrand]="selectedBrand" 

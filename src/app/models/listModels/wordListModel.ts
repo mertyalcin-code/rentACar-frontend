@@ -1,4 +1,4 @@
-export interface WordListModel{
-    id:number
-   key:String
+export interface WordListModel {
+  id: number;
+  key: String;
 }

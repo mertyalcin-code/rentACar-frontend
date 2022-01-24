@@ -11,31 +11,35 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CarService {
-
   private baseUrl: string = environment.baseUrl;
-   private  apiUrl: string = this.baseUrl + "cars/"
-  constructor(private httpClient: HttpClient) { }
+  private apiUrl: string = this.baseUrl + 'cars/';
+  constructor(private httpClient: HttpClient) {}
 
-  findAll(): Observable<ListResponseModel<CarListModel>>{ 
-    return this.httpClient.get<ListResponseModel<CarListModel>>(this.apiUrl+"find-all")
+  findAll(): Observable<ListResponseModel<CarListModel>> {
+    return this.httpClient.get<ListResponseModel<CarListModel>>(
+      this.apiUrl + 'find-all'
+    );
   }
-  findAllAvailable(): Observable<ListResponseModel<CarListModel>>{ 
-    return this.httpClient.get<ListResponseModel<CarListModel>>(this.apiUrl+"find-all-available")
+  findAllAvailable(): Observable<ListResponseModel<CarListModel>> {
+    return this.httpClient.get<ListResponseModel<CarListModel>>(
+      this.apiUrl + 'find-all-available'
+    );
   }
-  findById(carId:number): Observable<SingleResponseModel<CarListModel>>{ 
-    return this.httpClient.get<SingleResponseModel<CarListModel>>(this.apiUrl+"find-by-id/"+carId)
+  findById(carId: number): Observable<SingleResponseModel<CarListModel>> {
+    return this.httpClient.get<SingleResponseModel<CarListModel>>(
+      this.apiUrl + 'find-by-id/' + carId
+    );
   }
-  add(car:CreateCarModel): Observable<ResponseModel>{ 
-    return this.httpClient.post<ResponseModel>(this.apiUrl+"add",car)
+  add(car: CreateCarModel): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.apiUrl + 'add', car);
   }
   update(model: UpdateCarModel): Observable<ResponseModel> {
-    return this.httpClient.put<ResponseModel>(this.apiUrl + "update", model)
+    return this.httpClient.put<ResponseModel>(this.apiUrl + 'update', model);
   }
   delete(id: number): Observable<ResponseModel> {
-    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + 'delete/' + id);
   }
-  
 }

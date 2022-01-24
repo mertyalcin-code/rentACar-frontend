@@ -1,4 +1,4 @@
-export interface RentalAddResponseModel{
-    rentalId:number
-    carId:number
- }
+export interface RentalAddResponseModel {
+  rentalId: number;
+  carId: number;
+}

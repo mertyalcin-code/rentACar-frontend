@@ -7,19 +7,21 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TranslationService {
-
-
   private baseUrl: string = environment.baseUrl;
-   private  apiUrl: string = this.baseUrl + "translations/"
-  constructor(private httpClient: HttpClient) { }
+  private apiUrl: string = this.baseUrl + 'translations/';
+  constructor(private httpClient: HttpClient) {}
 
-  findAll(): Observable<ListResponseModel<TranslationListModel>>{ 
-    return this.httpClient.get<ListResponseModel<TranslationListModel>>(this.apiUrl+"find-all")
+  findAll(): Observable<ListResponseModel<TranslationListModel>> {
+    return this.httpClient.get<ListResponseModel<TranslationListModel>>(
+      this.apiUrl + 'find-all'
+    );
   }
-  findById(id:number): Observable<SingleResponseModel<TranslationListModel>>{ 
-    return this.httpClient.get<SingleResponseModel<TranslationListModel>>(this.apiUrl+"find-by-id/"+id)
+  findById(id: number): Observable<SingleResponseModel<TranslationListModel>> {
+    return this.httpClient.get<SingleResponseModel<TranslationListModel>>(
+      this.apiUrl + 'find-by-id/' + id
+    );
   }
 }

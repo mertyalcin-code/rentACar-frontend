@@ -15,7 +15,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  //varaibles
   loading =false;
+  //constructor
   constructor(
    private authService : AuthService,
    private toastrService: ToastrService,
@@ -23,26 +25,26 @@ export class LoginComponent implements OnInit {
    private router:Router
 
   ) { }
-
+    //starter
   ngOnInit() {
     if(this.authService.isAuthenticated()){
       this.router.navigateByUrl('/home');
     }
     
   }
+  //login form
   loginForm = new FormGroup({
     email: new FormControl("",[Validators.required,Validators.email]),
     password: new FormControl("",[Validators.required,]), 
   })
+  //clear login form 
   clearLoginForm() {
     this.loginForm.patchValue({
       email: '',
       password: '',      
     });
   }
-
-
-
+  //sends login request
   login(){
     this.loading=true;
     let form:LoginModel ={email:this.loginForm.get('email').value , password:this.loginForm.get('password').value }

@@ -14,24 +14,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./corporate-customer-update.component.css']
 })
 export class CorporateCustomerUpdateComponent implements OnInit {
-
+  //variables
   customerId:number;
   customer:CorporateCustomerListModel;
   loading=false;
+  //constructor
   constructor(private corporateCustomerService: CorporateCustomerService,
               private toastrService: ToastrService,private authService: AuthService
     ) { }
-
+  //starter
   ngOnInit() {
     this.customerId=this.authService.getUserFromLocalStorage().id;
     this.findById();
   }
+  //update form
   customerUpdateForm = new FormGroup({
     taxNumber: new FormControl("",[Validators.required,,Validators.pattern(/^[0-9]\d*$/)]),
     email: new FormControl("",[Validators.required,Validators.email]),
     companyName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(50)]),
 
   })
+  //clear update form
   clearCustomerUpdateForm() {
     this.customerUpdateForm.patchValue({
       taxNumber: '',   
@@ -40,6 +43,7 @@ export class CorporateCustomerUpdateComponent implements OnInit {
     
     });
   }
+  //finds customer by id and patches the value
   findById (){
     this.corporateCustomerService.findById(this.customerId).subscribe(
       (response:SingleResponseModel<CorporateCustomerListModel>) =>{
@@ -63,7 +67,7 @@ export class CorporateCustomerUpdateComponent implements OnInit {
     }
     )
   }
-  
+  //sends a update request
   update(){
     let model:UpdateCorporateCustomerModel=Object.assign({},this.customerUpdateForm.value);
     model.id=this.customerId;

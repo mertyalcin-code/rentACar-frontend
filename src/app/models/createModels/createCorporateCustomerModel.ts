@@ -1,7 +1,6 @@
 export interface CreateCorporateCustomerModel {
-    email:string
-    password:string
-    companyName:string
-    taxNumber:string
-
+  email: string;
+  password: string;
+  companyName: string;
+  taxNumber: string;
 }

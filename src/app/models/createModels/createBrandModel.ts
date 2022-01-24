@@ -1,3 +1,3 @@
 export interface CreateBrandModel {
-    name:string
+  name: string;
 }

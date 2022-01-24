@@ -1,19 +1,20 @@
 <a class="btn btn-info" href="/employee-panel" style="margin: 1%;">Panele Geri Dön</a>
 <div class="container" style=" margin-top: 3%">
-  
-  <div class="btn-group" role="group" aria-label="Basic example" >
+  <!--car id form-->
+  <div class="btn-group" role="group" aria-label="Basic example">
     <form [formGroup]="carIdForm" (ngSubmit)="findAllByCarId()">
-      <input *ngIf="!damagesLoading" type="text" id="carId" formControlName="carId"
-        class="form-control me-2" placeholder="Araba Id " />
+      <input *ngIf="!damagesLoading" type="text" id="carId" formControlName="carId" class="form-control me-2"
+        placeholder="Araba Id " />
       <button *ngIf="damagesLoading" class="btn btn-primary" type="button" disabled>
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         Hasarlar Getiriliyor
       </button>
     </form>
-    <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search" [(ngModel)]="searchTerm" style="margin:3%;max-width: 300px;">
+    <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search" [(ngModel)]="searchTerm"
+      style="margin:3%;max-width: 300px;">
     <a class="btn btn-primary" href="car-damage/add"><i class="fas fa-plus"></i></a>
   </div>
-
+  <!--car damage table-->
   <table class="table  table-striped">
     <thead>
       <tr>
@@ -24,17 +25,20 @@
       </tr>
     </thead>
     <tbody *ngFor="let carDamage of damages|filter:searchTerm">
-      <tr  > 
+      <tr>
         <td>{{carDamage.id}}</td>
-        <td>{{carDamage.carId}}</td>        
-        <td>{{carDamage.description}}</td>  
-       <td>
-         <a class="btn btn-primary" href='{{"/car-damage/update/"+carDamage.id}}' ><i class="fas fa-pen"></i></a>
-         <button *ngIf="!deleteLoading" class="btn btn-danger" (click)="delete(carDamage.id)"><i class="fas fa-trash-alt"></i></button>
-         <button *ngIf="deleteLoading" class="btn btn-danger"><div class="spinner-grow text-secondary spinner-grow-sm " role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div></button>
-      </td>        
+        <td>{{carDamage.carId}}</td>
+        <td>{{carDamage.description}}</td>
+        <td>
+          <a class="btn btn-primary" href='{{"/car-damage/update/"+carDamage.id}}'><i class="fas fa-pen"></i></a>
+          <button *ngIf="!deleteLoading" class="btn btn-danger" (click)="delete(carDamage.id)"><i
+              class="fas fa-trash-alt"></i></button>
+          <button *ngIf="deleteLoading" class="btn btn-danger">
+            <div class="spinner-grow text-secondary spinner-grow-sm " role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </button>
+        </td>
     </tbody>
   </table>
 </div>

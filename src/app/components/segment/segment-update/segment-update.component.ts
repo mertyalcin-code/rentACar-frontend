@@ -12,72 +12,79 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-segment-update',
   templateUrl: './segment-update.component.html',
-  styleUrls: ['./segment-update.component.css']
+  styleUrls: ['./segment-update.component.css'],
 })
 export class SegmentUpdateComponent implements OnInit {
-
-  loading:boolean = false;
-  editSegment:SegmentListModel;
-  constructor(private segmentService : SegmentService,
-              private toastrService : ToastrService,
-              private router : ActivatedRoute
-    ) { }
-
+  //variables
+  loading: boolean = false;
+  editSegment: SegmentListModel;
+  //constructor
+  constructor(
+    private segmentService: SegmentService,
+    private toastrService: ToastrService,
+    private router: ActivatedRoute
+  ) {}
+  //starter
   ngOnInit() {
-    this.findById(parseInt(this.router.snapshot.paramMap.get('id'))) ;  
+    this.findById(parseInt(this.router.snapshot.paramMap.get('id')));
   }
+  //update form
   segmentUpdateForm = new FormGroup({
-    name: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)])
-  })
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(30),
+    ]),
+  });
+  //clear segment form
   clearsegmentUpdateForm() {
     this.segmentUpdateForm.patchValue({
-      name: '',   
+      name: '',
     });
   }
-  findById(id:number){
+  //finds segment by id and patches value to the update form
+  findById(id: number) {
     this.segmentService.findById(id).subscribe(
       (response: SingleResponseModel<SegmentListModel>) => {
-        if (response.success) {   
-          this.editSegment=response.data;
+        if (response.success) {
+          this.editSegment = response.data;
           this.segmentUpdateForm.patchValue({
-            name:response.data.segmentName,   
+            name: response.data.segmentName,
           });
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
-
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
       }
-    )
+    );
   }
-  
-  update(){
+  //sends update for segment
+  update() {
     this.loading = true;
-    let segmentModel:UpdateSegmentModel = Object.assign({},this.segmentUpdateForm.value);
-    segmentModel.id=this.editSegment.id;
+    let segmentModel: UpdateSegmentModel = Object.assign(
+      {},
+      this.segmentUpdateForm.value
+    );
+    segmentModel.id = this.editSegment.id;
     this.segmentService.update(segmentModel).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.loading = false;
           this.clearsegmentUpdateForm();
           this.segmentUpdateForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.loading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.loading = false;
       }
-    )
+    );
   }
-  
-  
-  
-  
-  }
+}

@@ -6,22 +6,27 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
-
-  constructor(private authService: AuthService,
-      private router:Router,private toastrService : ToastrService
-    ) { }
-  isAuth=false;
-  isEmployee=false;
+  //varaibles
+  isAuth = false;
+  isEmployee = false;
+  //constructor
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastrService: ToastrService
+  ) {}
+  //starter
   ngOnInit() {
-    this.isAuth= this.authService.isAuthenticated();
-    this.isEmployee=this.authService.isEmployee();
+    this.isAuth = this.authService.isAuthenticated();
+    this.isEmployee = this.authService.isEmployee();
   }
-  onLogout(){
+  //logout
+  onLogout() {
     this.authService.logout();
-    this.toastrService.info("Çıkış Yapıldı")
+    this.toastrService.info('Çıkış Yapıldı');
     this.router.navigateByUrl('/#');
     window.location.reload();
   }

@@ -10,27 +10,32 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CorporateCustomerService {
-
   private baseUrl: string = environment.baseUrl;
-   private  apiUrl: string = this.baseUrl + "corporate-customers/"
-  constructor(private httpClient: HttpClient) { }
+  private apiUrl: string = this.baseUrl + 'corporate-customers/';
+  constructor(private httpClient: HttpClient) {}
 
-  findAll(): Observable<ListResponseModel<CorporateCustomerListModel>>{ 
-    return this.httpClient.get<ListResponseModel<CorporateCustomerListModel>>(this.apiUrl+"find-all")
+  findAll(): Observable<ListResponseModel<CorporateCustomerListModel>> {
+    return this.httpClient.get<ListResponseModel<CorporateCustomerListModel>>(
+      this.apiUrl + 'find-all'
+    );
   }
-  findById(id:number): Observable<SingleResponseModel<CorporateCustomerListModel>>{ 
-    return this.httpClient.get<SingleResponseModel<CorporateCustomerListModel>>(this.apiUrl+"find-by-id/"+id)
+  findById(
+    id: number
+  ): Observable<SingleResponseModel<CorporateCustomerListModel>> {
+    return this.httpClient.get<SingleResponseModel<CorporateCustomerListModel>>(
+      this.apiUrl + 'find-by-id/' + id
+    );
   }
-  add(model:CreateCorporateCustomerModel): Observable<ResponseModel>{ 
-    return this.httpClient.post<ResponseModel>(this.apiUrl+"add",model)
+  add(model: CreateCorporateCustomerModel): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.apiUrl + 'add', model);
   }
   update(model: UpdateCorporateCustomerModel): Observable<ResponseModel> {
-    return this.httpClient.put<ResponseModel>(this.apiUrl + "update", model)
+    return this.httpClient.put<ResponseModel>(this.apiUrl + 'update', model);
   }
   delete(id: number): Observable<ResponseModel> {
-    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + 'delete/' + id);
   }
 }

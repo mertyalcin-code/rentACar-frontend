@@ -1,3 +1,3 @@
 export interface CreateInvoiceModel {
-    rentalId:number
+  rentalId: number;
 }

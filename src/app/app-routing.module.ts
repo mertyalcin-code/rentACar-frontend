@@ -39,7 +39,6 @@ import { ColorAddComponent } from './components/color/color-add/color-add.compon
 import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
 import { ColorComponent } from './components/color/color.component';
 import { BrandComponent } from './components/brand/brand.component';
-import { RentalComponent } from './components/rental/rental.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -61,85 +60,258 @@ import { RentalAddCorporateCustomerComponent } from './components/rental/rental-
 
 const routes: Routes = [
   // public url
-  
+
   { path: 'car-detail/:carId', component: CarDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'corporate-customer-register', component: CorporateCustomerAddComponent },
-  { path: 'individual-customer-register', component: IndividualCustomerAddComponent },
+  {
+    path: 'corporate-customer-register',
+    component: CorporateCustomerAddComponent,
+  },
+  {
+    path: 'individual-customer-register',
+    component: IndividualCustomerAddComponent,
+  },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'register-success', component: RegisterSuccessComponent },
   //auth needed
-  { path: 'my-account', component: MyAccountComponent,canActivate:[LoginGuard] },
-  { path: 'my-account/cards', component: CreditCardComponent,canActivate:[LoginGuard] },
-  { path: 'my-account/individual/update', component: IndividualCustomerUpdateComponent,canActivate:[LoginGuard] },
-  { path: 'my-account/corporate/update', component: CorporateCustomerUpdateComponent,canActivate:[LoginGuard] },
-  { path: 'my-rentals', component:MyRentalComponent,canActivate:[LoginGuard] },
-  { path: 'rental/add/individual-customer/:carId', component:RentalAddForIndividualCustomerComponent,canActivate:[LoginGuard] },
-  { path: 'rental/add/corporate-customer/:carId', component:RentalAddCorporateCustomerComponent,canActivate:[LoginGuard] },
+  {
+    path: 'my-account',
+    component: MyAccountComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'my-account/cards',
+    component: CreditCardComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'my-account/individual/update',
+    component: IndividualCustomerUpdateComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'my-account/corporate/update',
+    component: CorporateCustomerUpdateComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'my-rentals',
+    component: MyRentalComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'rental/add/individual-customer/:carId',
+    component: RentalAddForIndividualCustomerComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'rental/add/corporate-customer/:carId',
+    component: RentalAddCorporateCustomerComponent,
+    canActivate: [LoginGuard],
+  },
   //employee only
-  { path: 'car', component: CarManagementComponent,canActivate:[EmployeeGuard] },
-  { path: 'car/add', component: CarAddComponent,canActivate:[EmployeeGuard] },
-  { path: 'car/update/:id', component: CarUpdateComponent,canActivate:[EmployeeGuard]},
+  {
+    path: 'car',
+    component: CarManagementComponent,
+    canActivate: [EmployeeGuard],
+  },
+  { path: 'car/add', component: CarAddComponent, canActivate: [EmployeeGuard] },
+  {
+    path: 'car/update/:id',
+    component: CarUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'car-damage', component: CarDamageComponent,canActivate:[EmployeeGuard] },
-  { path: 'car-damage/add', component: CarDamageAddComponent ,canActivate:[EmployeeGuard]},
-  { path: 'car-damage/update/:id', component: CarDamageUpdateComponent ,canActivate:[EmployeeGuard]},
+  {
+    path: 'car-damage',
+    component: CarDamageComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'car-damage/add',
+    component: CarDamageAddComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'car-damage/update/:id',
+    component: CarDamageUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'car-maintenance', component: CarMaintenanceComponent,canActivate:[EmployeeGuard] },
-  { path: 'car-maintenance/add', component: CarMaintenanceAddComponent,canActivate:[EmployeeGuard] },
-  { path: 'car-maintenance/update/:id', component: CarMaintenanceUpdateComponent,canActivate:[EmployeeGuard] },
-  
-  { path: 'brand', component: BrandComponent,canActivate:[EmployeeGuard] },
-  { path: 'brand/add', component: BrandAddComponent,canActivate:[EmployeeGuard] },
-  { path: 'brand/update/:id', component: BrandUpdateComponent,canActivate:[EmployeeGuard] },
+  {
+    path: 'car-maintenance',
+    component: CarMaintenanceComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'car-maintenance/add',
+    component: CarMaintenanceAddComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'car-maintenance/update/:id',
+    component: CarMaintenanceUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'color', component: ColorComponent ,canActivate:[EmployeeGuard]},
-  { path: 'color/add', component: ColorAddComponent ,canActivate:[EmployeeGuard]},
-  { path: 'color/update/:id', component: ColorUpdateComponent ,canActivate:[EmployeeGuard]},
+  { path: 'brand', component: BrandComponent, canActivate: [EmployeeGuard] },
+  {
+    path: 'brand/add',
+    component: BrandAddComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'brand/update/:id',
+    component: BrandUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'city', component: CityComponent,canActivate:[EmployeeGuard] },
-  { path: 'city/add', component: CityAddComponent,canActivate:[EmployeeGuard] },
-  { path: 'city/update/:id', component: CityUpdateComponent,canActivate:[EmployeeGuard] },
+  { path: 'color', component: ColorComponent, canActivate: [EmployeeGuard] },
+  {
+    path: 'color/add',
+    component: ColorAddComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'color/update/:id',
+    component: ColorUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'segment', component: SegmentComponent,canActivate:[EmployeeGuard] },
-  { path: 'segment/add', component: SegmentAddComponent,canActivate:[EmployeeGuard] },
-  { path: 'segment/update/:id', component: SegmentUpdateComponent,canActivate:[EmployeeGuard] },
+  { path: 'city', component: CityComponent, canActivate: [EmployeeGuard] },
+  {
+    path: 'city/add',
+    component: CityAddComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'city/update/:id',
+    component: CityUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'promo-code', component: PromoCodeComponent,canActivate:[EmployeeGuard] },
-  { path: 'promo-code/add', component: PromoCodeAddComponent,canActivate:[EmployeeGuard] },
-  { path: 'promo-code/update/:id', component: PromoCodeUpdateComponent,canActivate:[EmployeeGuard] },
+  {
+    path: 'segment',
+    component: SegmentComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'segment/add',
+    component: SegmentAddComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'segment/update/:id',
+    component: SegmentUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'additional-service-item', component: AdditionalServiceItemComponent,canActivate:[EmployeeGuard] },
-  { path: 'additional-service-item/add', component: AdditionalServiceItemAddComponent,canActivate:[EmployeeGuard] },
-  { path: 'additional-service-item/update/:id', component: AdditionalServiceItemUpdateComponent,canActivate:[EmployeeGuard]},
+  {
+    path: 'promo-code',
+    component: PromoCodeComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'promo-code/add',
+    component: PromoCodeAddComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'promo-code/update/:id',
+    component: PromoCodeUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'payment', component: PaymentComponent,canActivate:[EmployeeGuard] },
-  { path: 'payment/add', component: PaymentAddComponent,canActivate:[EmployeeGuard] },
-  { path: 'payment/update/:id', component: PaymentUpdateComponent,canActivate:[EmployeeGuard]},
+  {
+    path: 'additional-service-item',
+    component: AdditionalServiceItemComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'additional-service-item/add',
+    component: AdditionalServiceItemAddComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'additional-service-item/update/:id',
+    component: AdditionalServiceItemUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'invoice', component: InvoiceComponent ,canActivate:[EmployeeGuard]},
-  { path: 'invoice/individual-customer/:id', component: InvoiceIndividualCustomerDetailComponent,canActivate:[LoginGuard] },
-  { path: 'invoice/corporate-customer/:id', component: InvoiceCorporateCustomerDetailComponent,canActivate:[LoginGuard] },
+  {
+    path: 'payment',
+    component: PaymentComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'payment/add',
+    component: PaymentAddComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'payment/update/:id',
+    component: PaymentUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'rental-management', component: RentalManagementComponent ,canActivate:[EmployeeGuard]},
-  { path: 'rental-management/update/:id', component: RentalUpdateComponent ,canActivate:[EmployeeGuard]},
+  {
+    path: 'invoice',
+    component: InvoiceComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'invoice/individual-customer/:id',
+    component: InvoiceIndividualCustomerDetailComponent,
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'invoice/corporate-customer/:id',
+    component: InvoiceCorporateCustomerDetailComponent,
+    canActivate: [LoginGuard],
+  },
 
-  { path: 'rental-management/update/:id', component: RentalUpdateComponent ,canActivate:[EmployeeGuard]},
+  {
+    path: 'rental-management',
+    component: RentalManagementComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'rental-management/update/:id',
+    component: RentalUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'user', component:UserComponent,canActivate:[EmployeeGuard] },
-  { path: 'corporate-customer', component:CorporateCustomerComponent,canActivate:[EmployeeGuard] },
-  { path: 'individual-customer', component:IndividualCustomerComponent,canActivate:[EmployeeGuard] },
+  {
+    path: 'rental-management/update/:id',
+    component: RentalUpdateComponent,
+    canActivate: [EmployeeGuard],
+  },
 
-  { path: 'employee-panel', component:EmployeePanelComponent,canActivate:[EmployeeGuard] },
+  { path: 'user', component: UserComponent, canActivate: [EmployeeGuard] },
+  {
+    path: 'corporate-customer',
+    component: CorporateCustomerComponent,
+    canActivate: [EmployeeGuard],
+  },
+  {
+    path: 'individual-customer',
+    component: IndividualCustomerComponent,
+    canActivate: [EmployeeGuard],
+  },
+
+  {
+    path: 'employee-panel',
+    component: EmployeePanelComponent,
+    canActivate: [EmployeeGuard],
+  },
   //home
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -17,9 +17,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-rental.component.css']
 })
 export class MyRentalComponent implements OnInit {
+  //variables
   customerId:number;
   invoiceAddLoading=false;
   rentals:MyRentalListModel[]=[];
+  //constructor
   constructor(private toastrService: ToastrService,
             private rentalService: RentalService,
             private carService : CarService,
@@ -28,16 +30,16 @@ export class MyRentalComponent implements OnInit {
             private authService:AuthService,
             private router:Router
     ) { }
-
+  //starter
   ngOnInit() {
     this.customerId= this.authService.getUserFromLocalStorage().id;
     this.findRentalsByCustomerId();
    
   }
+  //finds customers all rental history
   findRentalsByCustomerId (){
     this.rentalService.findAllByCustomerId(this.customerId).subscribe(response =>{
       if(response.success){
-        console.log(response);
         this.rentals=response.data;
         this.toastrService.success(response.message,"Başarılı");
         
@@ -51,6 +53,7 @@ export class MyRentalComponent implements OnInit {
     )
 
   }
+  //creates an invoice
   addInvoice(id:number){
     this.invoiceAddLoading=true;
     let createInvoiceModel:CreateInvoiceModel = {rentalId:id};
@@ -71,6 +74,7 @@ export class MyRentalComponent implements OnInit {
     }
     )
   }
+  //routes to invoice link according to the role
   routeToInvoice(id:number){
     if(this.authService.isIndividualCustomer()){
       this.router.navigateByUrl('/invoice/individual-customer/'+id);

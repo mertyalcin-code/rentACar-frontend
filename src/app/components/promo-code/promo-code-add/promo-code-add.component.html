@@ -1,49 +1,56 @@
 <a class="btn btn-info" href="/promo-code" style="margin: 2%;">Listeye Geri Dön</a>
+<!--add form-->
 <div class="content">
   <div class="col-md-12">
-      <div class="card">
-          <div class="card-header"><h5 class="title">Renk ekle</h5></div>
-          <div class="card-body">
-            <form [formGroup]="codeAddForm">
-              <div class="mb-3">
-                <label for="promoName">Kod</label>
-                <div class="form-group">
-                  <input type="text" id="promoName" formControlName="code" class="form-control" placeholder="Kod" />
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="promoName">İndirim Oranı (örnek :0.2)</label>
-                <div class="form-group">
-                  <input type="number" id="promoName" formControlName="discountRate" class="form-control" placeholder="indirim oranı" />
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="promoName">Başlangıç Tarihi</label>
-                <div class="form-group">
-                  <input type="date" id="promoName" formControlName="startDate" class="form-control" placeholder="Başlangıç" />
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="promoName">Bitiş Tarihi</label>
-                <div class="form-group">
-                  <input type="date" id="promoName" formControlName="endDate" class="form-control" placeholder="Bitiş" />
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="promoName">Açıklama</label>
-                <div class="form-group">
-                  <input type="text" id="promoName" formControlName="description" class="form-control" placeholder="detay" />
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="card-footer">
-            <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="add()" [disabled]="codeAddForm.invalid">Ekle</button>
-            <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
-              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-              Gönderiliyor...
-            </button>
-          </div>
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Renk ekle</h5>
       </div>
+      <div class="card-body">
+        <form [formGroup]="codeAddForm">
+          <div class="mb-3">
+            <label for="promoName">Kod</label>
+            <div class="form-group">
+              <input type="text" id="promoName" formControlName="code" class="form-control" placeholder="Kod" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="promoName">İndirim Oranı (örnek :0.2)</label>
+            <div class="form-group">
+              <input type="number" id="promoName" formControlName="discountRate" class="form-control"
+                placeholder="indirim oranı" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="promoName">Başlangıç Tarihi</label>
+            <div class="form-group">
+              <input type="date" id="promoName" formControlName="startDate" class="form-control"
+                placeholder="Başlangıç" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="promoName">Bitiş Tarihi</label>
+            <div class="form-group">
+              <input type="date" id="promoName" formControlName="endDate" class="form-control" placeholder="Bitiş" />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="promoName">Açıklama</label>
+            <div class="form-group">
+              <input type="text" id="promoName" formControlName="description" class="form-control"
+                placeholder="detay" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="add()"
+          [disabled]="codeAddForm.invalid">Ekle</button>
+        <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Gönderiliyor...
+        </button>
+      </div>
+    </div>
   </div>
 </div>

@@ -9,58 +9,61 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-rental-management',
   templateUrl: './rental-management.component.html',
-  styleUrls: ['./rental-management.component.css']
+  styleUrls: ['./rental-management.component.css'],
 })
 export class RentalManagementComponent implements OnInit {
-
-  constructor(private rentalService:RentalService,
+  //variables
+  rentals: RentalListModel[] = [];
+  rentalLoading: boolean = false;
+  deleteLoading = false;
+  searchTerm: string = '';
+  //constructor
+  constructor(
+    private rentalService: RentalService,
     private toastrService: ToastrService
-    
-    ) { }
-  rentals:RentalListModel[]=[];
-  rentalLoading:boolean = false;
-  deleteLoading=false;
-  searchTerm:string='';
+  ) {}
+  //starter
   ngOnInit(): void {
     this.findAll();
   }
-  findAll(){
-    this.rentalLoading = true;   
+  //finds all rentals
+  findAll() {
+    this.rentalLoading = true;
     this.rentalService.findAll().subscribe(
       (response: ListResponseModel<RentalListModel>) => {
-        if (response.success) {           
+        if (response.success) {
           this.rentalLoading = false;
-          this.rentals=response.data;
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.rentals = response.data;
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.rentalLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.rentalLoading = false;
       }
-    )
+    );
   }
-  delete(id:number){
-    this.deleteLoading = true;   
+  //deletes rental
+  delete(id: number) {
+    this.deleteLoading = true;
     this.rentalService.delete(id).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.deleteLoading = false;
           this.findAll();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.deleteLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.deleteLoading = false;
       }
-    )
+    );
   }
-
 }

@@ -1,46 +1,44 @@
 <a class="btn btn-info" href="/payment" style="margin: 2%;">Listeye Geri Dön</a>
+<!-- add form-->
 <div class="content">
-  <div class="col-md-12">
-      <div class="card">
-          <div class="card-header"><h5 class="title">Ödeme Bilgisi ekle</h5></div>
-          <div class="card-body">
-              <form [formGroup]="paymentAddForm">
-                  <div class="mb-3">
-                      <label for="rentalId">Kiralama Id </label>
-                      <div class="form-group">
-                          <input type="number" 
-                          id="rentalId" 
-                          formControlName="rentalId" class="form-control" 
-                          placeholder="Kiralama Id"/>
-                      </div>
-                  </div>
-                  <div class="mb-3">
-                    <label for="paymentTime">Ödeme Zamanı </label>
-                    <div class="form-group">
-                        <input type="date" 
-                        id="paymentTime" 
-                        formControlName="paymentTime" class="form-control" 
-                        placeholder="Ödeme Zamanı"/>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title">Ödeme Bilgisi ekle</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="paymentAddForm">
+                    <div class="mb-3">
+                        <label for="rentalId">Kiralama Id </label>
+                        <div class="form-group">
+                            <input type="number" id="rentalId" formControlName="rentalId" class="form-control"
+                                placeholder="Kiralama Id" />
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3">
-                  <label for="totalPaymentAmount">Ödenen Miktar</label>
-                  <div class="form-group">
-                      <input type="number" 
-                      id="totalPaymentAmount" 
-                      formControlName="totalPaymentAmount" class="form-control" 
-                      placeholder="Ödenen Miktar"/>
-                  </div>
-              </div>
-              </form>
-          </div>
-          <div class="card-footer">
-            <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="add()" [disabled]="paymentAddForm.invalid">Ekle</button>
-            <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
-              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-              Gönderiliyor...
-            </button>
-          </div>
-      </div>
-  </div>
+                    <div class="mb-3">
+                        <label for="paymentTime">Ödeme Zamanı </label>
+                        <div class="form-group">
+                            <input type="date" id="paymentTime" formControlName="paymentTime" class="form-control"
+                                placeholder="Ödeme Zamanı" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="totalPaymentAmount">Ödenen Miktar</label>
+                        <div class="form-group">
+                            <input type="number" id="totalPaymentAmount" formControlName="totalPaymentAmount"
+                                class="form-control" placeholder="Ödenen Miktar" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="add()"
+                    [disabled]="paymentAddForm.invalid">Ekle</button>
+                <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    Gönderiliyor...
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

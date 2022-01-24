@@ -10,59 +10,61 @@ import { AdditionalServiceItemService } from 'src/app/services/additionalService
 @Component({
   selector: 'app-additional-service-item',
   templateUrl: './additional-service-item.component.html',
-  styleUrls: ['./additional-service-item.component.css']
+  styleUrls: ['./additional-service-item.component.css'],
 })
 export class AdditionalServiceItemComponent implements OnInit {
-
-  constructor(private additionalServiceItemService:AdditionalServiceItemService,
+  //variables
+  items: AdditionalServiceItemListModel[] = [];
+  itemsLoading: boolean = false;
+  deleteLoading = false;
+  searchTerm: string = '';
+  //constructor
+  constructor(
+    private additionalServiceItemService: AdditionalServiceItemService,
     private toastrService: ToastrService
-    
-    ) { }
-  items:AdditionalServiceItemListModel[]=[];
-  itemsLoading:boolean = false;
-  deleteLoading=false;
-  searchTerm:string='';
+  ) {}
+  //starter
   ngOnInit(): void {
     this.findAll();
   }
-  findAll(){
-    this.itemsLoading = true;   
+  //finds all additional service item
+  findAll() {
+    this.itemsLoading = true;
     this.additionalServiceItemService.findAll().subscribe(
       (response: ListResponseModel<AdditionalServiceItemListModel>) => {
-        if (response.success) {           
+        if (response.success) {
           this.itemsLoading = false;
-          this.items=response.data;
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.items = response.data;
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.itemsLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.itemsLoading = false;
       }
-    )
+    );
   }
-  delete(id:number){
-    this.deleteLoading = true;   
+  //deletes a item if no relation in the database
+  delete(id: number) {
+    this.deleteLoading = true;
     this.additionalServiceItemService.delete(id).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.deleteLoading = false;
           this.findAll();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.deleteLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.deleteLoading = false;
       }
-    )
+    );
   }
-
 }
-

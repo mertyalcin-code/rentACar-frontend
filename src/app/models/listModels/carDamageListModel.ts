@@ -1,5 +1,5 @@
-    export interface CarDamageListModel{
-        id:number
-        description:string
-        carId:number
-    }
+export interface CarDamageListModel {
+  id: number;
+  description: string;
+  carId: number;
+}

@@ -1,5 +1,4 @@
 export interface CreateCarMaintenanceModel {
-    carId:number
-    maintananceStart:Date
-
+  carId: number;
+  maintananceStart: Date;
 }

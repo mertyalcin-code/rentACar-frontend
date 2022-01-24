@@ -4,17 +4,17 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-my-account',
   templateUrl: './my-account.component.html',
-  styleUrls: ['./my-account.component.css']
+  styleUrls: ['./my-account.component.css'],
 })
 export class MyAccountComponent implements OnInit {
-
-  isIndividualCustomer:boolean=false;
-  isCorporateCustomer:boolean=false;
-  constructor(private authService: AuthService,) { }
-  
+  //variables
+  isIndividualCustomer: boolean = false;
+  isCorporateCustomer: boolean = false;
+  //constructor
+  constructor(private authService: AuthService) {}
+  //starter
   ngOnInit() {
-this.isIndividualCustomer=this.authService.isIndividualCustomer();
-this.isCorporateCustomer=this.authService.isCorporateCustomer();
+    this.isIndividualCustomer = this.authService.isIndividualCustomer();
+    this.isCorporateCustomer = this.authService.isCorporateCustomer();
   }
-
 }

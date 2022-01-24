@@ -1,4 +1,4 @@
 export interface TotalPriceRequestModel {
-    rentalId:number
-    returnDate:Date
+  rentalId: number;
+  returnDate: Date;
 }

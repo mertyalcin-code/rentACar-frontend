@@ -15,72 +15,76 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./additional-service-item-update.component.css']
 })
 export class AdditionalServiceItemUpdateComponent implements OnInit {
-
-  loading:boolean = false;
-  item:AdditionalServiceItemListModel;
-  constructor(private itemService : AdditionalServiceItemService,
-              private toastrService : ToastrService,
-              private router : ActivatedRoute
-    ) { }
-
+  //Variables
+  loading: boolean = false;
+  item: AdditionalServiceItemListModel;
+  //Constructor
+  constructor(private itemService: AdditionalServiceItemService,
+    private toastrService: ToastrService,
+    private router: ActivatedRoute
+  ) { }
+  //Starter
   ngOnInit() {
-    this.findById(parseInt(this.router.snapshot.paramMap.get('id'))) ;  
+    this.findById(parseInt(this.router.snapshot.paramMap.get('id')));
   }
+  //Update Form
   itemUpdateForm = new FormGroup({
-    name: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)]),
-    price: new FormControl("",[Validators.required,Validators.min(0)])
+    name: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
+    price: new FormControl("", [Validators.required, Validators.min(0)])
   })
+  //Clear form method
   clearItemUpdateForm() {
     this.itemUpdateForm.patchValue({
-      name: '',   
-      price: '', 
+      name: '',
+      price: '',
     });
   }
-  findById(id:number){
+  //Finds item by id and patches the value to the form
+  findById(id: number) {
     this.itemService.findById(id).subscribe(
       (response: SingleResponseModel<AdditionalServiceItemListModel>) => {
-        if (response.success) {   
-          this.item=response.data;
+        if (response.success) {
+          this.item = response.data;
           this.itemUpdateForm.patchValue({
-            name:response.data.name,   
-            price:response.data.price,   
+            name: response.data.name,
+            price: response.data.price,
           });
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, "Başarılı");
+        } else {
+          this.toastrService.warning(response.message, "Başarısız");
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, "Başarısız");
 
       }
     )
   }
-  
-  update(){
+  //sends update request
+  update() {
     this.loading = true;
-    let colorModel:UpdateAdditionalServiceItemModel = Object.assign({},this.itemUpdateForm.value);
-    colorModel.id=this.item.id;
+    let colorModel: UpdateAdditionalServiceItemModel = Object.assign({}, this.itemUpdateForm.value);
+    colorModel.id = this.item.id;
     this.itemService.update(colorModel).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.loading = false;
           this.clearItemUpdateForm();
           this.itemUpdateForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, "Başarılı");
+        } else {
+          this.toastrService.warning(response.message, "Başarısız");
           this.loading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, "Başarısız");
         this.loading = false;
       }
     )
   }
-  
-  
-  
-  
-  }
+
+
+
+
+}

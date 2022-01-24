@@ -13,54 +13,57 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./brand.component.css']
 })
 export class BrandComponent implements OnInit {
-  searchTerm:string = ''; 
-  brands:BrandListModel[] = [];
+  //variables
+  searchTerm: string = '';
+  brands: BrandListModel[] = [];
   brandsLoading: boolean = false;
-  deleteLoading:boolean = false;
-  constructor(private brandService:BrandService,
-              private toastrService:ToastrService
-    ) { }
-
+  deleteLoading: boolean = false;
+  //constructor
+  constructor(
+    private brandService: BrandService,
+    private toastrService: ToastrService
+  ) { }
+  //starter
   ngOnInit(): void {
     this.findAll();
   }
-
-  findAll(){
-    this.brandsLoading = true;   
+  //finds all brands in the database
+  findAll() {
+    this.brandsLoading = true;
     this.brandService.findAll().subscribe(
       (response: ListResponseModel<BrandListModel>) => {
-        if (response.success) {           
+        if (response.success) {
           this.brandsLoading = false;
-          this.brands=response.data;
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.brands = response.data;
+          this.toastrService.success(response.message, "Başarılı");
+        } else {
+          this.toastrService.warning(response.message, "Başarısız");
           this.brandsLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, "Başarısız");
         this.brandsLoading = false;
       }
     )
   }
-  
-  
-  delete(id:number){
-    this.deleteLoading = true;   
+
+  //deletes a brand if there is no relation in the database
+  delete(id: number) {
+    this.deleteLoading = true;
     this.brandService.delete(id).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.deleteLoading = false;
           this.findAll();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, "Başarılı");
+        } else {
+          this.toastrService.warning(response.message, "Başarısız");
           this.deleteLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, "Başarısız");
         this.deleteLoading = false;
       }
     )

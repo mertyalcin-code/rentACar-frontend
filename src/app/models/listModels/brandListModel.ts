@@ -1,4 +1,4 @@
-export interface BrandListModel{
-    id:number
-    name:string
+export interface BrandListModel {
+  id: number;
+  name: string;
 }

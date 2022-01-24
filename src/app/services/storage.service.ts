@@ -3,11 +3,10 @@ import SecureStorage from 'secure-web-storage';
 import CryptoJS from 'crypto-js';
 const SECRET_KEY = 'secrethere';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StorageService {
-
-  constructor() { }
+  constructor() {}
 
   public secureStorage = new SecureStorage(localStorage, {
     hash: function hash(key): any {
@@ -25,6 +24,6 @@ export class StorageService {
       data = CryptoJS.AES.decrypt(data, SECRET_KEY);
       data = data.toString(CryptoJS.enc.Utf8);
       return data;
-    }
+    },
   });
 }

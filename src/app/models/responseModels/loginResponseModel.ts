@@ -1,5 +1,5 @@
-export interface LoginResponseModel{
-        id:number
-        email:string
-        role:string
- }
+export interface LoginResponseModel {
+  id: number;
+  email: string;
+  role: string;
+}

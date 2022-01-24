@@ -12,61 +12,73 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-corporate-customer-add',
   templateUrl: './corporate-customer-add.component.html',
-  styleUrls: ['./corporate-customer-add.component.css']
+  styleUrls: ['./corporate-customer-add.component.css'],
 })
 export class CorporateCustomerAddComponent implements OnInit {
-
-
-  loading=false;
+  //variables
+  loading = false;
+  //constructor
   constructor(
-    private corporateCustomerService:CorporateCustomerService,
-    private toastrService:ToastrService,
-    private AuthService : AuthService,
-    private router : Router
-    
-    ) { }
+    private corporateCustomerService: CorporateCustomerService,
+    private toastrService: ToastrService,
+    private AuthService: AuthService,
+    private router: Router
+  ) {}
+  //starter
   ngOnInit() {
-    if(this.AuthService.isAuthenticated()){
+    if (this.AuthService.isAuthenticated()) {
       this.router.navigateByUrl('/#');
     }
   }
+  //add form
   addCorporateCustomerForm = new FormGroup({
-    email: new FormControl("",[Validators.required,Validators.email]),
-    password: new FormControl("",[Validators.required,Validators.minLength(3),Validators.maxLength(30)]),
-    companyName: new FormControl("",[Validators.required,Validators.minLength(3),Validators.maxLength(255)]),
-    taxNumber: new FormControl("",[Validators.required,,Validators.pattern(/^[0-9]\d*$/)]),
-  })
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(30),
+    ]),
+    companyName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(255),
+    ]),
+    taxNumber: new FormControl('', [
+      Validators.required,
+      ,
+      Validators.pattern(/^[0-9]\d*$/),
+    ]),
+  });
+  //clear
   ClearAddCorporateCustomerForm() {
     this.addCorporateCustomerForm.patchValue({
-      email: '',   
-      password: '',  
-      companyName: '',  
-      taxNumber: '',  
+      email: '',
+      password: '',
+      companyName: '',
+      taxNumber: '',
     });
   }
-  add(){
+  //add s new corporate customer
+  add() {
     this.loading = true;
-    let model = Object.assign({},this.addCorporateCustomerForm.value);
+    let model = Object.assign({}, this.addCorporateCustomerForm.value);
     this.corporateCustomerService.add(model).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {              
+        if (response.success) {
           this.loading = false;
           this.router.navigateByUrl('/register-success'); //neden çalışmıyor
           this.ClearAddCorporateCustomerForm();
           this.addCorporateCustomerForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");    
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.loading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.loading = false;
       }
-    )
-   
-
+    );
   }
-  
 }

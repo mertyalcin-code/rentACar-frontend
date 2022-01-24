@@ -9,59 +9,61 @@ import { InvoiceListModel } from 'src/app/models/listModels/invoiceListModel';
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.css']
+  styleUrls: ['./invoice.component.css'],
 })
 export class InvoiceComponent implements OnInit {
-
-  constructor(private invoiceService:InvoiceService,
+  //variables
+  invoices: InvoiceListModel[] = [];
+  invoicesLoading: boolean = false;
+  deleteLoading = false;
+  searchTerm: string = '';
+  //constructor
+  constructor(
+    private invoiceService: InvoiceService,
     private toastrService: ToastrService
-    
-    ) { }
-  invoices:InvoiceListModel[]=[];
-  invoicesLoading:boolean = false;
-  deleteLoading=false;
-  searchTerm:string='';
+  ) {}
+  //starter
   ngOnInit(): void {
     this.findAll();
   }
-  findAll(){
-    this.invoicesLoading = true;   
+  //finds all invoices
+  findAll() {
+    this.invoicesLoading = true;
     this.invoiceService.findAll().subscribe(
       (response: ListResponseModel<InvoiceListModel>) => {
-        if (response.success) {           
+        if (response.success) {
           this.invoicesLoading = false;
-          this.invoices=response.data;
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.invoices = response.data;
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.invoicesLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.invoicesLoading = false;
       }
-    )
+    );
   }
-  
-  delete(id:number){
-    this.deleteLoading = true;   
+  //deletes an invoice
+  delete(id: number) {
+    this.deleteLoading = true;
     this.invoiceService.delete(id).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.deleteLoading = false;
           this.findAll();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.deleteLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.deleteLoading = false;
       }
-    )
+    );
   }
-
 }

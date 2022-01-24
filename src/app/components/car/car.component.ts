@@ -11,33 +11,41 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./car.component.css']
 })
 export class CarComponent implements OnInit {
-  @Input() selectedCity:any;
-  @Input() selectedBrand:any;
-  @Input() selectedColor:any;
-  @Input() selectedSegment:any;
-  constructor(private carService:CarService,private router:Router,private colorService :ColorService) { }
-  
- 
-  colors:ColorListModel[]=[]
-  cars:CarListModel[]=[];
-  carsLoading:boolean = false;
-  ngOnInit(): void {   
+  //inputs  from homepage 
+  @Input() selectedCity: any;
+  @Input() selectedBrand: any;
+  @Input() selectedColor: any;
+  @Input() selectedSegment: any;
+  //variables
+  colors: ColorListModel[] = []
+  cars: CarListModel[] = [];
+  carsLoading: boolean = false;
+  //constructor
+  constructor(
+    private carService: CarService,
+    private router: Router,
+    private colorService: ColorService) { }
+
+  //starter
+  ngOnInit(): void {
     this.getCars();
   }
-  getCars(){ 
-    this.carsLoading=true;
+  //lists available cars
+  getCars() {
+    this.carsLoading = true;
     this.carService.findAllAvailable().subscribe(
-      response=>{
+      response => {
         this.cars = response.data;
         this.carsLoading = false;
       }
     )
   }
-  routeToCarDetail(carId:number):void{
-    let url="/car-detail/"+carId
+  //navigates to car detail
+  routeToCarDetail(carId: number): void {
+    let url = "/car-detail/" + carId
     this.router.navigateByUrl(url);
   }
- 
+
 }
 
 

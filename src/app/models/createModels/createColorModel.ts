@@ -1,3 +1,3 @@
 export interface CreateColorModel {
-    name:string
+  name: string;
 }

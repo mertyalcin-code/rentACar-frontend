@@ -13,27 +13,30 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ColorService {
-
   private baseUrl: string = environment.baseUrl;
-   private  apiUrl: string = this.baseUrl + "colors/"
-  constructor(private httpClient: HttpClient) { }
+  private apiUrl: string = this.baseUrl + 'colors/';
+  constructor(private httpClient: HttpClient) {}
 
-  findAll(): Observable<ListResponseModel<ColorListModel>>{ 
-    return this.httpClient.get<ListResponseModel<ColorListModel>>(this.apiUrl+"find-all")
+  findAll(): Observable<ListResponseModel<ColorListModel>> {
+    return this.httpClient.get<ListResponseModel<ColorListModel>>(
+      this.apiUrl + 'find-all'
+    );
   }
-  findById(id:number): Observable<SingleResponseModel<ColorListModel>>{ 
-    return this.httpClient.get<SingleResponseModel<ColorListModel>>(this.apiUrl+"find-by-id/"+id)
+  findById(id: number): Observable<SingleResponseModel<ColorListModel>> {
+    return this.httpClient.get<SingleResponseModel<ColorListModel>>(
+      this.apiUrl + 'find-by-id/' + id
+    );
   }
-  add(color:CreateColorModel): Observable<ResponseModel>{ 
-    return this.httpClient.post<ResponseModel>(this.apiUrl+"add",color)
+  add(color: CreateColorModel): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.apiUrl + 'add', color);
   }
   update(model: UpdateColorModel): Observable<ResponseModel> {
-    return this.httpClient.put<ResponseModel>(this.apiUrl + "update", model)
+    return this.httpClient.put<ResponseModel>(this.apiUrl + 'update', model);
   }
   delete(id: number): Observable<ResponseModel> {
-    return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + 'delete/' + id);
   }
 }

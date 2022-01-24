@@ -1,4 +1,4 @@
-export interface SegmentListModel{
-    id:number
-    segmentName:string
+export interface SegmentListModel {
+  id: number;
+  segmentName: string;
 }

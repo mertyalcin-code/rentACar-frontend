@@ -9,58 +9,61 @@ import { CarMaintenanceListModel } from 'src/app/models/listModels/carMaintenanc
 @Component({
   selector: 'app-car-maintenance',
   templateUrl: './car-maintenance.component.html',
-  styleUrls: ['./car-maintenance.component.css']
+  styleUrls: ['./car-maintenance.component.css'],
 })
 export class CarMaintenanceComponent implements OnInit {
-
-  constructor(private carMaintenanceService:CarMaintenanceService,
+  //variables
+  carMaintenances: CarMaintenanceListModel[] = [];
+  maintenancesLoading: boolean = false;
+  deleteLoading = false;
+  searchTerm: string = '';
+  //constructor
+  constructor(
+    private carMaintenanceService: CarMaintenanceService,
     private toastrService: ToastrService
-    
-    ) { }
-  carMaintenances:CarMaintenanceListModel[]=[];
-  maintenancesLoading:boolean = false;
-  deleteLoading=false;
-  searchTerm:string='';
+  ) {}
+  //starter
   ngOnInit(): void {
     this.findAll();
   }
-  findAll(){
-    this.maintenancesLoading = true;   
+  //finds all
+  findAll() {
+    this.maintenancesLoading = true;
     this.carMaintenanceService.findAll().subscribe(
       (response: ListResponseModel<CarMaintenanceListModel>) => {
-        if (response.success) {           
+        if (response.success) {
           this.maintenancesLoading = false;
-          this.carMaintenances=response.data;
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.carMaintenances = response.data;
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.maintenancesLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.maintenancesLoading = false;
       }
-    )
+    );
   }
-  delete(id:number){
-    this.deleteLoading = true;   
+  //deletes a car maintenance
+  delete(id: number) {
+    this.deleteLoading = true;
     this.carMaintenanceService.delete(id).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.deleteLoading = false;
           this.findAll();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.deleteLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.deleteLoading = false;
       }
-    )
+    );
   }
-
 }

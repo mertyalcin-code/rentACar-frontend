@@ -13,46 +13,49 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./car-detail.component.css']
 })
 export class CarDetailComponent implements OnInit {
-  carId:number;
-  car:CarListModel;
+  //variables
+  carId: number;
+  car: CarListModel;
   carLoading = false;
+  //constructor
   constructor(private router: ActivatedRoute,
-    private linkRouter:Router,
+    private linkRouter: Router,
     private carService: CarService,
     private authService: AuthService,
     private toastrService: ToastrService
-    ) { }
-
+  ) { }
+  //starter
   ngOnInit() {
-    this.carId = parseInt(this.router.snapshot.paramMap.get('carId'));    
+    this.carId = parseInt(this.router.snapshot.paramMap.get('carId'));
     this.getById(this.carId);
   }
-  getById(carId:number):void{ 
+  //find by id
+  getById(carId: number): void {
     this.carLoading = true;
     this.carService.findById(carId).subscribe(
-      (response:SingleResponseModel<CarListModel>)=>{
-    
+      (response: SingleResponseModel<CarListModel>) => {
+
         this.car = response.data;
         this.carLoading = false;
       }
     )
   }
-  
-  rentCar(id:number):void{
-    if(this.authService.isEmployee()){
-      this.toastrService.info("Sistem Çalışanı Araç Kiralayamaz","Başarısız");
+  //routes the proper component by checking the role
+  rentCar(id: number): void {
+    if (this.authService.isEmployee()) {
+      this.toastrService.info("Sistem Çalışanı Araç Kiralayamaz", "Başarısız");
       this.linkRouter.navigateByUrl('/home');
     }
-    else if(this.authService.isCorporateCustomer()){
-      
-      this.linkRouter.navigateByUrl('/rental/add/corporate-customer/'+id);
+    else if (this.authService.isCorporateCustomer()) {
+
+      this.linkRouter.navigateByUrl('/rental/add/corporate-customer/' + id);
     }
-    else if(this.authService.isIndividualCustomer()){
-      this.linkRouter.navigateByUrl('/rental/add/individual-customer/'+id);
+    else if (this.authService.isIndividualCustomer()) {
+      this.linkRouter.navigateByUrl('/rental/add/individual-customer/' + id);
     }
     else {
       this.linkRouter.navigateByUrl('/login');
     }
-   
+
   }
 }

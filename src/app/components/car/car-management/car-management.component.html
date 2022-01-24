@@ -1,8 +1,10 @@
 <a class="btn btn-info" href="/employee-panel" style="margin: 1%;">Panele Geri Dön</a>
+<!--Car Table-->
 <div class="container" style=" margin-top: 3%">
- 
+
   <div class="btn-group" role="group" aria-label="Basic example">
-    <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search" [(ngModel)]="searchTerm" style="margin:3%;max-width: 300px;">
+    <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search" [(ngModel)]="searchTerm"
+      style="margin:3%;max-width: 300px;">
     <a class="btn btn-primary" href="car/add"><i class="fas fa-plus"></i></a>
   </div>
 
@@ -21,23 +23,26 @@
       </tr>
     </thead>
     <tbody *ngFor="let car of cars|filter:searchTerm">
-      <tr  > 
+      <tr>
         <td>{{car.id}}</td>
-        <td>{{car.brandName}}</td>   
-        <td>{{car.carName}}</td>    
-        <td>{{car.model}}</td>         
-        <td>{{car.minAge}}</td>    
-        <td>{{car.findexScore}}</td>    
-        <td>{{car.kilometer}}</td>    
-        <td>{{car.segmentName}}</td>    
-        <td>{{car.cityName}}</td>    
-       <td>
-         <a class="btn btn-primary" href='{{"/car/update/"+car.id}}' ><i class="fas fa-pen"></i></a>
-         <button *ngIf="!deleteLoading" class="btn btn-danger" (click)="delete(car.id)"><i class="fas fa-trash-alt"></i></button>
-         <button *ngIf="deleteLoading" class="btn btn-danger"><div class="spinner-grow text-secondary spinner-grow-sm " role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div></button>
-      </td>        
+        <td>{{car.brandName}}</td>
+        <td>{{car.carName}}</td>
+        <td>{{car.model}}</td>
+        <td>{{car.minAge}}</td>
+        <td>{{car.findexScore}}</td>
+        <td>{{car.kilometer}}</td>
+        <td>{{car.segmentName}}</td>
+        <td>{{car.cityName}}</td>
+        <td>
+          <a class="btn btn-primary" href='{{"/car/update/"+car.id}}'><i class="fas fa-pen"></i></a>
+          <button *ngIf="!deleteLoading" class="btn btn-danger" (click)="delete(car.id)"><i
+              class="fas fa-trash-alt"></i></button>
+          <button *ngIf="deleteLoading" class="btn btn-danger">
+            <div class="spinner-grow text-secondary spinner-grow-sm " role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </button>
+        </td>
     </tbody>
   </table>
 </div>

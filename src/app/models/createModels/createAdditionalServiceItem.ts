@@ -1,5 +1,4 @@
 export interface CreateAdditionalServiceItemModel {
-
-    name:string
-    price:number
+  name: string;
+  price: number;
 }

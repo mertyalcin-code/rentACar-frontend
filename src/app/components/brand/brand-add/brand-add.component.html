@@ -1,28 +1,29 @@
 <a class="btn btn-info" href="/brand" style="margin: 2%;">Listeye Geri Dön</a>
+<!--Brand Add Form-->
 <div class="content">
   <div class="col-md-12">
-      <div class="card">
-          <div class="card-header"><h5 class="title">Marka ekle</h5></div>
-          <div class="card-body">
-              <form [formGroup]="brandAddForm">
-                  <div class="mb-3">
-                      <label for="brandName">Marka Adı</label>
-                      <div class="form-group">
-                          <input type="text" 
-                          id="brandName" 
-                          formControlName="name" class="form-control" 
-                          placeholder="Marka ismi"/>
-                      </div>
-                  </div>
-              </form>
-          </div>
-          <div class="card-footer">
-            <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="add()" [disabled]='brandAddForm.invalid'>Ekle</button>
-            <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
-              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-              Gönderiliyor...
-            </button>
-          </div>
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Marka ekle</h5>
       </div>
+      <div class="card-body">
+        <form [formGroup]="brandAddForm">
+          <div class="mb-3">
+            <label for="brandName">Marka Adı</label>
+            <div class="form-group">
+              <input type="text" id="brandName" formControlName="name" class="form-control" placeholder="Marka ismi" />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button *ngIf="!loading" class="btn btn-fill btn-primary" (click)="add()"
+          [disabled]='brandAddForm.invalid'>Ekle</button>
+        <button *ngIf="loading" class="btn btn-primary" type="button" disabled>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Gönderiliyor...
+        </button>
+      </div>
+    </div>
   </div>
 </div>

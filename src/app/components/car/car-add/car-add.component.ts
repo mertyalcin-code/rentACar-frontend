@@ -21,56 +21,48 @@ import { CityListModel } from 'src/app/models/listModels/cityListModel';
   styleUrls: ['./car-add.component.css']
 })
 export class CarAddComponent implements OnInit {
+  //variables
   colorsLoading = false;
   brandsLoading = false;
   segmentsLoading = false;
   citiesLoading = false;
   carAddLoading = false;
-  brands :BrandListModel[]=[]
-  colors :ColorListModel[]=[]
-  segments :SegmentListModel[]=[]
-  cities :CityListModel[]=[]
+  brands: BrandListModel[] = []
+  colors: ColorListModel[] = []
+  segments: SegmentListModel[] = []
+  cities: CityListModel[] = []
+  //constructor
   constructor(
-    private carService:CarService,
+    private carService: CarService,
     private brandService: BrandService,
     private cityService: CityService,
     private colorService: ColorService,
     private segmentService: SegmentService,
-    private toastrService: ToastrService 
-    ) { }
-    carName:string
-    brandId:number
-    colorId:number
-    dailyPrice:number
-    model:number
-    findexScore:number
-    kilometer:number
-    imageUrl:string
-    description:string
-    minAge:number
-    segmentId:number
-    cityId:number
-
+    private toastrService: ToastrService
+  ) { }
+  //starter
   ngOnInit() {
     this.getBrands();
     this.getColors();
     this.getCities();
     this.getSegments();
   }
+  //car add form
   carAddForm = new FormGroup({
-    carName: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)]),
-    model: new FormControl("",[Validators.required,Validators.min(1900),Validators.max(2023)]),
-    brandId: new FormControl("",[Validators.required]),
-    colorId: new FormControl("",[Validators.required,]),
-    dailyPrice: new FormControl("",[Validators.required,,Validators.min(0)]),
-    findexScore: new FormControl("",[Validators.required,Validators.min(650),Validators.max(1900)]),
-    kilometer: new FormControl("",[Validators.required,Validators.min(0)]),
-    imageUrl: new FormControl("",[Validators.required]),
-    description: new FormControl("",[Validators.required,Validators.minLength(0),Validators.maxLength(250)]),
-    minAge: new FormControl("",[Validators.required,Validators.min(18),Validators.min(50)]),
-    segmentId: new FormControl("",[Validators.required]),
-    cityId: new FormControl("",[Validators.required]),
+    carName: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(30)]),
+    model: new FormControl("", [Validators.required, Validators.min(1900), Validators.max(2023)]),
+    brandId: new FormControl("", [Validators.required]),
+    colorId: new FormControl("", [Validators.required,]),
+    dailyPrice: new FormControl("", [Validators.required, , Validators.min(0)]),
+    findexScore: new FormControl("", [Validators.required, Validators.min(650), Validators.max(1900)]),
+    kilometer: new FormControl("", [Validators.required, Validators.min(0)]),
+    imageUrl: new FormControl("", [Validators.required]),
+    description: new FormControl("", [Validators.required, Validators.minLength(0), Validators.maxLength(250)]),
+    minAge: new FormControl("", [Validators.required, Validators.min(18), Validators.min(50)]),
+    segmentId: new FormControl("", [Validators.required]),
+    cityId: new FormControl("", [Validators.required]),
   })
+  //clear form
   clearBrandAddForm() {
     this.carAddForm.patchValue({
       carName: '',
@@ -86,94 +78,100 @@ export class CarAddComponent implements OnInit {
       cityId: '',
     });
   }
-  getBrands(){
+  //finds all brands
+  getBrands() {
     this.brandsLoading = true;
-    this.brandService.findAll().subscribe(response =>{
-      if(response.success){
+    this.brandService.findAll().subscribe(response => {
+      if (response.success) {
         this.brands = response.data;
- //       this.toastrService.success(response.message,"Başarılı");
+        //       this.toastrService.success(response.message,"Başarılı");
         this.brandsLoading = false;
-      }else{
-        this.toastrService.warning(response.message,"Başarısız");
+      } else {
+        this.toastrService.warning(response.message, "Başarısız");
         this.brandsLoading = false;
       }
-    }, (errorResponse: HttpErrorResponse) => {       
-      this.toastrService.error(errorResponse.message,"Başarısız");
+    }, (errorResponse: HttpErrorResponse) => {
+      this.toastrService.error(errorResponse.message, "Başarısız");
       this.brandsLoading = false;
     }
     )
   }
-  getColors(){
+  //finds all colors
+  getColors() {
     this.colorsLoading = true;
-    this.colorService.findAll().subscribe(response =>{
-      if(response.success){
+    this.colorService.findAll().subscribe(response => {
+      if (response.success) {
         this.colors = response.data;
-   //     this.toastrService.success(response.message,"Başarılı");
+        //     this.toastrService.success(response.message,"Başarılı");
         this.colorsLoading = false;
-      }else{
-        this.toastrService.warning(response.message,"Başarısız");
+      } else {
+        this.toastrService.warning(response.message, "Başarısız");
         this.colorsLoading = false;
       }
-    }, (errorResponse: HttpErrorResponse) => {       
-      this.toastrService.error(errorResponse.message,"Başarısız");
+    }, (errorResponse: HttpErrorResponse) => {
+      this.toastrService.error(errorResponse.message, "Başarısız");
       this.colorsLoading = false;
     }
     )
   }
-  getSegments(){
+  //finds all segments
+  getSegments() {
     this.segmentsLoading = true;
-    this.segmentService.findAll().subscribe(response =>{ console.log(response)
-      if(response.success){
+    this.segmentService.findAll().subscribe(response => {
+      console.log(response)
+      if (response.success) {
         this.segments = response.data;
- //       this.toastrService.success(response.message,"Başarılı");
+        //       this.toastrService.success(response.message,"Başarılı");
         this.segmentsLoading = false;
-      }else{
-        this.toastrService.warning(response.message,"Başarısız");
+      } else {
+        this.toastrService.warning(response.message, "Başarısız");
         this.segmentsLoading = false;
       }
-    }, (errorResponse: HttpErrorResponse) => {       
-      this.toastrService.error(errorResponse.message,"Başarısız");
+    }, (errorResponse: HttpErrorResponse) => {
+      this.toastrService.error(errorResponse.message, "Başarısız");
       this.segmentsLoading = false;
     }
     )
   }
-  getCities(){
+  //finds all cities
+  getCities() {
     this.citiesLoading = true;
-    this.cityService.findAll().subscribe(response =>{
-      if(response.success){
+    this.cityService.findAll().subscribe(response => {
+      if (response.success) {
         this.cities = response.data;
-     //   this.toastrService.success(response.message,"Başarılı");
+        //   this.toastrService.success(response.message,"Başarılı");
         this.citiesLoading = false;
-      }else{
-        this.toastrService.warning(response.message,"Başarısız");
+      } else {
+        this.toastrService.warning(response.message, "Başarısız");
         this.citiesLoading = false;
       }
-    }, (errorResponse: HttpErrorResponse) => {       
-      this.toastrService.error(errorResponse.message,"Başarısız");
+    }, (errorResponse: HttpErrorResponse) => {
+      this.toastrService.error(errorResponse.message, "Başarısız");
       this.citiesLoading = false;
     }
     )
   }
-  add(){
+  //adds a new city
+  add() {
     this.carAddLoading = true;
-    let carModel = Object.assign({},this.carAddForm.value);
+    let carModel = Object.assign({}, this.carAddForm.value);
     this.carService.add(carModel).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.carAddLoading = false;
-        //  this.clearBrandAddForm();
+          //  this.clearBrandAddForm();
           this.carAddForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, "Başarılı");
+        } else {
+          this.toastrService.warning(response.message, "Başarısız");
           this.carAddLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, "Başarısız");
         this.carAddLoading = false;
       }
     )
-   
+
   }
 }

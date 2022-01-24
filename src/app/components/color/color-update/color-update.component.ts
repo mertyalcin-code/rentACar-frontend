@@ -12,71 +12,79 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-color-update',
   templateUrl: './color-update.component.html',
-  styleUrls: ['./color-update.component.css']
+  styleUrls: ['./color-update.component.css'],
 })
 export class ColorUpdateComponent implements OnInit {
-  loading:boolean = false;
-  editColor:ColorListModel;
-  constructor(private colorService : ColorService,
-              private toastrService : ToastrService,
-              private router : ActivatedRoute
-    ) { }
-
+  //variables
+  loading: boolean = false;
+  editColor: ColorListModel;
+  //constructor
+  constructor(
+    private colorService: ColorService,
+    private toastrService: ToastrService,
+    private router: ActivatedRoute
+  ) {}
+  //starter
   ngOnInit() {
-    this.findById(parseInt(this.router.snapshot.paramMap.get('id'))) ;  
+    this.findById(parseInt(this.router.snapshot.paramMap.get('id')));
   }
+  //update form
   colorUpdateForm = new FormGroup({
-    name: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(30)])
-  })
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(30),
+    ]),
+  });
+  //clear form
   clearColorUpdateForm() {
     this.colorUpdateForm.patchValue({
-      name: '',   
+      name: '',
     });
   }
-  findById(id:number){
+  //finds color by id and patches the value to the add form
+  findById(id: number) {
     this.colorService.findById(id).subscribe(
       (response: SingleResponseModel<ColorListModel>) => {
-        if (response.success) {   
-          this.editColor=response.data;
+        if (response.success) {
+          this.editColor = response.data;
           this.colorUpdateForm.patchValue({
-            name:response.data.name,   
+            name: response.data.name,
           });
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
-
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
       }
-    )
+    );
   }
-  
-  update(){
+  //sends update request
+  update() {
     this.loading = true;
-    let colorModel:UpdateColorModel = Object.assign({},this.colorUpdateForm.value);
-    colorModel.id=this.editColor.id;
+    let colorModel: UpdateColorModel = Object.assign(
+      {},
+      this.colorUpdateForm.value
+    );
+    colorModel.id = this.editColor.id;
     this.colorService.update(colorModel).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.loading = false;
           this.clearColorUpdateForm();
           this.colorUpdateForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.loading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.loading = false;
       }
-    )
+    );
   }
-  
-  
-  
-  
-  }
+}

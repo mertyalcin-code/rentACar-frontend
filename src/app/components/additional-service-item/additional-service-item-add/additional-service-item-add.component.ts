@@ -11,44 +11,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./additional-service-item-add.component.css']
 })
 export class AdditionalServiceItemAddComponent implements OnInit {
-
-  loading=false;
+  //variables
+  loading = false;
+  //constructor
   constructor(
-    private additionalServiceItemService:AdditionalServiceItemService,private toastrService:ToastrService) { }
+    private additionalServiceItemService: AdditionalServiceItemService, private toastrService: ToastrService) { }
+  //starters
   ngOnInit() {
   }
+  //Form 
   itemAddForm = new FormGroup({
-    name: new FormControl("",[Validators.required,Validators.minLength(2),Validators.maxLength(50)]),
-    price: new FormControl("",[Validators.required])
+    name: new FormControl("", [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
+    price: new FormControl("", [Validators.required])
   })
+  //Clear form
   clearItemAddForm() {
     this.itemAddForm.patchValue({
-      name: '',   
-      price:''
+      name: '',
+      price: ''
     });
   }
-  add(){
+  //adds item 
+  add() {
     this.loading = true;
-    let itemModel = Object.assign({},this.itemAddForm.value);
+    let itemModel = Object.assign({}, this.itemAddForm.value);
     this.additionalServiceItemService.add(itemModel).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.loading = false;
           this.clearItemAddForm();
           this.itemAddForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, "Başarılı");
+        } else {
+          this.toastrService.warning(response.message, "Başarısız");
           this.loading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, "Başarısız");
         this.loading = false;
       }
     )
-   
+
 
   }
-  
+
 }

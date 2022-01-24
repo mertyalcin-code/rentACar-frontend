@@ -8,47 +8,50 @@ import { CarMaintenanceService } from 'src/app/services/car-maintenance.service'
 @Component({
   selector: 'app-car-maintenance-add',
   templateUrl: './car-maintenance-add.component.html',
-  styleUrls: ['./car-maintenance-add.component.css']
+  styleUrls: ['./car-maintenance-add.component.css'],
 })
 export class CarMaintenanceAddComponent implements OnInit {
-
-  loading=false;
+  //variables
+  loading = false;
+  //constructor
   constructor(
-    private carMaintenanceService:CarMaintenanceService,private toastrService:ToastrService) { }
-  ngOnInit() {
-  }
+    private carMaintenanceService: CarMaintenanceService,
+    private toastrService: ToastrService
+  ) {}
+  //starter
+  ngOnInit() {}
+  //add form
   carMaintenanceAddForm = new FormGroup({
-    carId: new FormControl("",[Validators.required]),
-    maintenanceStart: new FormControl("",[Validators.required])
-  })
+    carId: new FormControl('', [Validators.required]),
+    maintenanceStart: new FormControl('', [Validators.required]),
+  });
+  //clear form
   clearColorAddForm() {
     this.carMaintenanceAddForm.patchValue({
-      carId: '',   
-      maintenanceStart: '', 
+      carId: '',
+      maintenanceStart: '',
     });
   }
-  add(){
+  //sends a car to maintenance
+  add() {
     this.loading = true;
-    let colorModel = Object.assign({},this.carMaintenanceAddForm.value);
+    let colorModel = Object.assign({}, this.carMaintenanceAddForm.value);
     this.carMaintenanceService.add(colorModel).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {              
+        if (response.success) {
           this.loading = false;
           this.clearColorAddForm();
           this.carMaintenanceAddForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.loading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.loading = false;
       }
-    )
-   
-
+    );
   }
-  
 }

@@ -10,51 +10,54 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-payment-add',
   templateUrl: './payment-add.component.html',
-  styleUrls: ['./payment-add.component.css']
+  styleUrls: ['./payment-add.component.css'],
 })
 export class PaymentAddComponent implements OnInit {
-
-  
-  loading=false;
+  //variables
+  loading = false;
+  //constructor
   constructor(
-    private paymentService:PaymentService,private toastrService:ToastrService) { }
-  ngOnInit() {
-  }
+    private paymentService: PaymentService,
+    private toastrService: ToastrService
+  ) {}
+  //starter
+  ngOnInit() {}
   paymentAddForm = new FormGroup({
-    rentalId: new FormControl("",[Validators.required]),
-    paymentTime: new FormControl("",[Validators.required]),
-    totalPaymentAmount: new FormControl("",[Validators.required,Validators.min(0)]),
-  })
-
+    rentalId: new FormControl('', [Validators.required]),
+    paymentTime: new FormControl('', [Validators.required]),
+    totalPaymentAmount: new FormControl('', [
+      Validators.required,
+      Validators.min(0),
+    ]),
+  });
+  //clear form
   clearPaymentAddForm() {
     this.paymentAddForm.patchValue({
-      rentalId: '',   
-      paymentTime: '',  
-      totalPaymentAmount: '',  
+      rentalId: '',
+      paymentTime: '',
+      totalPaymentAmount: '',
     });
   }
-  add(){
+  //creates a new invoice
+  add() {
     this.loading = true;
-    let paymentModel = Object.assign({},this.paymentAddForm.value);
+    let paymentModel = Object.assign({}, this.paymentAddForm.value);
     this.paymentService.add(paymentModel).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {               
+        if (response.success) {
           this.loading = false;
           this.clearPaymentAddForm();
           this.paymentAddForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.loading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.loading = false;
       }
-    )
-   
-
+    );
   }
-  
 }

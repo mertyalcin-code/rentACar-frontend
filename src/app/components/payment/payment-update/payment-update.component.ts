@@ -12,77 +12,84 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-payment-update',
   templateUrl: './payment-update.component.html',
-  styleUrls: ['./payment-update.component.css']
+  styleUrls: ['./payment-update.component.css'],
 })
 export class PaymentUpdateComponent implements OnInit {
-  loading:boolean = false;
-  editPayment:PaymentListModel;
-  constructor(private paymentService : PaymentService,
-              private toastrService : ToastrService,
-              private router : ActivatedRoute
-    ) { }
-
+  //variables
+  loading: boolean = false;
+  editPayment: PaymentListModel;
+  //constructor
+  constructor(
+    private paymentService: PaymentService,
+    private toastrService: ToastrService,
+    private router: ActivatedRoute
+  ) {}
+  //starter
   ngOnInit() {
-    this.findById(parseInt(this.router.snapshot.paramMap.get('id'))) ;  
+    this.findById(parseInt(this.router.snapshot.paramMap.get('id')));
   }
+  //update form
   paymentUpdateForm = new FormGroup({
-    rentalId: new FormControl("",[Validators.required]),
-    paymentTime: new FormControl("",[Validators.required]),
-    totalPaymentAmount: new FormControl("",[Validators.required,Validators.min(0)]),
-  })
+    rentalId: new FormControl('', [Validators.required]),
+    paymentTime: new FormControl('', [Validators.required]),
+    totalPaymentAmount: new FormControl('', [
+      Validators.required,
+      Validators.min(0),
+    ]),
+  });
+  //clear form
   clearPaymentUpdateForm() {
     this.paymentUpdateForm.patchValue({
-      rentalId: '',   
-      paymentTime: '',   
-      totalPaymentAmount: '',   
+      rentalId: '',
+      paymentTime: '',
+      totalPaymentAmount: '',
     });
   }
-  findById(id:number){
+  //finds payment by id and patches value to the form
+  findById(id: number) {
     this.paymentService.findById(id).subscribe(
       (response: SingleResponseModel<PaymentListModel>) => {
-        if (response.success) {   
-          this.editPayment=response.data;
+        if (response.success) {
+          this.editPayment = response.data;
           this.paymentUpdateForm.patchValue({
-            rentalId:response.data.rentalId,   
-            paymentTime:response.data.paymentTime,   
-            totalPaymentAmount:response.data.totalPaymentAmount,   
+            rentalId: response.data.rentalId,
+            paymentTime: response.data.paymentTime,
+            totalPaymentAmount: response.data.totalPaymentAmount,
           });
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
-
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
       }
-    )
+    );
   }
-  
-  update(){
+  //sends update request
+  update() {
     this.loading = true;
-    let paymentModel:UpdatePaymentModel = Object.assign({},this.paymentUpdateForm.value);
-    paymentModel.id=this.editPayment.id;
+    let paymentModel: UpdatePaymentModel = Object.assign(
+      {},
+      this.paymentUpdateForm.value
+    );
+    paymentModel.id = this.editPayment.id;
     this.paymentService.update(paymentModel).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.loading = false;
           this.clearPaymentUpdateForm();
           this.paymentUpdateForm.markAsUntouched();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, 'Başarılı');
+        } else {
+          this.toastrService.warning(response.message, 'Başarısız');
           this.loading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, 'Başarısız');
         this.loading = false;
       }
-    )
+    );
   }
-  
-  
-  
-  
-  }
+}

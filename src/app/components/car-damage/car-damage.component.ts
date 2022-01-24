@@ -14,63 +14,68 @@ import { CarDamageListModel } from 'src/app/models/listModels/carDamageListModel
   styleUrls: ['./car-damage.component.css']
 })
 export class CarDamageComponent implements OnInit {
-  constructor(private carDamageService:CarDamageService,
+  //variables
+  damages: CarDamageListModel[] = [];
+  damagesLoading: boolean = false;
+  deleteLoading = false;
+  searchTerm: string = '';
+  selectedCarId: number;
+  //constructor
+  constructor(private carDamageService: CarDamageService,
     private toastrService: ToastrService
-    
-    ) { }
-  damages:CarDamageListModel[]=[];
-  damagesLoading:boolean = false;
-  deleteLoading=false;
-  searchTerm:string='';
-  selectedCarId:number;
+  ) { }
+  //starter
   ngOnInit(): void {
   }
+  //car ıd form to find car damages
   carIdForm = new FormGroup({
-    carId: new FormControl("",[Validators.required]),
+    carId: new FormControl("", [Validators.required]),
   })
+  //clear
   clearCarIdForm() {
     this.carIdForm.patchValue({
-      carId: '',  
+      carId: '',
     });
   }
-
-  findAllByCarId(){
-   let carId=this.carIdForm.get('carId').value;
-    this.damagesLoading = true;   
+  //finds all car damages by car id
+  findAllByCarId() {
+    let carId = this.carIdForm.get('carId').value;
+    this.damagesLoading = true;
     this.carDamageService.findAllByCarId(carId).subscribe(
       (response: ListResponseModel<CarDamageListModel>) => {
-        if (response.success) {           
-          this.selectedCarId=carId;
+        if (response.success) {
+          this.selectedCarId = carId;
           this.clearCarIdForm();
           this.damagesLoading = false;
-          this.damages=response.data;
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.damages = response.data;
+          this.toastrService.success(response.message, "Başarılı");
+        } else {
+          this.toastrService.warning(response.message, "Başarısız");
           this.damagesLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, "Başarısız");
         this.damagesLoading = false;
       }
     )
   }
-  delete(id:number){
-    this.deleteLoading = true;   
+  //deletes a damage
+  delete(id: number) {
+    this.deleteLoading = true;
     this.carDamageService.delete(id).subscribe(
       (response: ResponseModel) => {
-        if (response.success) {           
+        if (response.success) {
           this.deleteLoading = false;
           this.findAllByCarId();
-          this.toastrService.success(response.message,"Başarılı");
-        } else {     
-          this.toastrService.warning(response.message,"Başarısız");
+          this.toastrService.success(response.message, "Başarılı");
+        } else {
+          this.toastrService.warning(response.message, "Başarısız");
           this.deleteLoading = false;
         }
       },
-      (errorResponse: HttpErrorResponse) => {       
-        this.toastrService.error(errorResponse.message,"Başarısız");
+      (errorResponse: HttpErrorResponse) => {
+        this.toastrService.error(errorResponse.message, "Başarısız");
         this.deleteLoading = false;
       }
     )

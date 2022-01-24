@@ -37,7 +37,6 @@ import { MyRentalComponent } from './components/rental/my-rental/my-rental.compo
 import { CarAddComponent } from './components/car/car-add/car-add.component';
 import { ColorAddComponent } from './components/color/color-add/color-add.component';
 import { BrandAddComponent } from './components/brand/brand-add/brand-add.component';
-import { RentalComponent } from './components/rental/rental.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -49,14 +48,14 @@ import { ColorComponent } from './components/color/color.component';
 import { BrandComponent } from './components/brand/brand.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ToastrModule} from "ngx-toastr";
+import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { RentalAddForIndividualCustomerComponent } from './components/rental/rental-add-individual-customer/rental-add-individual-customer.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -81,13 +80,13 @@ import { IndividualCustomerAddComponent } from './components/customer/individual
     ContactComponent,
     MyAccountComponent,
     AboutUsComponent,
-    RentalComponent,
     BrandAddComponent,
     ColorAddComponent,
     CarAddComponent,
     RentalAddForIndividualCustomerComponent,
     MyRentalComponent,
-    CreditCardComponent,HomeComponent,
+    CreditCardComponent,
+    HomeComponent,
     EmployeePanelComponent,
     RentalManagementComponent,
     CityComponent,
@@ -130,24 +129,23 @@ import { IndividualCustomerAddComponent } from './components/customer/individual
     IndividualCustomerUpdateComponent,
     UserComponent,
     IndividualCustomerComponent,
-    RegisterSuccessComponent
-    
+    RegisterSuccessComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     FormsModule,
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
-      positionClass:"toast-bottom-right"
+      positionClass: 'toast-bottom-right',
     }),
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

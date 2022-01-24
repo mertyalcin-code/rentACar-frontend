@@ -7,19 +7,20 @@ import { ResponseModel } from './../models/responseModels/responseModel';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   private baseUrl: string = environment.baseUrl;
-  private  apiUrl: string = this.baseUrl + "users/"
- constructor(private httpClient: HttpClient) { }
+  private apiUrl: string = this.baseUrl + 'users/';
+  constructor(private httpClient: HttpClient) {}
 
- findAll(): Observable<ListResponseModel<UserListModel>>{ 
-   return this.httpClient.get<ListResponseModel<UserListModel>>(this.apiUrl+"find-all")
- } 
+  findAll(): Observable<ListResponseModel<UserListModel>> {
+    return this.httpClient.get<ListResponseModel<UserListModel>>(
+      this.apiUrl + 'find-all'
+    );
+  }
 
- delete(id: number): Observable<ResponseModel> {
-   return this.httpClient.delete<ResponseModel>(this.apiUrl + "delete/" + id)
- }
+  delete(id: number): Observable<ResponseModel> {
+    return this.httpClient.delete<ResponseModel>(this.apiUrl + 'delete/' + id);
+  }
 }
