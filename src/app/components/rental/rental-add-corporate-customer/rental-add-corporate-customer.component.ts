@@ -68,7 +68,7 @@ export class RentalAddCorporateCustomerComponent implements OnInit {
     this.customerId = this.authService.getUserFromLocalStorage().id;
     this.carId = parseInt(this.router.snapshot.paramMap.get('carId'));
     this.getAdditionalServiceItems();
-    this.findCarById();
+    this.findCarById();    
   }
   //create rental form
   rentalAddForm = new FormGroup({

@@ -1,3 +1,4 @@
+import { LocalService } from './../../../services/local.service';
 import { SingleResponseModel } from './../../../models/responseModels/singleResponseModel';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './../../../services/auth.service';
@@ -22,7 +23,8 @@ export class CarDetailComponent implements OnInit {
     private linkRouter: Router,
     private carService: CarService,
     private authService: AuthService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private localService: LocalService
   ) { }
   //starter
   ngOnInit() {
@@ -42,18 +44,20 @@ export class CarDetailComponent implements OnInit {
   }
   //routes the proper component by checking the role
   rentCar(id: number): void {
+    
     if (this.authService.isEmployee()) {
       this.toastrService.info("Sistem Çalışanı Araç Kiralayamaz", "Başarısız");
       this.linkRouter.navigateByUrl('/home');
     }
     else if (this.authService.isCorporateCustomer()) {
-
+      
       this.linkRouter.navigateByUrl('/rental/add/corporate-customer/' + id);
     }
     else if (this.authService.isIndividualCustomer()) {
       this.linkRouter.navigateByUrl('/rental/add/individual-customer/' + id);
     }
     else {
+      this.localService.setJsonValue('selectedCar',JSON.stringify(id));
       this.linkRouter.navigateByUrl('/login');
     }
 
