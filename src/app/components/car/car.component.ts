@@ -23,8 +23,7 @@ export class CarComponent implements OnInit {
   //constructor
   constructor(
     private carService: CarService,
-    private router: Router,
-    private colorService: ColorService) { }
+    private router: Router,) { }
 
   //starter
   ngOnInit(): void {

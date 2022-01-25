@@ -74,6 +74,7 @@ const routes: Routes = [
   },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'register-success', component: RegisterSuccessComponent },
+ 
   //auth needed
   {
     path: 'my-account',
@@ -314,4 +315,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
