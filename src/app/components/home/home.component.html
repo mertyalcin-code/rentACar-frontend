@@ -1,5 +1,6 @@
 
   <!-- filter container-->
+    <!-- City-->
   <div class="container-fluid justify-content-center " style="margin-top: 1%;margin-bottom: 1%;margin-left: 10%;"> 
     <div class="btn-group" role="group"  style="margin: 1%;">
         <button type="button" class="btn btn-primary" disabled>Şehir</button>
@@ -7,9 +8,8 @@
             <option value="" selected>Hepsi</option>
             <option *ngFor="let city of cities" [value]="city.cityName">{{city.cityName}}</option>
           </select>
-      </div>
-    
-  
+      </div>  
+      <!-- Brand-->
       <div class="btn-group" role="group"  style="margin: 1%;">
         <button type="button" class="btn btn-secondary" disabled>Marka</button>
       <select class="btn btn-secondary dropdown-toggle" [(ngModel)]="selectedBrand"> 
@@ -17,6 +17,7 @@
         <option *ngFor="let brand of brands" [value]="brand.name">{{brand.name}}</option>
       </select>
     </div>
+    <!-- Color-->
     <div class="btn-group" role="group"  style="margin: 1%;">
         <button type="button" class="btn btn-info" disabled>Renk</button>
       <select class="btn btn-info dropdown-toggle" [(ngModel)]="selectedColor"> 
@@ -24,6 +25,7 @@
         <option *ngFor="let color of colors" [value]="color.name">{{color.name}}</option>
       </select>
     </div>
+    <!-- Segment-->
       <div class="btn-group" role="group"  style="margin: 1%;"> 
         <button type="button" class="btn btn-success" disabled>Sınıf</button>
       <select class="btn btn-success dropdown-toggle" [(ngModel)]="selectedSegment"> 
