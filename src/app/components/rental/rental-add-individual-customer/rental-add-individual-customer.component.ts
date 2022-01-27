@@ -292,7 +292,7 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
         } else {
           this.toastrService.warning(response.message, 'Başarısız');
           this.paymentLoading = false;
-        }
+        } 
       },
       (errorResponse: HttpErrorResponse) => {
         this.toastrService.error(errorResponse.message, 'Başarısız');
@@ -306,7 +306,7 @@ export class RentalAddForIndividualCustomerComponent implements OnInit {
     const model: TotalPriceRequestModel = {
       rentalId: this.activeRental.id,
       returnDate: this.rentalAddForm.get('returnDate').value,
-    };
+    };  
 
     this.paymentService.calculateTotalPrice(model).subscribe(
       (response) => {
